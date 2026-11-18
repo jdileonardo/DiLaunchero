@@ -534,7 +534,7 @@ def deck():
              name="FaceSide", id=ID["TopFace"], opacity=0),
         node([card_back()], name="BackSide", id=ID["TopBack"]),
     ], name="TopCard", id=ID["TopCard"])
-    return node(under + [top], name="Deck", x=190, y=962, rot=0.1, sx=0.88, sy=0.88)
+    return node(under + [top], name="Deck", x=200, y=966, rot=0.1, sx=0.72, sy=0.72)
 
 
 def case():
@@ -556,12 +556,13 @@ def case():
 
 
 # ---- the table hand and the sweep ----------------------------------------------------
-COURT_X, COURT_Y, COURT_S = [570, 710, 850], 104, 0.55
-CASE_X, CASE_Y, CASE_S = 1004, 102, 0.58
-TABLE_S = 0.62
-TABLE_X = [480, 720, 960, 1200]
+# bottom right: the case, then the three court cards
+COURT_X, COURT_Y, COURT_S = [1440, 1592, 1744], 962, 0.62
+CASE_X, CASE_Y, CASE_S = 1290, 966, 0.66
+TABLE_S = 0.5
+TABLE_X = [410, 530, 650, 770]
 TABLE_Y = 960
-PLAYED_X = 1440
+PLAYED_X = 900
 
 
 def tre_di_denari():
@@ -652,7 +653,6 @@ TABLE = node([
     case(),
     deck(),
     table_hand(),
-    # the court cards stand in the top bar, between the clock and Now Playing
     card("FanteCard", fante_di_coppe(), COURT_X[0], COURT_Y, -0.06, s=COURT_S),
     card("CavalloCard", cavallo_di_spade(), COURT_X[1], COURT_Y - 4, 0.02, s=COURT_S),
     card("ReCard", re_di_bastoni(), COURT_X[2], COURT_Y, 0.06, s=COURT_S),
@@ -746,7 +746,7 @@ def anims():
     # a card is played, the broom sweeps the table (scopa!), the cards are dealt again; 25 s
     D = 1500
     play_at, sweep0, sweep1, deal = 840, 930, 1020, 1200
-    bx0, bx1 = 320, 1640
+    bx0, bx1 = 280, 1020
     tr = {}
     for i, x in enumerate(TABLE_X + [PLAYED_X]):
         key = I[f"T{i}"] if i < 4 else I["Played"]
