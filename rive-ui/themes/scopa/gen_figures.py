@@ -534,7 +534,7 @@ def deck():
              name="FaceSide", id=ID["TopFace"], opacity=0),
         node([card_back()], name="BackSide", id=ID["TopBack"]),
     ], name="TopCard", id=ID["TopCard"])
-    return node(under + [top], name="Deck", x=372, y=968, rot=0.1, sx=0.8, sy=0.8)
+    return node(under + [top], name="Deck", x=390, y=962, rot=0.1, sx=0.88, sy=0.88)
 
 
 def case():
@@ -552,13 +552,15 @@ def case():
         coin(44, name="Medallion", y=32),
         shape([star(4, 12, 0.3, x_, y_) for x_, y_ in ((-52, -28), (52, -28), (-52, 92), (52, 92))], GOLD,
               stroke=None, name="Corners"),
-    ], name="Case", x=168, y=962, rot=-0.08, sx=0.82, sy=0.82)
+    ], name="Case", x=170, y=956, rot=-0.08, sx=0.9, sy=0.9)
 
 
 # ---- the table hand and the sweep ----------------------------------------------------
-TABLE_X = [590, 712, 834, 956]
-TABLE_Y = 966
-PLAYED_X = 1086
+COURT_X, COURT_Y, COURT_S = [612, 752, 892], 104, 0.55
+TABLE_S = 0.62
+TABLE_X = [650, 830, 1010, 1190]
+TABLE_Y = 960
+PLAYED_X = 1380
 
 
 def tre_di_denari():
@@ -568,12 +570,12 @@ def tre_di_denari():
 def table_hand():
     ids("Broom", *[f"T{i}" for i in range(4)], "Played")
     hand = [
-        card("Sette", settebello(), TABLE_X[0], TABLE_Y, -0.04, id=ID["T0"], s=0.5),
-        card("AssoBastoni", asso_di_bastoni(), TABLE_X[1], TABLE_Y, 0.03, id=ID["T1"], s=0.5),
-        card("QuattroSpade", quattro_di_spade(), TABLE_X[2], TABLE_Y, -0.02, id=ID["T2"], s=0.5),
-        card("SeiCoppe", sei_di_coppe(), TABLE_X[3], TABLE_Y, 0.05, id=ID["T3"], s=0.5),
+        card("Sette", settebello(), TABLE_X[0], TABLE_Y, -0.04, id=ID["T0"], s=TABLE_S),
+        card("AssoBastoni", asso_di_bastoni(), TABLE_X[1], TABLE_Y, 0.03, id=ID["T1"], s=TABLE_S),
+        card("QuattroSpade", quattro_di_spade(), TABLE_X[2], TABLE_Y, -0.02, id=ID["T2"], s=TABLE_S),
+        card("SeiCoppe", sei_di_coppe(), TABLE_X[3], TABLE_Y, 0.05, id=ID["T3"], s=TABLE_S),
     ]
-    played = card("Played", tre_di_denari(), PLAYED_X, 1260, 0.06, id=ID["Played"], s=0.5)
+    played = card("Played", tre_di_denari(), PLAYED_X, 1260, 0.06, id=ID["Played"], s=TABLE_S)
     broom = node([
         shape(rect(10, 120, 0, -70, 4), WOOD, sw=1.6, name="Handle"),
         shape([rect(1.4, 110, x_, -70) for x_ in (-2, 2)], WOODDK, stroke=None, name="Grain"),
@@ -649,9 +651,10 @@ TABLE = node([
     case(),
     deck(),
     table_hand(),
-    card("FanteCard", fante_di_coppe(), 1336, 902, -0.07),
-    card("CavalloCard", cavallo_di_spade(), 1556, 896, 0.02),
-    card("ReCard", re_di_bastoni(), 1776, 904, 0.07),
+    # the court cards stand in the top bar, between the clock and Now Playing
+    card("FanteCard", fante_di_coppe(), COURT_X[0], COURT_Y, -0.06, s=COURT_S),
+    card("CavalloCard", cavallo_di_spade(), COURT_X[1], COURT_Y - 4, 0.02, s=COURT_S),
+    card("ReCard", re_di_bastoni(), COURT_X[2], COURT_Y, 0.06, s=COURT_S),
 ], name="Table")
 
 I = ID
@@ -742,7 +745,7 @@ def anims():
     # a card is played, the broom sweeps the table (scopa!), the cards are dealt again; 25 s
     D = 1500
     play_at, sweep0, sweep1, deal = 840, 930, 1020, 1200
-    bx0, bx1 = 470, 1190
+    bx0, bx1 = 500, 1560
     tr = {}
     for i, x in enumerate(TABLE_X + [PLAYED_X]):
         key = I[f"T{i}"] if i < 4 else I["Played"]
