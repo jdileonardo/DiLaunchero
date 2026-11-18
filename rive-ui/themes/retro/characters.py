@@ -14,7 +14,7 @@ Cast:
   Ray      a radio in the bottom-left; bounces and sends notes while music plays
   TV guy   (in scene.rml) gets arms here, and waves now and then
   Parade   along the floor: Vic the VHS tape, Gabby the handheld, Snap the
-           camera (flash!), and Scoot the dog, who drags its bum across
+           camera (flash!), and Scoot the robot pup, who drags its bum across
 """
 import math
 import re
@@ -361,26 +361,41 @@ stroll("10:3", "Snap", snap, legs("10:3", 20, TEAL), False, 2600, 1400, 4200,
                      keys("scaleY", [(0, 0.6, "hold"), (SNAP_AT, 0.6), (SNAP_AT + 20, 1.3, "hold"),
                                      (SNAP_AT + 40, 0.6), (SNAP_AT + 60, 1.3, "hold"), (4200, 0.6, "hold")]))])
 
-# Scoot the dog: sits on its bum and drags itself across, front paws paddling
-DOG = "FFE0A458"
-paw = lambda n, nid, x: node(n, [shape("Leg", [rect(9, 30, 0, 15, 4)], fill(DOG) + stroke(INK, 3)),
-                                 shape("Paw", [ell(14, 8, 3, 30)], fill(DOG) + stroke(INK, 2.5))], x, -30, nid)
+# Scoot the robot pup: a turn-of-the-millennium toy robot dog, white plastic with
+# LED eyes. Sits on its bum and drags itself across, front paws paddling.
+SHELL, JOINT, LED, GLOW = "FFF6F4EE", "FFAEB4BE", "FF6FE3E8", "556FE3E8"
+def paw(n, nid, x):
+    return node(n, [shape("Foot", [rect(14, 9, 2, 30, 3)], fill(SHELL) + stroke(INK, 2.5)),
+                    shape("Knee", [ell(8, 8, 0, 14)], fill(TOMATO) + stroke(INK, 2)),
+                    shape("Leg", [rect(9, 30, 0, 15, 3)], fill(JOINT) + stroke(INK, 3))], x, -30, nid)
+def ear(nid, x, rot):
+    return node("Ear", [shape("Panel", [rect(12, 26, 0, -12, 4)], fill(JOINT) + stroke(INK, 3)),
+                        shape("Hinge", [ell(8, 8)], fill(TOMATO) + stroke(INK, 2))], x, -16, nid, f' rotation="{rot}"')
+def heart(x, y):
+    return [ell(6, 6, x - 2.5, y - 1.5), ell(6, 6, x + 2.5, y - 1.5),
+            '<Triangle x="%s" y="%s" rotation="3.14159" width="11" height="7" name="V"/>' % (x, y + 3)]
 puffs = [shape(f"Puff{i}", [ell(14, 10), ell(10, 8, 9, -3)], fill("CCFFF8EA") + stroke("88A88A6A", 2), -54 - 14 * i, -6,
                sid=f"10:4{5 + i}", extra=' opacity="0"') for i in range(2)]
 dog = node("Body", [
     paw("PawNear", "10:43", 20),
     node("Head", [
-        shape("Ear", [ell(14, 28, 0, 0)], fill("FF8A5A34") + stroke(INK, 3), -12, 4, rot=0.35),
-        shape("Nose", [ell(10, 7, 28, -2)], fill(INK)),
-        shape("Eyes", [rect(9, 3.5, 0, -6, 1.75), rect(9, 3.5, 14, -6, 1.75)], fill(INK)),
-        shape("Tongue", [ell(9, 12, 18, 16)], fill(PINK) + stroke(INK, 2)),
-        shape("Snout", [ell(26, 18, 20, 6)], fill("FFF6E3C4") + stroke(INK, 3)),
-        shape("Skull", [ell(46, 40)], fill(DOG) + stroke(INK, 4)),
+        ear("10:470", -14, -0.8),
+        shape("Hearts", heart(0, -4) + heart(16, -4), fill(TOMATO), sid="10:49", extra=' opacity="0"'),
+        node("Leds", [shape("Dots", [ell(8, 8, 0, -4), ell(8, 8, 16, -4)], fill(LED)),
+                      shape("Glow", [ell(14, 14, 0, -4), ell(14, 14, 16, -4)], fill(GLOW))], 0, 0, "10:48"),
+        shape("Grille", [rect(10, 2, 26, 9), rect(10, 2, 26, 13)], fill(JOINT)),
+        shape("Visor", [rect(36, 20, 8, -4, 9)], fill(INK)),
+        shape("Muzzle", [rect(24, 18, 24, 8, 7)], fill(SHELL) + stroke(INK, 3)),
+        shape("Dome", [rect(50, 42, 2, 0, 18)], fill(SHELL) + stroke(INK, 4)),
+        ear("10:471", 14, 0.8),
     ], 30, -62, "10:44"),
-    shape("Haunch", [ell(30, 18, -16, -10)], fill(DOG) + stroke(INK, 3)),
-    shape("Belly", [ell(76, 44, -8, -26)], fill(DOG) + stroke(INK, 4), rot=-0.35),
+    shape("Led", [ell(6, 6, -2, -32)], fill(LED) + stroke(INK, 1.5)),
+    shape("Panel", [rect(30, 12, -10, -24, 5)], fill(TOMATO) + stroke(INK, 2.5), rot=-0.35),
+    shape("Haunch", [rect(32, 18, -16, -10, 8)], fill(JOINT) + stroke(INK, 3)),
+    shape("Belly", [rect(76, 44, -8, -26, 20)], fill(SHELL) + stroke(INK, 4), rot=-0.35),
     paw("PawFar", "10:42", 30),
-    node("Tail", [shape("T", [rect(7, 26, 0, -12, 3.5)], fill(DOG) + stroke(INK, 2.5))], -44, -18, "10:41",
+    node("Tail", [shape("Tip", [ell(10, 10, 0, -26)], fill(TOMATO) + stroke(INK, 2.5)),
+                  shape("Spring", [rect(4, 24, 0, -12, 2)], fill(JOINT) + stroke(INK, 2))], -44, -18, "10:41",
          ' rotation="-0.9"'),
 ] + puffs, 0, 0, "10:40")
 SCOOT_START, SCOOT_PERIOD, HOP, LURCH = 900, 5400, 30, 20
@@ -410,7 +425,18 @@ anims.append(anim("10:409", "Scoot Drag", SCOOT_PERIOD,
     keyed("10:45", keys("opacity", puff_k[0])), keyed("10:46", keys("opacity", puff_k[1]))))
 anims.append(anim("10:419", "Scoot Wag", 24,
     keyed("10:41", keys("rotation", [(0, -0.9), (12, -0.3), (24, -0.9)]))))
-layers += [layer("10:408", "Scoot Drag", "10:409"), layer("10:418", "Scoot Wag", "10:419")]
+# robot quirks: LED eyes blink, switch to hearts now and then; ears twitch with a mechanical snap
+anims.append(anim("10:429", "Scoot Robot", 360,
+    keyed("10:48", keys("opacity", [(0, 1, "hold"), (220, 0, "hold"), (290, 1, "hold"), (360, 1, "hold")]),
+          keys("scaleY", [(0, 1, "hold"), (120, 1), (124, 0.15), (130, 1, "hold"), (360, 1, "hold")])),
+    keyed("10:49", keys("opacity", [(0, 0, "hold"), (220, 1, "hold"), (290, 0, "hold"), (360, 0, "hold")]),
+          keys("scaleX", [(0, 1, "hold"), (220, 0.6), (230, 1.15), (240, 1), (250, 1.15), (260, 1, "hold"), (360, 1, "hold")]),
+          keys("scaleY", [(0, 1, "hold"), (220, 0.6), (230, 1.15), (240, 1), (250, 1.15), (260, 1, "hold"), (360, 1, "hold")])),
+    keyed("10:470", keys("rotation", [(0, -0.8, "hold"), (60, -1.25, "hold"), (68, -0.8, "hold"), (180, -1.25, "hold"),
+                                      (186, -0.8, "hold"), (192, -1.25, "hold"), (198, -0.8, "hold"), (360, -0.8, "hold")])),
+    keyed("10:471", keys("rotation", [(0, 0.8, "hold"), (64, 1.25, "hold"), (72, 0.8, "hold"), (220, 1.2, "hold"),
+                                      (290, 0.8, "hold"), (360, 0.8, "hold")]))))
+layers += [layer("10:408", "Scoot Drag", "10:409"), layer("10:418", "Scoot Wag", "10:419"), layer("10:428", "Scoot Robot", "10:429")]
 
 # ================================================================ write into scene.rml
 def put(s, tag, body, before):
