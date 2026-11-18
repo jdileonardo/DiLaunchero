@@ -75,16 +75,20 @@ data class NowPlaying(
   val canNext: Boolean,
 )
 
+/** true: the Rive UI (RiveHome.kt). false: the original Compose UI below. */
+private const val USE_RIVE_UI = true
+
 class MainActivity : ComponentActivity() {
-  private var refresh by mutableIntStateOf(0)
+  internal var refresh by mutableIntStateOf(0)
   private val icons = ConcurrentHashMap<String, ImageBitmap>()
-  @Volatile private var mediaController: MediaController? = null
+  @Volatile internal var mediaController: MediaController? = null
   private var artKey: String? = null
   private var cachedArt: ImageBitmap? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContent { LauncherScreen() }
+    if (USE_RIVE_UI) app.rive.runtime.kotlin.core.Rive.init(applicationContext) // loads the native runtime
+    setContent { if (USE_RIVE_UI) RiveLauncherScreen() else LauncherScreen() }
   }
 
   override fun onResume() {
@@ -92,9 +96,9 @@ class MainActivity : ComponentActivity() {
     refresh++ // pick up installs/uninstalls
   }
 
-  private fun launch(i: Intent) { runCatching { startActivity(i) } }
+  internal fun launch(i: Intent) { runCatching { startActivity(i) } }
 
-  private fun icon(pkg: String): ImageBitmap = icons.getOrPut(pkg) {
+  internal fun icon(pkg: String): ImageBitmap = icons.getOrPut(pkg) {
     packageManager.getApplicationIcon(pkg).toBitmap(160, 160).asImageBitmap()
   }
 
@@ -322,7 +326,7 @@ class MainActivity : ComponentActivity() {
   }
 
   @Composable
-  private fun AppActionMenu(
+  internal fun AppActionMenu(
     app: AppEntry,
     isFavorite: Boolean,
     onDismiss: () -> Unit,
@@ -514,7 +518,7 @@ class MainActivity : ComponentActivity() {
     ) { content() }
   }
 
-  private fun queryNowPlaying(): NowPlaying? = try {
+  internal fun queryNowPlaying(): NowPlaying? = try {
     val msm = getSystemService(MediaSessionManager::class.java)
     val sessions: List<MediaController> = msm.getActiveSessions(ComponentName(this, NowPlayingListener::class.java))
     fun MediaController.isPlaying() = playbackState?.state == PlaybackState.STATE_PLAYING
@@ -542,7 +546,7 @@ class MainActivity : ComponentActivity() {
     }
   } catch (e: SecurityException) { null } // notification-listener access not granted yet
 
-  private fun loadApps(): List<AppEntry> {
+  internal fun loadApps(): List<AppEntry> {
     val pm = packageManager
     fun query(cat: String) = pm.queryIntentActivities(Intent(Intent.ACTION_MAIN).addCategory(cat), 0)
     val leanback = query(Intent.CATEGORY_LEANBACK_LAUNCHER)
