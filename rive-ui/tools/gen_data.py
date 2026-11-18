@@ -74,6 +74,7 @@ out.append('''    <ViewModel defaultInstanceId="5:1" name="Home" id="4:1">
         <ViewModelPropertyNumber name="appsScroll" id="4:38"/>
         <ViewModelPropertyBoolean name="appsMoreBelow" id="4:39"/>
         <ViewModelPropertyBoolean name="themeFocused" id="4:40"/>
+        <ViewModelPropertyNumber name="skyPhase" id="4:41"/>
         <ViewModelInstance exports="true" name="Default" id="5:1">
             <ViewModelInstanceString propertyValue="11:11 PM" viewModelPropertyId="4:2"/>
             <ViewModelInstanceString propertyValue="Tuesday, November 17" viewModelPropertyId="4:3"/>
@@ -90,6 +91,7 @@ out.append('''    <ViewModel defaultInstanceId="5:1" name="Home" id="4:1">
             <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="4:38"/>
             <ViewModelInstanceBoolean propertyValue="false" viewModelPropertyId="4:39"/>
             <ViewModelInstanceBoolean propertyValue="false" viewModelPropertyId="4:40"/>
+            <ViewModelInstanceNumber propertyValue="2" viewModelPropertyId="4:41"/>
             <ViewModelInstanceList viewModelPropertyId="4:8">''')
 for iid in fav_ids:
     out.append(f'                <ViewModelInstanceListItem viewModelId="4:20" viewModelInstanceId="{iid}"/>')

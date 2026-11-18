@@ -654,8 +654,8 @@ sky = []
 for i, (y, s, period, offset) in enumerate(((150, 1.0, 7200, 0.25), (430, 0.8, 9000, 0.7), (690, 1.2, 10800, 0.05))):
     c = nid()
     sky.append(node(f"Cloud{i}", [shape("Puff", [ell(110, 54, 0, 0), ell(80, 60, -40, -16), ell(90, 74, 26, -24), ell(150, 36, 0, 14)],
-                                        fill("FFFFFFFF")),
-                                  shape("Shade", [ell(150, 36, 0, 18)], fill("FFDCEBF5"))],
+                                        fill("FFFFFFFF", f"15:4{2 + i}")),
+                                  shape("Shade", [ell(150, 36, 0, 18)], fill("FFDCEBF5", f"15:4{5 + i}"))],
                     -200, y, c, f' scaleX="{s}" scaleY="{s}"'))
     span = 2320
     x0 = -200 + span * offset
@@ -682,8 +682,40 @@ meadow = [
 sun = node("Sun", [
     shape("Disc", [ell(96, 96)], fill("FFFFD75A") + stroke("FFF2B23A", 3)),
     shape("Rays", ['<Star points="12" width="190" height="190" innerRadius="0.62" name="P"/>'], fill("FFFFEBA6"), sid="1:3"),
-], 1020, 92)
-backdrop += meadow + sky + [sun]
+], 1020, 92, "15:40")
+moon = node("Moon", [
+    shape("Craters", [ell(12, 10, -12, -10), ell(8, 8, 14, 8), ell(6, 6, -4, 16)], fill("FFE2D6AE")),
+    shape("Disc", [ell(76, 76)], fill("FFF6EED2") + stroke("FFE2D6AE", 2.5)),
+    shape("Glow", [ell(130, 130)], fill("26FFF6D8")),
+], 1020, 92, "15:41", ' opacity="0"')
+backdrop += meadow + sky + [sun, moon]
+
+# ---------------------------------------------------------------- evening (ids driven by tools/sky.py)
+# a band of evening light over the forest floor and everyone on it: warm at dusk, deep blue at night
+shapes.insert(0, shape("EveningLight", [rect(1920, 340, 960, 910)],
+                       '<Fill name="F"><LinearGradient startX="0" startY="740" endX="0" endY="860" name="G">'
+                       '<GradientStop colorValue="00F08850" position="0" id="15:51"/>'
+                       '<GradientStop colorValue="00F08850" position="1" id="15:52"/></LinearGradient></Fill>',
+                       sid="15:50", extra=' opacity="0"'))
+# lamplight in the Bear house (above the evening light, so it glows)
+shapes.insert(0, node("Lamplight", [
+    shape("Mullions", [rect(3, 30, 92, FLOOR - 72), rect(34, 3, 92, FLOOR - 72), rect(3, 30, 208, FLOOR - 72),
+                       rect(34, 3, 208, FLOOR - 72)], fill(INK)),
+    shape("Panes", [rect(32, 28, 92, FLOOR - 72, 3), rect(32, 28, 208, FLOOR - 72, 3)], fill("FFFFE29A")),
+    shape("Glow", [ell(56, 50, 92, FLOOR - 72), ell(56, 50, 208, FLOOR - 72)], fill("33FFD27A")),
+], 0, 0, "15:54", ' opacity="0"'))
+# fireflies drifting over the meadow
+flies = []
+rnd_pts = [(260, 930), (520, 960), (760, 905), (900, 990), (1120, 940), (1420, 975), (1640, 920), (1830, 960)]
+for i, (fx, fy) in enumerate(rnd_pts):
+    f = nid()
+    flies.append(node(f"Fly{i}", [shape("Spark", [ell(5, 5)], fill("FFF9F7A8")), shape("Halo", [ell(16, 16)], fill("50F9F7A8"))],
+                      fx, fy, f))
+    period = 240 + 37 * i
+    anim(f"Firefly {i}", period, keyed(f, keys("opacity", [(0, 0.2), (period // 3, 1), (period // 2, 0.15), (5 * period // 6, 1), (period, 0.2)]),
+                                       keys("x", [(0, fx), (period // 2, fx + 24 - 6 * i), (period, fx)]),
+                                       keys("y", [(0, fy), (period // 3, fy - 18), (2 * period // 3, fy + 8), (period, fy)])))
+shapes.insert(0, node("Fireflies", flies, 0, 0, "15:53", ' opacity="0"'))
 
 # ---------------------------------------------------------------- Owl, the mascot by the clock (ids kept from the template:
 # 1:202 bobs to music, 1:203 blinks, 1:204 the book tilts as he bops)

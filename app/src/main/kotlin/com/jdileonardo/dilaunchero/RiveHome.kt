@@ -238,10 +238,16 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
     val h = home ?: return@LaunchedEffect
     val time = SimpleDateFormat("h:mm a", Locale.getDefault())
     val date = SimpleDateFormat("EEEE, MMMM d", Locale.getDefault())
+    val prefs = getSharedPreferences("launcher", android.content.Context.MODE_PRIVATE)
     while (true) {
       val now = Date()
       h.setString("time", time.format(now))
       h.setString("date", date.format(now))
+      // day / dusk / night for the themes that follow the sky; "sky_override" (0-2) pins one, for testing
+      val (lat, lon) = Sky.place(this@RiveHome)
+      val phase = prefs.getInt("sky_override", -1).takeIf { it in 0..2 }
+        ?: Sky.phase(java.util.Calendar.getInstance(), lat, lon)
+      h.setNumber("skyPhase", phase.toFloat())
       delay(15_000)
     }
   }
