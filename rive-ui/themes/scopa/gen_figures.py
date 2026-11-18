@@ -596,11 +596,9 @@ def table_hand():
 def tile_deco(kind):
     if kind == "fav":   # card 256 x 168, icon 112 centred: favourites are Denari
         return node([
-            node([platform(112, GOLD, 0, 7)], name="Ground", x=128, y=146),
             coin(26, name="Suit", x=224, y=28),
         ], name="Deco")
     return node([         # card 172 x 116, icon 76 centred: apps are Coppe
-        node([platform(76, RED, 0, 6)], name="Ground", x=86, y=101),
         cup(24, name="Suit", x=150, y=24),
     ], name="Deco")
 
@@ -644,7 +642,6 @@ def divider_band(width=1776, h=14):
 # assemble
 # ================================================================================
 TABLE = node([
-    felt_lattice(),
     case(),
     deck(),
     table_hand(),

@@ -18,7 +18,9 @@ import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -27,6 +29,8 @@ import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import app.rive.Fit
+import app.rive.RenderBackend
+import app.rive.RiveFrameRate
 import app.rive.ImageAsset
 import app.rive.Rive
 import app.rive.RiveFile
@@ -55,6 +59,7 @@ import app.rive.Result as RiveResult
 private const val APP_COLUMNS = 8
 /** Grid rows that fit in the apps window below the favourites, and their height in artboard points. */
 private const val APP_ROWS_VISIBLE = 3
+private const val RENDER_SCALE = 1.5f
 private const val APP_ROW_HEIGHT = 182f
 
 /** The Rive designs the home screen can wear; each is a theme folder in rive-ui/themes/. */
@@ -102,7 +107,8 @@ internal fun MainActivity.RiveLauncherScreen() {
 /** One theme's home screen. Settings opens a menu: Android settings, or launcher settings (theme). */
 @Composable
 private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTheme) -> Unit) {
-  val worker = rememberRiveWorker()
+  // OpenGL: on the onn 4K Pro (Mali) the default Vulkan path draws far slower
+  val worker = rememberRiveWorker(RenderBackend.OpenGL)
   val fileResult = rememberRiveFile(RiveFileSource.RawRes.from(theme.raw), worker)
   val file = (fileResult as? RiveResult.Success)?.value
   if (file == null) {
@@ -409,11 +415,16 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
       }
   ) {
     home?.let { h ->
+      // Render at a fraction of the screen and scale up: the TV's small GPU is fill-rate bound
+      // at 1080p. RENDER_SCALE 1 = full resolution.
       Rive(
         file = file,
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(1f / RENDER_SCALE).align(Alignment.Center)
+          .graphicsLayer(scaleX = RENDER_SCALE, scaleY = RENDER_SCALE),
         viewModelInstance = h,
         fit = Fit.Contain(),
+        // a steady 30 (every other refresh) looks smoother than an uneven 25-40 on this TV
+        frameRate = RiveFrameRate.Capped(30f),
         backgroundColor = theme.background.toArgb(),
       )
     }

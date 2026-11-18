@@ -9,11 +9,13 @@
         <LayoutComponentStyle name="Home Style" id="1:2"/>
 
         <Fill name="Background">
-            <LinearGradient startX="0" startY="0" endX="1920" endY="1080" name="BG">
-                <GradientStop colorValue="FF0C3A20" position="0"/>
-                <GradientStop colorValue="FF104A2B" position="0.5"/>
+            <!-- lamp-lit felt: the light pool is baked into the background, so nothing
+                 full-screen is painted twice (the TV's GPU is fill-rate bound) -->
+            <RadialGradient startX="960" startY="560" endX="2160" endY="560" name="BG">
+                <GradientStop colorValue="FF19633D" position="0"/>
+                <GradientStop colorValue="FF125232" position="0.45"/>
                 <GradientStop colorValue="FF0C3A20" position="1"/>
-            </LinearGradient>
+            </RadialGradient>
         </Fill>
 
         <LayoutComponent width="1920" height="1080" clip="false" styleId="1:11" name="Root" id="1:10">
@@ -2272,71 +2274,9 @@
                     <Fill name="F"><SolidColor colorValue="4D000000" name="C"/></Fill>
                 </Shape>
             </Node>
-            <Node name="FeltLattice">
-                <Shape name="Lines">
-                    <Rectangle x="-600" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-600" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-456" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-456" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-312" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-312" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-168" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-168" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-24" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="-24" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="120" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="120" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="264" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="264" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="408" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="408" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="552" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="552" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="696" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="696" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="840" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="840" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="984" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="984" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1128" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1128" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1272" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1272" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1416" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1416" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1560" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1560" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1704" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1704" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1848" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1848" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1992" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="1992" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2136" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2136" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2280" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2280" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2424" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2424" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2568" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
-                    <Rectangle x="2568" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
-                    <Fill name="F"><SolidColor colorValue="12F2C318" name="C"/></Fill>
-                </Shape>
-            </Node>
         </Node>
         <!-- table:end -->
 
-        <!-- lamp light over the table: a wide oval pool; declared last so it draws underneath -->
-        <Shape x="960" y="560" scaleY="0.62" name="Lamp">
-            <Ellipse width="2600" height="2600" name="P"/>
-            <Fill name="F">
-                <RadialGradient startX="0" startY="0" endX="1300" endY="0" name="G">
-                    <GradientStop colorValue="AA1E7347" position="0"/>
-                    <GradientStop colorValue="551A6A40" position="0.5"/>
-                    <GradientStop colorValue="001A6A40" position="1"/>
-                </RadialGradient>
-            </Fill>
-        </Shape>
 
         <StateMachine name="Home Machine" id="1:900">
             <StateMachineLayer name="Idle" id="1:901">
@@ -3516,35 +3456,6 @@
                         <Stroke thickness="1.8200000000000003" name="S"><SolidColor colorValue="FFF5C51A" name="C"/></Stroke>
                     </Shape>
                 </Node>
-                <Node x="128" y="146" name="Ground">
-                    <Node name="Platform">
-                        <Shape name="Hatch">
-                            <Rectangle x="-50" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-44" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-38" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-32" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-26" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-20" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-14" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-8" width="1.2" height="4" name="R"/>
-                            <Rectangle x="-2" width="1.2" height="4" name="R"/>
-                            <Rectangle x="4" width="1.2" height="4" name="R"/>
-                            <Rectangle x="10" width="1.2" height="4" name="R"/>
-                            <Rectangle x="16" width="1.2" height="4" name="R"/>
-                            <Rectangle x="22" width="1.2" height="4" name="R"/>
-                            <Rectangle x="28" width="1.2" height="4" name="R"/>
-                            <Rectangle x="34" width="1.2" height="4" name="R"/>
-                            <Rectangle x="40" width="1.2" height="4" name="R"/>
-                            <Rectangle x="46" width="1.2" height="4" name="R"/>
-                            <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
-                        </Shape>
-                        <Shape name="Ground">
-                            <Rectangle width="112" height="7" name="R"/>
-                            <Fill name="F"><SolidColor colorValue="FFF5C51A" name="C"/></Fill>
-                            <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
-                        </Shape>
-                    </Node>
-                </Node>
             </Node>
             <!-- fav-deco:end -->
         </LayoutComponent>
@@ -3716,29 +3627,6 @@
                         <Ellipse x="8.1818" y="-5.4545" width="4.9091" height="8.7273" name="E"/>
                         <Stroke thickness="2.1818181818181817" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
                     </Shape>
-                </Node>
-                <Node x="86" y="101" name="Ground">
-                    <Node name="Platform">
-                        <Shape name="Hatch">
-                            <Rectangle x="-32" width="1.2" height="3" name="R"/>
-                            <Rectangle x="-26" width="1.2" height="3" name="R"/>
-                            <Rectangle x="-20" width="1.2" height="3" name="R"/>
-                            <Rectangle x="-14" width="1.2" height="3" name="R"/>
-                            <Rectangle x="-8" width="1.2" height="3" name="R"/>
-                            <Rectangle x="-2" width="1.2" height="3" name="R"/>
-                            <Rectangle x="4" width="1.2" height="3" name="R"/>
-                            <Rectangle x="10" width="1.2" height="3" name="R"/>
-                            <Rectangle x="16" width="1.2" height="3" name="R"/>
-                            <Rectangle x="22" width="1.2" height="3" name="R"/>
-                            <Rectangle x="28" width="1.2" height="3" name="R"/>
-                            <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
-                        </Shape>
-                        <Shape name="Ground">
-                            <Rectangle width="76" height="6" name="R"/>
-                            <Fill name="F"><SolidColor colorValue="FFD8262C" name="C"/></Fill>
-                            <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
-                        </Shape>
-                    </Node>
                 </Node>
             </Node>
             <!-- app-deco:end -->
