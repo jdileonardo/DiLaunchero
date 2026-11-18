@@ -102,7 +102,7 @@
                                 <Fill name="F"><SolidColor colorValue="FFF4F6FB" name="C"/></Fill>
                                 <TextStyleAxis tag="2003265652" axisValue="600" name="Weight"/>
                             </TextStylePaint>
-                            <TextValueRun styleId="1:38" text="Slide" name="Run">
+                            <TextValueRun styleId="1:38" text="Sunny Day" name="Run">
                                 <DataBindContext sourcePathIds="4:1-4:4" propertyKey="268"/>
                             </TextValueRun>
                         </Text>
@@ -111,7 +111,7 @@
                             <TextStylePaint fontSize="17" fontAssetId="6:1" name="Subtitle Style" id="1:40">
                                 <Fill name="F"><SolidColor colorValue="FF8E99AD" name="C"/></Fill>
                             </TextStylePaint>
-                            <TextValueRun styleId="1:40" text="The Meadow Band · Spotify" name="Run">
+                            <TextValueRun styleId="1:40" text="The Meadow Band · Music" name="Run">
                                 <DataBindContext sourcePathIds="4:1-4:5" propertyKey="268"/>
                             </TextValueRun>
                         </Text>
