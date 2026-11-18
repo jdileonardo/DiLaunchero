@@ -67,8 +67,6 @@
                                           paddingLeft="10" paddingRight="14" gapHorizontal="18"
                                           cornerRadiusTL="18" name="NowPlaying Style" id="1:31"/>
 
-                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
-                    <Stroke thickness="3" name="Edge"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
                     <LayoutComponent width="76" height="76" clip="true" styleId="1:33" name="ArtFrame" id="1:32">
                         <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                               cornerRadiusTL="8" name="ArtFrame Style" id="1:33"/>
@@ -156,6 +154,28 @@
                             </Node>
                         </LayoutComponent>
                     </LayoutComponent>
+
+                    <!-- the card face and its hard shadow; declared last so they draw beneath -->
+                    <LayoutComponent clip="false" styleId="1:131" name="Face">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="0" positionLeftUnitsValue="points"
+                                              positionTop="0" positionTopUnitsValue="points"
+                                              positionRight="0" positionRightUnitsValue="points"
+                                              positionBottom="0" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="18" name="Face Style" id="1:131"/>
+                        <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill><Stroke thickness="3" name="Edge"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                    </LayoutComponent>
+                    <LayoutComponent clip="false" styleId="1:133" name="Shadow">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="7" positionLeftUnitsValue="points"
+                                              positionTop="7" positionTopUnitsValue="points"
+                                              positionRight="-7" positionRightUnitsValue="points"
+                                              positionBottom="-7" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="18" name="Shadow Style" id="1:133"/>
+                        <Fill name="F"><SolidColor colorValue="66000000" name="C"/></Fill>
+                    </LayoutComponent>
                 </LayoutComponent>
 
                 <!-- screensaver button -->
@@ -213,16 +233,127 @@
             </LayoutComponent>
 
             <!-- ---------- divider ---------- -->
-            <LayoutComponent height="2" styleId="1:86" name="Divider" id="1:85">
+            <!-- a band of gold diamonds and red beads, like the border of a card back -->
+            <LayoutComponent height="14" clip="false" styleId="1:86" name="Divider" id="1:85">
                 <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fixed"
-                                      marginTop="4" marginBottom="8" name="Divider Style" id="1:86"/>
-                <Fill name="F">
-                    <LinearGradient startX="0" startY="0" endX="1776" endY="0" name="G">
-                        <GradientStop colorValue="00F2C318" position="0"/>
-                        <GradientStop colorValue="AAF2C318" position="0.5"/>
-                        <GradientStop colorValue="00F2C318" position="1"/>
-                    </LinearGradient>
-                </Fill>
+                                      marginTop="0" marginBottom="0" name="Divider Style" id="1:86"/>
+                <!-- band:begin -->
+                <Node name="Band">
+                    <Shape name="Beads5">
+                        <Ellipse x="579.1" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="617.7" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="656.3" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="695" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="733.6" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="772.2" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="810.8" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="849.4" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="888" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="926.6" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="965.2" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1003.8" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1042.4" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1081" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1119.7" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1158.3" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1196.9" y="7" width="3.5" height="3.5" name="E"/>
+                        <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Diamonds5">
+                        <Rectangle x="559.8" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="598.4" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="637" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="675.7" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="714.3" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="752.9" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="791.5" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="830.1" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="868.7" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="907.3" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="945.9" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="984.5" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1023.1" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1061.7" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1100.3" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1139" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1177.6" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1216.2" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Beads4">
+                        <Ellipse x="424.7" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="463.3" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="501.9" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="540.5" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1274.1" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1312.7" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1351.3" y="7" width="3.5" height="3.5" name="E"/>
+                        <Fill name="F"><SolidColor colorValue="CCD92A2F" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Diamonds4">
+                        <Rectangle x="405.4" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="444" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="482.6" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="521.2" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1254.8" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1293.4" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1332" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1370.6" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="CCF2C318" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Beads3">
+                        <Ellipse x="308.9" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="347.5" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="386.1" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1428.5" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1467.1" y="7" width="3.5" height="3.5" name="E"/>
+                        <Fill name="F"><SolidColor colorValue="99D92A2F" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Diamonds3">
+                        <Rectangle x="289.6" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="328.2" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="366.8" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1409.2" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1447.8" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1486.4" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="99F2C318" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Beads2">
+                        <Ellipse x="193" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="231.7" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="270.3" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1544.3" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1583" y="7" width="3.5" height="3.5" name="E"/>
+                        <Fill name="F"><SolidColor colorValue="66D92A2F" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Diamonds2">
+                        <Rectangle x="173.7" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="212.3" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="251" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1525" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1563.7" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1602.3" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="66F2C318" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Beads1">
+                        <Ellipse x="115.8" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="154.4" y="7" width="3.5" height="3.5" name="E"/>
+                        <Ellipse x="1660.2" y="7" width="3.5" height="3.5" name="E"/>
+                        <Fill name="F"><SolidColor colorValue="33D92A2F" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Diamonds1">
+                        <Rectangle x="96.5" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="135.1" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1640.9" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Rectangle x="1679.5" y="7" rotation="0.7854" width="7" height="7" cornerRadiusTL="1" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="33F2C318" name="C"/></Fill>
+                    </Shape>
+                    <Shape name="Line">
+                        <Rectangle x="888" y="7" width="1598.4" height="1.5" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="66F2C318" name="C"/></Fill>
+                    </Shape>
+                </Node>
+                <!-- band:end -->
             </LayoutComponent>
 
             <!-- ---------- all apps: a clipped window over an 8-column grid ----------
@@ -269,6 +400,1256 @@
             </LayoutComponent>
         </LayoutComponent>
 
+        <!-- table dressing (generated by gen_figures.py): court cards, deck, felt lattice -->
+        <!-- table:begin -->
+        <Node name="Table">
+            <Node x="1776" y="904" rotation="0.08" name="ReCard">
+                <Node y="4" scaleX="0.8" scaleY="0.8" name="Figure">
+                    <Node name="Re">
+                        <Node y="-40" name="Head" id="8:21">
+                            <Node y="-60" name="Crown" id="8:23">
+                                <Shape name="Sapphire">
+                                    <Ellipse width="8" height="8" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Rubies">
+                                    <Ellipse x="-15" width="7" height="7" name="E"/>
+                                    <Ellipse x="15" width="7" height="7" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Band">
+                                    <Rectangle width="54" height="14" cornerRadiusTL="3" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                    <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Points">
+                                    <Triangle x="-16" y="-13" width="16" height="24" name="T"/>
+                                    <Triangle y="-16" width="16" height="28" name="T"/>
+                                    <Triangle x="16" y="-13" width="16" height="24" name="T"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                    <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Node y="-38" name="Eyes" id="8:22">
+                                <Shape name="Pupils">
+                                    <Ellipse x="-10" width="6" height="8" name="E"/>
+                                    <Ellipse x="10" width="6" height="8" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                            </Node>
+                            <Shape name="Moustache">
+                                <Ellipse x="-8" y="-22" rotation="0.15" width="16" height="8" name="E"/>
+                                <Ellipse x="8" y="-22" rotation="-0.15" width="16" height="8" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FF5A3A26" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Beard">
+                                <Ellipse y="-10" width="52" height="40" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FF8A5A3C" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Nose">
+                                <Ellipse y="-30" width="7" height="11" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFE7B48C" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Face">
+                                <Ellipse y="-30" width="46" height="54" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Hair">
+                                <Ellipse y="-34" width="60" height="44" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FF8A5A3C" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Neck">
+                                <Rectangle y="-2" width="18" height="14" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                            </Shape>
+                        </Node>
+                        <Node x="38" y="-22" name="SceptreArm" id="8:24">
+                            <Shape name="Hand">
+                                <Ellipse x="17" y="54" width="20" height="18" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Ruby">
+                                <Ellipse x="18" y="-64" width="10" height="10" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Finial">
+                                <Star x="18" y="-64" points="6" width="30" height="30" innerRadius="0.5" name="S"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Rod">
+                                <Rectangle x="18" y="6" width="7" height="132" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Arm">
+                                <Rectangle x="8" y="28" rotation="-0.25" width="22" height="60" cornerRadiusTL="11" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                        </Node>
+                        <Shape name="Spots">
+                            <Ellipse x="-30" y="-32" width="4" height="4" name="E"/>
+                            <Ellipse x="-15" y="-32" width="4" height="4" name="E"/>
+                            <Ellipse y="-32" width="4" height="4" name="E"/>
+                            <Ellipse x="15" y="-32" width="4" height="4" name="E"/>
+                            <Ellipse x="30" y="-32" width="4" height="4" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="Collar">
+                            <Rectangle y="-32" width="98" height="18" cornerRadiusTL="9" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="CupHand">
+                            <Ellipse x="-58" y="26" width="20" height="18" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Node x="-60" y="4" name="Cup">
+                            <Shape name="Gem">
+                                <Ellipse x="-8" y="2" width="8" height="8" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Lip">
+                                <Ellipse y="-12" width="42" height="9" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD9A514" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Bowl">
+                                <Ellipse width="42" height="30" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Stem">
+                                <Rectangle y="17" width="6" height="18" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Base">
+                                <Ellipse y="28" width="26" height="8" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                        </Node>
+                        <Shape name="CupArm">
+                            <Rectangle x="-50" y="2" rotation="0.4" width="22" height="58" cornerRadiusTL="11" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Belt">
+                            <Rectangle y="42" width="94" height="10" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Ermine">
+                            <Rectangle y="14" width="16" height="96" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Torso">
+                            <Rectangle y="14" width="94" height="98" cornerRadiusTL="22" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Feet">
+                            <Ellipse x="-28" y="140" width="30" height="14" name="E"/>
+                            <Ellipse x="28" y="140" width="30" height="14" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="Robe">
+                            <Rectangle y="98" width="118" height="88" cornerRadiusTL="14" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Seat">
+                            <Rectangle y="60" width="172" height="26" cornerRadiusTL="8" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF8A5A3C" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Finials">
+                            <Ellipse x="-70" y="-120" width="22" height="22" name="E"/>
+                            <Ellipse x="70" y="-120" width="22" height="22" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="ThroneTrim">
+                            <Rectangle y="-24" width="130" height="176" cornerRadiusTL="10" name="R"/>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FFF2C318" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Throne">
+                            <Rectangle y="-24" width="150" height="196" cornerRadiusTL="14" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                    </Node>
+                </Node>
+                <Shape name="Frame">
+                    <Rectangle width="184" height="284" cornerRadiusTL="11" name="R"/>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="88D92A2F" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Face">
+                    <Rectangle width="200" height="300" cornerRadiusTL="16" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                    <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Shadow">
+                    <Rectangle x="8" y="9" width="200" height="300" cornerRadiusTL="16" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
+                </Shape>
+            </Node>
+            <Node x="1556" y="896" rotation="0.02" name="CavalloCard">
+                <Node y="4" scaleX="0.8" scaleY="0.8" name="Figure">
+                    <Node name="Cavallo">
+                        <Node x="-12" y="52" name="Horse" id="8:11">
+                            <Node x="-10" y="-34" name="Rider" id="8:19">
+                                <Shape name="Pommel">
+                                    <Ellipse x="36" y="18" width="8" height="8" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                    <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Fist">
+                                    <Ellipse x="36" y="8" width="15" height="15" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                    <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Guard">
+                                    <Rectangle x="36" y="2" width="28" height="6" cornerRadiusTL="2" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                    <Stroke thickness="1.8" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Blade">
+                                    <Rectangle x="36" y="-46" width="7" height="100" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD5DCE6" name="C"/></Fill>
+                                    <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="SwordArm">
+                                    <Rectangle x="16" y="4" width="36" height="12" cornerRadiusTL="6" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Visor">
+                                    <Rectangle x="4" y="-58" width="30" height="5" cornerRadiusTL="2" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Helmet">
+                                    <Ellipse x="1" y="-64" width="36" height="24" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Node x="-2" y="-74" name="Plume" id="8:14">
+                                    <Shape name="PlumeB">
+                                        <Ellipse x="-2" y="-20" rotation="-0.3" width="10" height="34" name="E"/>
+                                        <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                        <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                    </Shape>
+                                    <Shape name="PlumeA">
+                                        <Ellipse x="-10" y="-16" rotation="-0.6" width="14" height="46" name="E"/>
+                                        <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                        <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                    </Shape>
+                                </Node>
+                                <Node x="9" y="-54" name="Eye" id="8:20">
+                                    <Shape name="Pupil">
+                                        <Ellipse width="4" height="6" name="E"/>
+                                        <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                    </Shape>
+                                </Node>
+                                <Shape name="Face">
+                                    <Ellipse x="2" y="-52" width="28" height="32" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Neck">
+                                    <Rectangle y="-38" width="12" height="10" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Breastplate">
+                                    <Rectangle y="-12" width="28" height="22" cornerRadiusTL="6" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                    <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Torso">
+                                    <Rectangle y="-6" width="42" height="58" cornerRadiusTL="12" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Boot">
+                                    <Ellipse x="13" y="56" width="24" height="12" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Leg">
+                                    <Rectangle x="8" y="30" rotation="-0.15" width="18" height="52" cornerRadiusTL="8" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Shape name="Trim">
+                                <Rectangle x="-8" y="-4" width="56" height="34" cornerRadiusTL="5" name="R"/>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FFF2C318" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Caparison">
+                                <Rectangle x="-8" y="-4" width="68" height="46" cornerRadiusTL="8" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Node x="70" y="-62" name="Head" id="8:12">
+                                <Shape name="Bridle">
+                                    <Rectangle x="22" y="14" rotation="0.95" width="4" height="34" cornerRadiusTL="2" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Nostril">
+                                    <Ellipse x="38" y="34" width="4" height="4" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Eye">
+                                    <Ellipse x="10" width="6" height="6" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Muzzle">
+                                    <Rectangle x="20" y="12" rotation="0.95" width="62" height="28" cornerRadiusTL="13" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFE8C178" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Ear">
+                                    <Triangle x="4" y="-14" rotation="0.3" width="11" height="20" name="T"/>
+                                    <Fill name="F"><SolidColor colorValue="FFE8C178" name="C"/></Fill>
+                                    <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Shape name="Mane">
+                                <Ellipse x="50" y="-46" rotation="0.55" width="14" height="62" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Neck">
+                                <Rectangle x="60" y="-34" rotation="0.55" width="36" height="72" cornerRadiusTL="16" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFE8C178" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Body">
+                                <Ellipse width="156" height="66" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFE8C178" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Node x="-74" y="-12" name="Tail" id="8:13">
+                                <Shape name="Hair">
+                                    <Ellipse x="-8" y="24" rotation="0.45" width="18" height="58" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF5A3A26" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Node x="42" y="16" name="LegF1" id="8:17">
+                                <Shape name="Hoof">
+                                    <Ellipse y="57" width="16" height="9" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Leg">
+                                    <Rectangle y="27" width="13" height="58" cornerRadiusTL="6" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFE8C178" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Node x="-48" y="16" name="LegB1" id="8:15">
+                                <Shape name="Hoof">
+                                    <Ellipse y="57" width="16" height="9" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Leg">
+                                    <Rectangle y="27" width="13" height="58" cornerRadiusTL="6" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFE8C178" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Node x="58" y="16" name="LegF2" id="8:18">
+                                <Shape name="Hoof">
+                                    <Ellipse y="57" width="16" height="9" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Leg">
+                                    <Rectangle y="27" width="13" height="58" cornerRadiusTL="6" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD3A75E" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                            <Node x="-30" y="16" name="LegB2" id="8:16">
+                                <Shape name="Hoof">
+                                    <Ellipse y="57" width="16" height="9" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Leg">
+                                    <Rectangle y="27" width="13" height="58" cornerRadiusTL="6" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD3A75E" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                            </Node>
+                        </Node>
+                    </Node>
+                </Node>
+                <Shape name="Frame">
+                    <Rectangle width="184" height="284" cornerRadiusTL="11" name="R"/>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="88D92A2F" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Face">
+                    <Rectangle width="200" height="300" cornerRadiusTL="16" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                    <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Shadow">
+                    <Rectangle x="8" y="9" width="200" height="300" cornerRadiusTL="16" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
+                </Shape>
+            </Node>
+            <Node x="1336" y="902" rotation="-0.07" name="FanteCard">
+                <Node y="4" scaleX="0.8" scaleY="0.8" name="Figure">
+                    <Node name="Fante">
+                        <Node y="-44" name="Head" id="8:5">
+                            <Node y="-46" name="Hat" id="8:7">
+                                <Shape name="Band">
+                                    <Rectangle x="2" y="-4" width="40" height="5" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                </Shape>
+                                <Shape name="Brim">
+                                    <Ellipse y="2" width="80" height="16" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Shape name="Crown">
+                                    <Rectangle x="2" y="-11" width="40" height="26" cornerRadiusTL="10" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                    <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                </Shape>
+                                <Node x="14" y="-16" name="Feather" id="8:8">
+                                    <Shape name="Plume">
+                                        <Ellipse x="10" y="-22" rotation="0.6" width="12" height="54" name="E"/>
+                                        <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                        <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                                    </Shape>
+                                </Node>
+                            </Node>
+                            <Shape name="Mouth">
+                                <Rectangle y="-12" width="10" height="3" cornerRadiusTL="1.5" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFA31E22" name="C"/></Fill>
+                            </Shape>
+                            <Node y="-28" name="Eyes" id="8:6">
+                                <Shape name="Pupils">
+                                    <Ellipse x="-8" width="5" height="7" name="E"/>
+                                    <Ellipse x="8" width="5" height="7" name="E"/>
+                                    <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                </Shape>
+                            </Node>
+                            <Shape name="Face">
+                                <Ellipse y="-24" width="38" height="44" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Hair">
+                                <Ellipse y="-20" width="50" height="48" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FF8A5A3C" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Neck">
+                                <Rectangle width="14" height="12" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                            </Shape>
+                        </Node>
+                        <Shape name="Collar">
+                            <Rectangle y="-38" width="52" height="12" cornerRadiusTL="6" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Node x="34" y="-28" rotation="0.15" name="WaveArm" id="8:9">
+                            <Shape name="Hand">
+                                <Ellipse y="60" width="18" height="18" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Arm">
+                                <Rectangle y="28" width="18" height="60" cornerRadiusTL="9" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FF2F8A4C" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                        </Node>
+                        <Shape name="CoinHand">
+                            <Ellipse x="-48" y="30" width="18" height="18" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFF5D3B0" name="C"/></Fill>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Node x="-50" y="58" name="Coin" id="8:10">
+                            <Shape name="Core">
+                                <Ellipse width="9" height="9" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Sun">
+                                <Star points="8" width="30" height="30" innerRadius="0.55" name="S"/>
+                                <Stroke thickness="1.4" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Coin">
+                                <Ellipse width="50" height="50" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                        </Node>
+                        <Shape name="CoinArm">
+                            <Rectangle x="-40" rotation="0.25" width="18" height="60" cornerRadiusTL="9" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF2F8A4C" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Buttons">
+                            <Ellipse y="-14" width="6" height="6" name="E"/>
+                            <Ellipse y="2" width="6" height="6" name="E"/>
+                            <Ellipse y="18" width="6" height="6" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Belt">
+                            <Rectangle y="40" width="72" height="9" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Tunic">
+                            <Rectangle y="8" width="72" height="94" cornerRadiusTL="18" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF2F8A4C" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Skirt">
+                            <Triangle y="64" width="114" height="66" name="T"/>
+                            <Fill name="F"><SolidColor colorValue="FF2F8A4C" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Shoes">
+                            <Ellipse x="-18" y="140" width="28" height="12" name="E"/>
+                            <Ellipse x="18" y="140" width="28" height="12" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="LegR">
+                            <Rectangle x="14" y="96" width="20" height="86" cornerRadiusTL="8" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="LegL">
+                            <Rectangle x="-14" y="96" width="20" height="86" cornerRadiusTL="8" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Cape">
+                            <Rectangle y="20" width="106" height="152" cornerRadiusTL="20" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                    </Node>
+                </Node>
+                <Shape name="Frame">
+                    <Rectangle width="184" height="284" cornerRadiusTL="11" name="R"/>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="88D92A2F" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Face">
+                    <Rectangle width="200" height="300" cornerRadiusTL="16" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                    <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Shadow">
+                    <Rectangle x="8" y="9" width="200" height="300" cornerRadiusTL="16" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
+                </Shape>
+            </Node>
+            <Node x="222" y="968" rotation="-0.12" scaleX="0.88" scaleY="0.88" name="Deck">
+                <Node name="TopCard" id="8:2">
+                    <Node name="BackSide" id="8:3">
+                        <Node name="Back">
+                            <Shape name="Heart">
+                                <Ellipse width="12" height="12" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Rose">
+                                <Star points="8" width="44" height="44" innerRadius="0.5" name="S"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Medallion">
+                                <Ellipse width="66" height="88" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                                <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="PanelTrim">
+                                <Rectangle width="150" height="240" cornerRadiusTL="8" name="R"/>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FFF2C318" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Lattice">
+                                <Rectangle x="-62.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-62.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-37.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="-12.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="12.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="37.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Rectangle x="62.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                                <Stroke thickness="1.4" name="S"><SolidColor colorValue="CCFDFBF4" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Panel">
+                                <Rectangle width="150" height="240" cornerRadiusTL="8" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                            </Shape>
+                            <Shape name="Card">
+                                <Rectangle width="180" height="270" cornerRadiusTL="14" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                                <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                            </Shape>
+                        </Node>
+                    </Node>
+                    <Node opacity="0" name="FaceSide" id="8:4">
+                        <Node name="Ace">
+                            <Shape name="Corners">
+                                <Ellipse x="-62" y="-104" width="14" height="14" name="E"/>
+                                <Ellipse x="62" y="104" width="14" height="14" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="1.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Core">
+                                <Ellipse width="20" height="20" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                                <Stroke thickness="2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Sun">
+                                <Star points="8" width="62" height="62" innerRadius="0.5" name="S"/>
+                                <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Coin">
+                                <Ellipse width="104" height="104" name="E"/>
+                                <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Rays">
+                                <Star points="16" width="124" height="124" innerRadius="0.82" name="S"/>
+                                <Fill name="F"><SolidColor colorValue="FFF7D774" name="C"/></Fill>
+                                <Stroke thickness="1.5" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Ring">
+                                <Ellipse width="132" height="132" name="E"/>
+                                <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Frame">
+                                <Rectangle width="164" height="254" cornerRadiusTL="9" name="R"/>
+                                <Stroke thickness="1.2" name="S"><SolidColor colorValue="88D92A2F" name="C"/></Stroke>
+                            </Shape>
+                            <Shape name="Card">
+                                <Rectangle width="180" height="270" cornerRadiusTL="14" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                                <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                            </Shape>
+                        </Node>
+                    </Node>
+                </Node>
+                <Node x="7" y="6" rotation="0.03" name="Under1">
+                    <Node name="Back">
+                        <Shape name="Heart">
+                            <Ellipse width="12" height="12" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="Rose">
+                            <Star points="8" width="44" height="44" innerRadius="0.5" name="S"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Medallion">
+                            <Ellipse width="66" height="88" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="PanelTrim">
+                            <Rectangle width="150" height="240" cornerRadiusTL="8" name="R"/>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FFF2C318" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Lattice">
+                            <Rectangle x="-62.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Stroke thickness="1.4" name="S"><SolidColor colorValue="CCFDFBF4" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Panel">
+                            <Rectangle width="150" height="240" cornerRadiusTL="8" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="Card">
+                            <Rectangle width="180" height="270" cornerRadiusTL="14" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                        </Shape>
+                    </Node>
+                    <Shape name="Shadow">
+                        <Rectangle width="180" height="270" cornerRadiusTL="14" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
+                    </Shape>
+                </Node>
+                <Node x="14" y="12" rotation="0.06" name="Under0">
+                    <Node name="Back">
+                        <Shape name="Heart">
+                            <Ellipse width="12" height="12" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="Rose">
+                            <Star points="8" width="44" height="44" innerRadius="0.5" name="S"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                            <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Medallion">
+                            <Ellipse width="66" height="88" name="E"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="PanelTrim">
+                            <Rectangle width="150" height="240" cornerRadiusTL="8" name="R"/>
+                            <Stroke thickness="2" name="S"><SolidColor colorValue="FFF2C318" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Lattice">
+                            <Rectangle x="-62.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-62.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-37.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="-12.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="12.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="37.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="-25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="25" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="50" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="75" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Rectangle x="62.5" y="100" rotation="0.7854" width="16.18" height="16.18" name="R"/>
+                            <Stroke thickness="1.4" name="S"><SolidColor colorValue="CCFDFBF4" name="C"/></Stroke>
+                        </Shape>
+                        <Shape name="Panel">
+                            <Rectangle width="150" height="240" cornerRadiusTL="8" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                        </Shape>
+                        <Shape name="Card">
+                            <Rectangle width="180" height="270" cornerRadiusTL="14" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                            <Stroke thickness="3" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                        </Shape>
+                    </Node>
+                    <Shape name="Shadow">
+                        <Rectangle width="180" height="270" cornerRadiusTL="14" name="R"/>
+                        <Fill name="F"><SolidColor colorValue="55000000" name="C"/></Fill>
+                    </Shape>
+                </Node>
+            </Node>
+            <Node name="FeltLattice">
+                <Shape name="Studs">
+                    <Ellipse y="156" width="5" height="5" name="E"/>
+                    <Ellipse y="252" width="5" height="5" name="E"/>
+                    <Ellipse y="348" width="5" height="5" name="E"/>
+                    <Ellipse y="444" width="5" height="5" name="E"/>
+                    <Ellipse y="540" width="5" height="5" name="E"/>
+                    <Ellipse y="636" width="5" height="5" name="E"/>
+                    <Ellipse y="732" width="5" height="5" name="E"/>
+                    <Ellipse y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="48" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="96" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="144" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="192" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="240" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="288" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="336" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="384" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="432" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="480" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="528" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="576" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="624" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="672" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="720" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="768" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="816" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="864" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="912" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="960" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1008" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="1056" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1104" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="1152" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1200" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="1248" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1296" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="1344" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1392" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="1440" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1488" y="876" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="156" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="252" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="348" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="444" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="540" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="636" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="732" width="5" height="5" name="E"/>
+                    <Ellipse x="1536" y="828" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="204" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="300" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="396" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="492" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="588" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="684" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="780" width="5" height="5" name="E"/>
+                    <Ellipse x="1584" y="876" width="5" height="5" name="E"/>
+                    <Fill name="F"><SolidColor colorValue="1EF2C318" name="C"/></Fill>
+                </Shape>
+                <Shape name="Lines">
+                    <Rectangle x="-1200" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-1200" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-1104" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-1104" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-1008" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-1008" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-912" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-912" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-816" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-816" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-720" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-720" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-624" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-624" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-528" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-528" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-432" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-432" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-336" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-336" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-240" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-240" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-144" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-144" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-48" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="-48" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="48" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="48" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="144" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="144" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="240" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="240" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="336" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="336" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="432" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="432" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="528" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="528" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="624" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="624" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="720" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="720" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="816" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="816" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="912" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="912" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1008" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1008" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1104" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1104" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1200" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1200" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1296" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1296" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1392" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1392" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1488" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1488" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1584" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1584" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1680" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1680" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1776" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1776" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1872" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1872" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1968" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="1968" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2064" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2064" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2160" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2160" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2256" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2256" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2352" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2352" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2448" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2448" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2544" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2544" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2640" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2640" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2736" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2736" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2832" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2832" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2928" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="2928" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="3024" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="3024" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="3120" y="540" rotation="0.7854" width="1.5" height="2800" name="R"/>
+                    <Rectangle x="3120" y="540" rotation="-0.7854" width="1.5" height="2800" name="R"/>
+                    <Fill name="F"><SolidColor colorValue="12F2C318" name="C"/></Fill>
+                </Shape>
+            </Node>
+        </Node>
+        <!-- table:end -->
+
         <!-- lamp light over the table: a wide oval pool; declared last so it draws underneath -->
         <Shape x="960" y="560" scaleY="0.62" name="Lamp">
             <Ellipse width="2600" height="2600" name="P"/>
@@ -288,6 +1669,63 @@
                 <EntryState><StateTransition stateToId="1:910"/></EntryState>
                 <AnimationState x="200" animationId="1:920" id="1:910"/>
             </StateMachineLayer>
+            <!-- court-layers:begin -->
+            <StateMachineLayer name="Court Idle" id="8:910">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="8:911"/></EntryState>
+                <AnimationState x="200" animationId="8:900" id="8:911"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Fante Greet" id="8:912">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="8:913"/></EntryState>
+                <AnimationState x="200" animationId="8:901" id="8:913"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Coin Turn" id="8:914">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="8:915"/></EntryState>
+                <AnimationState x="200" animationId="8:902" id="8:915"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Deck Flip" id="8:916">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="8:917"/></EntryState>
+                <AnimationState x="200" animationId="8:903" id="8:917"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Court Music" id="8:920">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="8:921"/></EntryState>
+                <AnimationState x="100" y="100" animationId="8:904" stateName="Rest" id="8:921">
+                    <StateTransition stateToId="8:922" duration="250" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                    <TransitionViewModelCondition opValue="equal">
+                        <TransitionPropertyViewModelComparator>
+                            <BindablePropertyBoolean>
+                                <DataBindContext sourcePathIds="4:1-4:7" propertyKey="634"/>
+                            </BindablePropertyBoolean>
+                        </TransitionPropertyViewModelComparator>
+                        <TransitionValueBooleanComparator value="true"/>
+                    </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="8:905" stateName="Play" id="8:922">
+                    <StateTransition stateToId="8:921" duration="300" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                    <TransitionViewModelCondition opValue="equal">
+                        <TransitionPropertyViewModelComparator>
+                            <BindablePropertyBoolean>
+                                <DataBindContext sourcePathIds="4:1-4:7" propertyKey="634"/>
+                            </BindablePropertyBoolean>
+                        </TransitionPropertyViewModelComparator>
+                        <TransitionValueBooleanComparator value="false"/>
+                    </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <!-- court-layers:end -->
             <StateMachineLayer name="Screensaver Focus" id="1:1010">
                 <AnyState x="200" y="-120"/>
                 <ExitState x="400" y="-120"/>
@@ -681,6 +2119,269 @@
                 <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
+        <!-- court-anims:begin -->
+        <LinearAnimation duration="480" loopValue="loop" name="Court Idle" id="8:900">
+            <KeyedObject objectId="8:22">
+                <KeyedProperty property="scaleY">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="140" value="1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="145" value="0.1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="150" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="480" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:6">
+                <KeyedProperty property="scaleY">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="300" value="1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="305" value="0.1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="310" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="480" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:20">
+                <KeyedProperty property="scaleY">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="410" value="1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="415" value="0.1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="420" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="480" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:21">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="-0.035" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="240" value="0.035" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="-0.035" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:23">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="-60" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="120" value="-63" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="240" value="-60" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="-60" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:12">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="60" value="0.09" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="120" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:13">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="-0.12" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="80" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="160" value="-0.12" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="-0.12" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:14">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="-0.1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="120" value="0.12" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="240" value="-0.1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="-0.1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:8">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="60" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="180" value="-0.14" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="300" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="0.08" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:5">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0.03" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="240" value="-0.03" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="0.03" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="600" loopValue="loop" name="Fante Greet" id="8:901">
+            <KeyedObject objectId="8:9">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0.15" interpolationType="hold"/>
+                    <KeyFrameDouble frame="380" value="0.15" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="400" value="-2.55" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="414" value="-2.25" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="428" value="-2.6" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="442" value="-2.25" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="456" value="-2.55" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="480" value="0.15" interpolationType="hold"/>
+                    <KeyFrameDouble frame="600" value="0.15" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:7">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="-46" interpolationType="hold"/>
+                    <KeyFrameDouble frame="370" value="-46" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="392" value="-60" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="460" value="-60" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="484" value="-46" interpolationType="hold"/>
+                    <KeyFrameDouble frame="600" value="-46" interpolationType="hold"/>
+                </KeyedProperty>
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="370" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="392" value="-0.28" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="460" value="-0.28" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="484" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="600" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="300" loopValue="loop" name="Coin Turn" id="8:902">
+            <KeyedObject objectId="8:10">
+                <KeyedProperty property="scaleX">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="200" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="225" value="-1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="250" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="300" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="840" loopValue="loop" name="Deck Flip" id="8:903">
+            <KeyedObject objectId="8:2">
+                <KeyedProperty property="scaleX">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="480" value="1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="492" value="0.02" interpolationType="linear"/>
+                    <KeyFrameDouble frame="504" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="640" value="1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="652" value="0.02" interpolationType="linear"/>
+                    <KeyFrameDouble frame="664" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="840" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="472" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="486" value="-14" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="510" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="632" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="646" value="-14" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="670" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="840" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:3">
+                <KeyedProperty property="opacity">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="492" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="652" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="840" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:4">
+                <KeyedProperty property="opacity">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="492" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="652" value="0" interpolationType="hold"/>
+                    <KeyFrameDouble frame="840" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Music Rest" id="8:904">
+            <KeyedObject objectId="8:24">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:11">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="52" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:19">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="-34" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:15">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:16">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:17">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:18">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="32" loopValue="loop" name="Music Play" id="8:905">
+            <KeyedObject objectId="8:24">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="8" value="-0.2" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="0.02" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="0" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:11">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="52" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="8" value="46" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="52" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="24" value="46" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="52" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:19">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="-34" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="8" value="-36" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="-34" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="24" value="-36" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="-34" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:15">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="-0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="0.32" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:18">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="-0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="0.32" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:16">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="-0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="-0.32" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="8:17">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="-0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="0.32" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="-0.32" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <!-- court-anims:end -->
         <LinearAnimation duration="1" name="Now Playing Visible On" id="1:1571">
             <KeyedObject objectId="1:30">
                 <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
