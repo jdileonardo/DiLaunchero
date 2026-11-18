@@ -499,7 +499,7 @@ def asso_di_denari():
 
 # ---- the back: Modiano-style "3D" checks (tumbling blocks) in blues -------------------
 def card_back(w=180, h=270, light=LTBLUE, mid=BLUE, dark=DKBLUE):
-    pw, ph, s = w - 26, h - 26, 13.0
+    pw, ph, s = w - 26, h - 26, 20.0
     hgt = s * math.sqrt(3)
     tops, lefts, rights = [], [], []
     row, y = 0, -ph / 2 + s
@@ -525,7 +525,9 @@ def card_back(w=180, h=270, light=LTBLUE, mid=BLUE, dark=DKBLUE):
 
 def deck():
     ids("TopCard", "TopBack", "TopFace")
-    under = [node([shape(rect(180, 270, 0, 0, 14), "4D000000", stroke=None, name="Shadow"), card_back()],
+    plain = lambda: node([shape(rect(180, 270, 0, 0, 14), IVORY, stroke=EDGE, sw=1.5, name="Card"),
+                          shape(rect(154, 244, 0, 0, 6), DKBLUE, stroke=None, name="Panel")], name="Back")
+    under = [node([shape(rect(180, 270, 0, 0, 14), "4D000000", stroke=None, name="Shadow"), plain()],
                   name=f"Under{i}", x=dx, y=dy, rot=r)
              for i, (dx, dy, r) in enumerate([(10, 9, 0.05), (5, 4, 0.025)])]
     top = node([
@@ -543,7 +545,8 @@ def case():
     return node([
         shape(rect(150, 220, 8, 9, 10), "4D000000", stroke=None, name="Shadow"),
         shape(poly([(-70, -110), (70, -110), (60, -150), (-60, -150)], 6), DKRED, sw=1.8, name="Flap"),
-        node([card_back(132, 196)], name="Cards", y=-26, sx=0.98, sy=0.98),
+        node([shape(rect(132, 196, 0, 0, 10), IVORY, stroke=EDGE, sw=1.5, name="Card"),
+              shape(rect(112, 176, 0, 0, 5), BLUE, stroke=IVORY, sw=3, name="Panel")], name="Cards", y=-26, sx=0.98, sy=0.98),
         shape(rect(150, 170, 0, 25, 8), RED, sw=2, name="Box"),
         shape(rect(150, 18, 0, -52, 3), DKRED, sw=1.6, name="Lip"),
         shape(rect(128, 140, 0, 32, 6), None, stroke=GOLD, sw=3, name="Frame"),
@@ -604,22 +607,14 @@ def tile_deco(kind):
 
 # ---- felt lattice -----------------------------------------------------------------
 def felt_lattice():
+    """A faint gold criss-cross on the felt, like a card back. Kept light: only lines that
+    cross the screen, no studs; the TV redraws all of it every frame."""
     paths = []
-    step = 96
-    for c in range(-1200, 3200, step):
+    step = 144
+    for c in range(-600, 2600, step):
         paths.append(rect(1.5, 2800, c, 540, 0, 0.7853982))
         paths.append(rect(1.5, 2800, c, 540, 0, -0.7853982))
-    dots = []
-    for i in range(-12, 34):
-        for j in range(-2, 14):
-            x = i * step / 2
-            y = 540 + (j - 6) * step / 2
-            if (i + j) % 2 == 0 and 0 <= x <= 1920 and 0 <= y <= 1080:
-                dots.append(ell(5, 5, x, y))
-    return node([
-        shape(paths, "12F2C318", stroke=None, name="Lines"),
-        shape(dots, "1EF2C318", stroke=None, name="Studs"),
-    ], name="FeltLattice")
+    return node([shape(paths, "12F2C318", stroke=None, name="Lines")], name="FeltLattice")
 
 
 # ---- divider band -----------------------------------------------------------------
