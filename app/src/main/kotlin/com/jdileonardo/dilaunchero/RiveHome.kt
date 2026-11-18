@@ -67,6 +67,7 @@ internal enum class LauncherTheme(val label: String, val raw: Int, val backgroun
   DEFAULT("Default", R.raw.home_vanilla, Color(0xFF0A0F1C)),
   RETRO("Retro", R.raw.home_retro, Color(0xFFF3E2BF)),
   SCOPA("Scopa", R.raw.home_scopa, Color(0xFF0C3A20)),
+  LITTLE_BEAR("Little Bear", R.raw.home_littlebear, Color(0xFFA6D6F4)),
 }
 
 private enum class TopItem(val prop: String) {

@@ -20,6 +20,8 @@ STYLES = {
                   icon="FFFFF8EA", outline="FF2B1E16", shadow="FF2B1E16", dots=("FFE4572E", "FFF2B134", "FF2A9D8F", "FF2B1E16")),
     "scopa": dict(fill="FFFFFBEF", fill_on="FFF2C318", ring="FF2A1C14", ring_on="FF2A1C14", ring_w=3,
                   icon="FFFFFBEF", outline="FF2A1C14", shadow="66000000", dots=("FFD42A2A", "FFF2C318", "FF1F6E3A", "FF22408C")),
+    "littlebear": dict(fill="FFFFFAEE", fill_on="FFF4C14F", ring="FF3B2A1E", ring_on="FF3B2A1E", ring_w=3,
+                       icon="FFFFFAEE", outline="FF3B2A1E", shadow="4D2C4A1E", dots=("FFC0503A", "FFF4C14F", "FF6E9B4B", "FF6FB6EA")),
 }
 SIZE, BAR_H, GAP = 52, 112, 12
 FOCUS_PROP = "4:1-4:40"
