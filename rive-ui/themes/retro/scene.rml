@@ -24,10 +24,24 @@
                                   name="Root Style" id="1:11"/>
 
             <!-- ---------- top bar: clock · now playing · buttons ---------- -->
-            <LayoutComponent height="112" styleId="1:21" name="TopBar" id="1:20">
+            <LayoutComponent height="112" clip="false" styleId="1:21" name="TopBar" id="1:20">
                 <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fixed"
                                       flexDirectionValue="row" layoutAlignmentType="centerLeft"
                                       gapHorizontal="20" name="TopBar Style" id="1:21"/>
+<!-- theme-button:shape begin -->
+                <!-- theme button: pinned under the gear; opens the theme picker -->
+                <LayoutComponent width="52" height="52" clip="false" styleId="11:2" name="Theme" id="11:1">
+                    <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                          positionTypeValue="absolute"
+                                          positionRight="16" positionRightUnitsValue="points"
+                                          positionTop="110" positionTopUnitsValue="points"
+                                          cornerRadiusTL="26" name="Theme Style" id="11:2"/>
+                    <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+                    <Node x="26" y="26" name="Icon"><Shape x="-7" y="-5" name="Dot0"><Ellipse width="6" height="6" name="P"/><Fill name="F"><SolidColor colorValue="FFE4572E" name="C"/></Fill></Shape><Shape x="1" y="-8" name="Dot1"><Ellipse width="6" height="6" name="P"/><Fill name="F"><SolidColor colorValue="FFF2B134" name="C"/></Fill></Shape><Shape x="8" y="-3" name="Dot2"><Ellipse width="6" height="6" name="P"/><Fill name="F"><SolidColor colorValue="FF2A9D8F" name="C"/></Fill></Shape><Shape x="7" y="5" name="Dot3"><Ellipse width="6" height="6" name="P"/><Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill></Shape><Shape x="-4" y="5" name="Thumb"><Ellipse width="7" height="6" name="P"/><Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C" id="11:7"/></Fill></Shape><Shape name="Palette"><Ellipse width="30" height="24" name="P"/><Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C"/></Fill><Stroke thickness="2.5" name="S"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke></Shape></Node>
+                    <LayoutComponent clip="false" styleId="11:5" name="Face"><LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto" positionTypeValue="absolute" positionLeft="0" positionLeftUnitsValue="points" positionTop="0" positionTopUnitsValue="points" positionRight="0" positionRightUnitsValue="points" positionBottom="0" positionBottomUnitsValue="points" cornerRadiusTL="26" name="Face Style" id="11:5"/><Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C" id="11:3"/></Fill><Stroke thickness="4" name="Ring"><SolidColor colorValue="FF2B1E16" name="C" id="11:4"/></Stroke></LayoutComponent>
+                    <LayoutComponent clip="false" styleId="11:6" name="Shadow"><LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto" positionTypeValue="absolute" positionLeft="4" positionLeftUnitsValue="points" positionTop="4" positionTopUnitsValue="points" positionRight="-4" positionRightUnitsValue="points" positionBottom="-4" positionBottomUnitsValue="points" cornerRadiusTL="26" name="Shadow Style" id="11:6"/><Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill></LayoutComponent>
+                </LayoutComponent>
+<!-- theme-button:shape end -->
 
                 <LayoutComponent styleId="1:23" name="Clock" id="1:22">
                     <LayoutComponentStyle layoutWidthScaleType="hug" layoutHeightScaleType="hug"
@@ -521,6 +535,9 @@
                     </StateTransition>
                 </AnimationState>
             </StateMachineLayer>
+<!-- theme-button:layer begin -->
+<StateMachineLayer name="Theme Focus" id="11:20"><AnyState x="200" y="-120"/><ExitState x="400" y="-120"/><EntryState><StateTransition stateToId="11:21"/></EntryState><AnimationState x="100" y="100" animationId="11:10" stateName="Off" id="11:21"><StateTransition stateToId="11:22" duration="160" interpolationType="cubic"><CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/><TransitionViewModelCondition opValue="equal"><TransitionPropertyViewModelComparator><BindablePropertyBoolean><DataBindContext sourcePathIds="4:1-4:40" propertyKey="634"/></BindablePropertyBoolean></TransitionPropertyViewModelComparator><TransitionValueBooleanComparator value="true"/></TransitionViewModelCondition></StateTransition></AnimationState><AnimationState x="300" y="100" animationId="11:11" stateName="On" id="11:22"><StateTransition stateToId="11:21" duration="140" interpolationType="cubic"><CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/><TransitionViewModelCondition opValue="equal"><TransitionPropertyViewModelComparator><BindablePropertyBoolean><DataBindContext sourcePathIds="4:1-4:40" propertyKey="634"/></BindablePropertyBoolean></TransitionPropertyViewModelComparator><TransitionValueBooleanComparator value="false"/></TransitionViewModelCondition></StateTransition></AnimationState></StateMachineLayer>
+<!-- theme-button:layer end -->
             <StateMachineLayer name="Settings Focus" id="1:1020">
                 <AnyState x="200" y="-120"/>
                 <ExitState x="400" y="-120"/>
@@ -840,6 +857,9 @@
                 <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
+<!-- theme-button:anims begin -->
+<LinearAnimation duration="1" name="Theme Focus Off" id="11:10"><KeyedObject objectId="11:1"><KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty><KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty></KeyedObject><KeyedObject objectId="11:3"><KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF8EA" interpolationType="hold"/></KeyedProperty></KeyedObject><KeyedObject objectId="11:7"><KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF8EA" interpolationType="hold"/></KeyedProperty></KeyedObject><KeyedObject objectId="11:4"><KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty></KeyedObject></LinearAnimation><LinearAnimation duration="1" name="Theme Focus On" id="11:11"><KeyedObject objectId="11:1"><KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty><KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty></KeyedObject><KeyedObject objectId="11:3"><KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty></KeyedObject><KeyedObject objectId="11:7"><KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty></KeyedObject><KeyedObject objectId="11:4"><KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty></KeyedObject></LinearAnimation>
+<!-- theme-button:anims end -->
         <LinearAnimation duration="1" name="Settings Focus Off" id="1:1520">
             <KeyedObject objectId="1:70">
                 <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>

@@ -59,17 +59,19 @@ private const val APP_ROW_HEIGHT = 182f
 
 /** The Rive designs the home screen can wear; each is a theme folder in rive-ui/themes/. */
 internal enum class LauncherTheme(val label: String, val raw: Int, val background: Color) {
+  DEFAULT("Default", R.raw.home_vanilla, Color(0xFF0A0F1C)),
   RETRO("Retro", R.raw.home_retro, Color(0xFFF3E2BF)),
   SCOPA("Scopa", R.raw.home_scopa, Color(0xFF0C3A20)),
-  VANILLA("Vanilla", R.raw.home_vanilla, Color(0xFF0A0F1C)),
 }
 
 private enum class TopItem(val prop: String) {
   PREV("prevFocused"), PLAY("playFocused"), NEXT("nextFocused"),
   SCREENSAVER("screensaverFocused"), SETTINGS("settingsFocused"),
+  /** the palette button under the gear; not in the left/right row, reached with down from Settings */
+  THEME("themeFocused"),
 }
 
-private enum class SettingsMenu { NONE, MAIN, LAUNCHER, THEME }
+private enum class SettingsMenu { NONE, MAIN, THEME }
 
 private sealed interface Focus {
   data class Top(val item: TopItem) : Focus
@@ -86,7 +88,7 @@ private class Tile(val vmi: ViewModelInstance, val icon: ImageAsset?) {
 internal fun MainActivity.RiveLauncherScreen() {
   val prefs = remember { getSharedPreferences("launcher", android.content.Context.MODE_PRIVATE) }
   var theme by remember {
-    mutableStateOf(LauncherTheme.entries.firstOrNull { it.name == prefs.getString("theme", null) } ?: LauncherTheme.RETRO)
+    mutableStateOf(LauncherTheme.entries.firstOrNull { it.name == prefs.getString("theme", null) } ?: LauncherTheme.DEFAULT)
   }
   // a new theme is a new file and view model, so start the screen afresh
   key(theme) {
@@ -158,7 +160,7 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
       null -> if (favApps.isNotEmpty()) Focus.Fav(0) else if (otherApps.isNotEmpty()) Focus.App(0) else Focus.Top(TopItem.SETTINGS)
       is Focus.Fav -> if (favApps.isEmpty()) Focus.Top(TopItem.SETTINGS) else Focus.Fav(f.index.coerceAtMost(favApps.lastIndex))
       is Focus.App -> if (otherApps.isEmpty()) Focus.Top(TopItem.SETTINGS) else Focus.App(f.index.coerceAtMost(otherApps.lastIndex))
-      is Focus.Top -> if (f.item in topItems) f else Focus.Top(TopItem.SCREENSAVER)
+      is Focus.Top -> if (f.item in topItems || f.item == TopItem.THEME) f else Focus.Top(TopItem.SCREENSAVER)
     }
   }
 
@@ -278,6 +280,7 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
         }
         TopItem.SCREENSAVER -> startScreensaver()
         TopItem.SETTINGS -> settingsMenu = SettingsMenu.MAIN
+        TopItem.THEME -> settingsMenu = SettingsMenu.THEME
       }
       else -> focusedApp()?.let { launch(it.intent) }
     }
@@ -311,13 +314,23 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
   fun navigate(keyCode: Int): Boolean {
     val f = focus ?: return false
     val next: Focus? = when (f) {
-      is Focus.Top -> {
+      is Focus.Top -> if (f.item == TopItem.THEME) when (keyCode) {
+        KeyEvent.KEYCODE_DPAD_UP -> Focus.Top(TopItem.SETTINGS)
+        KeyEvent.KEYCODE_DPAD_LEFT -> Focus.Top(TopItem.SCREENSAVER)
+        KeyEvent.KEYCODE_DPAD_DOWN ->
+          if (favApps.isNotEmpty()) Focus.Fav(favApps.lastIndex) else if (otherApps.isNotEmpty()) Focus.App(0) else null
+        else -> null
+      } else {
         val i = topItems.indexOf(f.item)
         when (keyCode) {
           KeyEvent.KEYCODE_DPAD_LEFT -> topItems.getOrNull(i - 1)?.let { Focus.Top(it) }
           KeyEvent.KEYCODE_DPAD_RIGHT -> topItems.getOrNull(i + 1)?.let { Focus.Top(it) }
-          KeyEvent.KEYCODE_DPAD_DOWN ->
-            if (favApps.isNotEmpty()) Focus.Fav(favApps.size / 2) else if (otherApps.isNotEmpty()) Focus.App(0) else null
+          KeyEvent.KEYCODE_DPAD_DOWN -> when {
+            f.item == TopItem.SETTINGS -> Focus.Top(TopItem.THEME)
+            favApps.isNotEmpty() -> Focus.Fav(favApps.size / 2)
+            otherApps.isNotEmpty() -> Focus.App(0)
+            else -> null
+          }
           else -> null
         }
       }
@@ -419,13 +432,7 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
           settingsMenu = SettingsMenu.NONE
           launch(Intent("com.google.android.tv.settings.ambient").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
         },
-        "Launcher settings" to { settingsMenu = SettingsMenu.LAUNCHER },
       ),
-      onDismiss = { settingsMenu = SettingsMenu.NONE },
-    )
-    SettingsMenu.LAUNCHER -> OptionsMenu(
-      title = "Launcher settings",
-      options = listOf("Theme: ${theme.label}" to { settingsMenu = SettingsMenu.THEME }),
       onDismiss = { settingsMenu = SettingsMenu.NONE },
     )
     SettingsMenu.THEME -> OptionsMenu(
@@ -433,7 +440,7 @@ private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTh
       options = LauncherTheme.entries.map { t ->
         (if (t == theme) "${t.label}  ✓" else t.label) to { settingsMenu = SettingsMenu.NONE; if (t != theme) onPickTheme(t) }
       },
-      onDismiss = { settingsMenu = SettingsMenu.LAUNCHER },
+      onDismiss = { settingsMenu = SettingsMenu.NONE },
     )
   }
 
