@@ -13,6 +13,8 @@ Cast:
   Pops     a popcorn bucket in the bottom-right that pops kernels
   Ray      a radio in the bottom-left; bounces and sends notes while music plays
   TV guy   (in scene.rml) gets arms here, and waves now and then
+  Parade   along the floor: Vic the VHS tape, Gabby the handheld, Snap the
+           camera (flash!), and Scoot the dog, who drags its bum across
 """
 import math
 import re
@@ -274,6 +276,141 @@ wave += [(530, 2.5), (560, 0.35, "hold"), (WAVE, 0.35, "hold")]
 anims.append(anim("9:107", "TV Wave", WAVE, keyed("9:60", keys("rotation", wave)),
                   keyed("9:61", keys("rotation", [(0, -0.35), (300, -0.45), (WAVE, -0.35)]))))
 layers.append(layer("9:206", "TV Wave", "9:107"))
+
+# ---------------------------------------------------------------- the floor parade
+# Walkers cross the bottom of the screen one way, then wait off-screen; each has
+# its own period, so who meets whom keeps changing. Drawn facing right, feet at y=0.
+FLOOR_Y = 1050
+LEFT, RIGHT = -140, 2060
+
+
+def legs(base, spread, shoe, top=-18, length=16):
+    return [node(f"Leg{s}", [shape("Shin", [rect(7, length, 0, length / 2, 3)], fill(INK)),
+                              shape("Shoe", [ell(15, 8, 3, length + 1)], fill(shoe) + stroke(INK, 2.5))],
+                 x, top, f"{base}{i + 6}")
+            for i, (s, x) in enumerate((("L", -spread), ("R", spread)))]
+
+
+def stroll(base, name, body, leg_nodes, rightward, start, dur, period, step=14, amp=0.45, bob=4, scale=1.2, extra=()):
+    """A walker: root (x) > Flip (faces the way it goes) > Body (bob) + legs (ids base+6, base+7)."""
+    x0, x1 = (LEFT, RIGHT) if rightward else (RIGHT, LEFT)
+    flip = 1 if rightward else -1
+    shapes.append(node(name, [node("Flip", [body] + leg_nodes, 0, 0, f"{base}1",
+                                   f' scaleX="{flip * scale}" scaleY="{scale}"')], x0, FLOOR_Y, f"{base}0"))
+    def alt(a, b, rest=0):
+        out, f, fl = [(0, rest, "hold")], start, False
+        while f < start + dur:
+            out.append((f, a if fl else b)); f += step; fl = not fl
+        out += [(start + dur, rest, "hold"), (period, rest, "hold")]
+        return out
+    anims.append(anim(f"{base}9", f"{name} Stroll", period,
+        keyed(f"{base}0", keys("x", [(0, x0, "hold"), (start, x0), (start + dur, x1, "hold"), (period, x1, "hold")])),
+        keyed(f"{base}2", keys("y", alt(0, -bob))),
+        keyed(f"{base}6", keys("rotation", alt(amp, -amp))),
+        keyed(f"{base}7", keys("rotation", alt(-amp, amp))),
+        *extra))
+    layers.append(layer(f"{base}8", f"{name} Stroll", f"{base}9"))
+
+
+# Vic the VHS tape: marches right to left
+vic = node("Body", [
+    eyes("10:13", 9, -50, 6, 9),
+    shape("Mouth", [rect(12, 4, 0, -40, 2)], fill(INK)),
+    shape("Label", [rect(56, 26, 0, -45, 4)], fill(PAPER) + stroke(INK, 2.5)),
+    shape("Windows", [rect(18, 10, -22, -22, 3), rect(18, 10, 22, -22, 3)], fill("FF6B4A36") + stroke(INK, 2)),
+    shape("Shell", [rect(96, 56, 0, -38, 6)], fill("FF3A2B22") + stroke(INK, 4)),
+    shape("Shadow", [rect(96, 56, 5, -33, 6)], fill(INK)),
+], 0, 0, "10:12")
+stroll("10:1", "Vic", vic, legs("10:1", 22, MUSTARD), False, 300, 1500, 3000,
+       extra=[blink("10:13", 3000, 1100)])
+
+# Gabby the handheld: hops left to right
+gabby = node("Body", [
+    eyes("10:23", 8, -62, 5, 8),
+    shape("Smile", [rect(10, 4, 0, -54, 2)], fill(INK)),
+    shape("Screen", [rect(38, 30, 0, -60, 4)], fill("FF9FC08A") + stroke(INK, 2.5)),
+    shape("Bezel", [rect(46, 38, 0, -60, 6)], fill("FF7A7F86")),
+    shape("Pad", [rect(14, 5, -12, -26), rect(5, 14, -12, -26)], fill(INK)),
+    shape("Buttons", [ell(9, 9, 10, -30), ell(9, 9, 20, -22)], fill(TOMATO) + stroke(INK, 2)),
+    shape("Case", [rect(58, 86, 0, -50, 8)], fill("FFE3DCCB") + stroke(INK, 4)),
+    shape("Shadow", [rect(58, 86, 5, -45, 8)], fill(INK)),
+], 0, -6, "10:22")
+stroll("10:2", "Gabby", gabby, legs("10:2", 14, TEAL, top=-12, length=12), True, 1700, 1000, 3600,
+       step=10, amp=0.6, bob=12, extra=[blink("10:23", 3600, 2100)])
+
+# Snap the camera: strolls right to left and fires the flash half way
+snap = node("Body", [
+    shape("Burst", ['<Star points="8" width="70" height="70" innerRadius="0.4" name="P"/>'], fill("EEFFF8EA"),
+          30, -82, sid="10:34", extra=' opacity="0"'),
+    eyes("10:33", 8, -52, 5, 8, -26),
+    shape("Glint", [ell(8, 8, 8, -46)], fill(PAPER)),
+    shape("Lens", [ell(24, 24, 14, -40)], fill(TEAL) + stroke(INK, 3)),
+    shape("Ring", [ell(40, 40, 14, -40)], fill(INK)),
+    shape("Flash", [rect(18, 10, 24, -74, 2)], fill(PAPER) + stroke(INK, 2.5)),
+    shape("Top", [rect(28, 14, -14, -70, 4)], fill(TOMATO) + stroke(INK, 3)),
+    shape("Box", [rect(84, 54, 0, -40, 9)], fill(TOMATO) + stroke(INK, 4)),
+    shape("Shadow", [rect(84, 54, 5, -35, 9)], fill(INK)),
+], 0, 0, "10:32")
+SNAP_AT = 2600 + 700
+stroll("10:3", "Snap", snap, legs("10:3", 20, TEAL), False, 2600, 1400, 4200,
+       extra=[blink("10:33", 4200, 2900),
+              keyed("10:34", keys("opacity", [(0, 0, "hold"), (SNAP_AT, 0), (SNAP_AT + 4, 1), (SNAP_AT + 24, 0, "hold"),
+                                              (SNAP_AT + 40, 0), (SNAP_AT + 44, 1), (SNAP_AT + 64, 0, "hold"), (4200, 0, "hold")]),
+                     keys("scaleX", [(0, 0.6, "hold"), (SNAP_AT, 0.6), (SNAP_AT + 20, 1.3, "hold"),
+                                     (SNAP_AT + 40, 0.6), (SNAP_AT + 60, 1.3, "hold"), (4200, 0.6, "hold")]),
+                     keys("scaleY", [(0, 0.6, "hold"), (SNAP_AT, 0.6), (SNAP_AT + 20, 1.3, "hold"),
+                                     (SNAP_AT + 40, 0.6), (SNAP_AT + 60, 1.3, "hold"), (4200, 0.6, "hold")]))])
+
+# Scoot the dog: sits on its bum and drags itself across, front paws paddling
+DOG = "FFE0A458"
+paw = lambda n, nid, x: node(n, [shape("Leg", [rect(9, 30, 0, 15, 4)], fill(DOG) + stroke(INK, 3)),
+                                 shape("Paw", [ell(14, 8, 3, 30)], fill(DOG) + stroke(INK, 2.5))], x, -30, nid)
+puffs = [shape(f"Puff{i}", [ell(14, 10), ell(10, 8, 9, -3)], fill("CCFFF8EA") + stroke("88A88A6A", 2), -54 - 14 * i, -6,
+               sid=f"10:4{5 + i}", extra=' opacity="0"') for i in range(2)]
+dog = node("Body", [
+    paw("PawNear", "10:43", 20),
+    node("Head", [
+        shape("Ear", [ell(14, 28, 0, 0)], fill("FF8A5A34") + stroke(INK, 3), -12, 4, rot=0.35),
+        shape("Nose", [ell(10, 7, 28, -2)], fill(INK)),
+        shape("Eyes", [rect(9, 3.5, 0, -6, 1.75), rect(9, 3.5, 14, -6, 1.75)], fill(INK)),
+        shape("Tongue", [ell(9, 12, 18, 16)], fill(PINK) + stroke(INK, 2)),
+        shape("Snout", [ell(26, 18, 20, 6)], fill("FFF6E3C4") + stroke(INK, 3)),
+        shape("Skull", [ell(46, 40)], fill(DOG) + stroke(INK, 4)),
+    ], 30, -62, "10:44"),
+    shape("Haunch", [ell(30, 18, -16, -10)], fill(DOG) + stroke(INK, 3)),
+    shape("Belly", [ell(76, 44, -8, -26)], fill(DOG) + stroke(INK, 4), rot=-0.35),
+    paw("PawFar", "10:42", 30),
+    node("Tail", [shape("T", [rect(7, 26, 0, -12, 3.5)], fill(DOG) + stroke(INK, 2.5))], -44, -18, "10:41",
+         ' rotation="-0.9"'),
+] + puffs, 0, 0, "10:40")
+SCOOT_START, SCOOT_PERIOD, HOP, LURCH = 900, 5400, 30, 20
+xs, rock, near, far, head, tail_k = [(0, LEFT, "hold")], [(0, 0, "hold")], [(0, 0.3, "hold")], [(0, -0.3, "hold")], [(0, 0, "hold")], []
+puff_k = {0: [(0, 0, "hold")], 1: [(0, 0, "hold")]}
+x, f = LEFT, SCOOT_START
+while x < RIGHT:
+    xs += [(f, x), (f + 12, x + LURCH, "hold")]
+    rock += [(f, 0), (f + 6, -0.12), (f + 14, 0.06), (f + 22, 0)]
+    near += [(f, 0.35), (f + 12, -0.35), (f + HOP - 1, 0.35)]
+    far += [(f, -0.35), (f + 12, 0.35), (f + HOP - 1, -0.35)]
+    head += [(f, 0), (f + 8, 0.08), (f + 20, 0)]
+    k = (f // HOP) % 2
+    puff_k[k] += [(f + 6, 0), (f + 10, 1), (f + 26, 0, "hold")]
+    x += LURCH; f += HOP
+end = f
+for lst, v in ((xs, RIGHT), (rock, 0), (near, 0.3), (far, -0.3), (head, 0)):
+    lst += [(end, v, "hold"), (SCOOT_PERIOD, v, "hold")]
+for k in puff_k:
+    puff_k[k] += [(SCOOT_PERIOD, 0, "hold")]
+assert end < SCOOT_PERIOD, end
+shapes.append(node("Scoot", [node("Flip", [dog], 0, 0, "10:401", ' scaleX="1.25" scaleY="1.25"')], LEFT, FLOOR_Y, "10:400"))
+anims.append(anim("10:409", "Scoot Drag", SCOOT_PERIOD,
+    keyed("10:400", keys("x", xs)), keyed("10:40", keys("rotation", rock)),
+    keyed("10:43", keys("rotation", near)), keyed("10:42", keys("rotation", far)),
+    keyed("10:44", keys("rotation", head)),
+    keyed("10:45", keys("opacity", puff_k[0])), keyed("10:46", keys("opacity", puff_k[1]))))
+anims.append(anim("10:419", "Scoot Wag", 24,
+    keyed("10:41", keys("rotation", [(0, -0.9), (12, -0.3), (24, -0.9)]))))
+layers += [layer("10:408", "Scoot Drag", "10:409"), layer("10:418", "Scoot Wag", "10:419")]
 
 # ================================================================ write into scene.rml
 def put(s, tag, body, before):
