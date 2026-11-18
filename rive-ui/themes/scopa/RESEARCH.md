@@ -38,6 +38,33 @@ From the reference card scans (Dal Negro), which the figures are drawn after:
 - **Coin pip:** an ink-ringed white band, then a gold disc with a sun-burst and
   a small core. **Cup pip:** a gold chalice with a knop and a red foot.
 
+## Primary reference: a Modiano Napoletane deck
+The user supplied a photo of eight cards from a real Modiano Napoletane deck
+(`~/Downloads/CARD03F_0.jpg`). It supersedes the scans above, and the current
+figures and pips are drawn after it:
+- **Asso di Denari:** two gold eagle heads facing apart; red wings banded dark
+  green wrap a great white ring; red legs with gold tassels hang down the
+  sides; a gold ring closes the bottom of the "8".
+- **Denari pip** (5 di Denari): a black disc in a gold rim with a gold sunburst
+  and a sun face. The 5 has a crest with flags at its centre.
+- **Coppe pip** (6 di Coppe): an urn with a red rim, white loop handles, gold
+  shoulder, dark green bowl and red foot.
+- **Fante di Coppe:** green beret with a red feather, brown bob, gold ruff, green
+  doublet, red sleeves, gold puffed breeches, green hose with red tops, white
+  shoes. The cup is held up at the shoulder and there's a dagger at the hip.
+  Red platform.
+- **Spade pip card:** long blue straight blades with ornate gold knobbed
+  cross-hilts, and small dark figures between them.
+- **Cavallo di Spade:** a Moor in a blue turban on a tall brown horse prancing
+  to the right (near foreleg raised). Red sleeves, green jerkin, gold skirt,
+  red hose, a blue curved scimitar raised over the shoulder. Blue platform.
+- **Asso di Bastoni:** three big green batons with gold wheat-ears, fanned
+  behind a gold grotesque mask with a moustache. Red and gold shafts cross
+  below and end in green tips.
+- **Re di Bastoni:** dark crown, brown hair and moustache, white ruff, blue
+  mantle over a dark green tunic, gold sleeves and hose, a red cape. He
+  holds a great green club upright. Dark green platform.
+
 ## Backs and case
 - Backs vary by maker. Modiano's is a "signature 3D checkered pattern"; Dal
   Negro packs come in red cases, and Modiano sells red and blue versions. The
@@ -52,9 +79,9 @@ From the reference card scans (Dal Negro), which the figures are drawn after:
   now and then, and the cards are dealt again.
 
 ## Gaps
-- No reference scans of the Spade and Bastoni court cards could be fetched
-  (Wikimedia rate-limited), so those figures aren't used. The sword in the
-  Re di Denari's hand follows the "short and straight" description.
+- Wikimedia rate-limited the Spade and Bastoni scans. The Modiano photo above
+  covers them instead (Cavallo di Spade, Re di Bastoni, Asso di Bastoni and a
+  Spade pip card).
 
 ## Sources
 - https://wopc.co.uk/italy/neapolitan-pattern

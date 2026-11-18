@@ -161,209 +161,244 @@ def ids(*names):
 
 
 # ================================================================================
-# suit signs (pips), drawn about 0,0 at roughly 40 px across
+# suit signs (pips), in the style of the Modiano Napoletane reference (RESEARCH.md)
 # ================================================================================
+COINBLK, HAIRBRN, CROWNDK, HORSEBRN, HORSEBR2 = "FF23261C", "FF6E4426", "FF2E2A26", "FFD29A78", "FFB97E5E"
+
+
 def coin(d=40, name="Coin", id=None, x=0, y=0, rot=0, sx=None):
-    """Denaro: an ink-ringed white band round a gold sun-burst disc with a small core."""
+    """Denaro: a black disc in a gold rim, a gold sun-burst with a round sun face at its heart."""
     return node([
-        shape(ell(d), WHITE, sw=1.6, name="Band"),
-        shape(ell(d * 0.78), GOLD, sw=1.4, name="Disc"),
-        shape(star(12, d * 0.66, 0.55), "FFFFE27A", sw=1.1, name="Rays"),
-        shape(ell(d * 0.22), RED, sw=1.1, name="Core"),
+        shape(ell(d), COINBLK, stroke=GOLD, sw=max(1.5, d * 0.07), name="Disc"),
+        shape(star(16, d * 0.78, 0.55), GOLD, stroke=None, name="Rays"),
+        shape(ell(d * 0.36), GOLD, stroke=COINBLK, sw=max(0.8, d * 0.025), name="Sun"),
+        shape([ell(d * 0.05, d * 0.05, -d * 0.06, -d * 0.03), ell(d * 0.05, d * 0.05, d * 0.06, -d * 0.03),
+               rect(d * 0.12, d * 0.025, 0, d * 0.07)], COINBLK, stroke=None, name="Face"),
     ], name=name, id=id, x=x, y=y, rot=rot, sx=sx)
 
 
-def cup(h=44, name="Cup", id=None, x=0, y=0, rot=0, foot=RED):
-    """Coppa: a gold chalice, rim band, knop on the stem, red foot."""
+def cup(h=44, name="Cup", id=None, x=0, y=0, rot=0):
+    """Coppa (as on the 6 di Coppe): an urn: red rim, white loop handles, gold shoulder,
+    dark green bowl, short stem, red foot."""
     k = h / 44
-    bowl = poly([(-15 * k, -20 * k), (15 * k, -20 * k), (13 * k, -8 * k), (6 * k, 0), (-6 * k, 0), (-13 * k, -8 * k)], 3 * k)
     return node([
-        shape(poly([(-11 * k, 22 * k), (11 * k, 22 * k), (6 * k, 14 * k), (-6 * k, 14 * k)], 2 * k), foot, sw=1.4, name="Foot"),
-        shape(rect(4 * k, 14 * k, 0, 7 * k), GOLD, sw=1.4, name="Stem"),
-        shape(ell(10 * k, 6 * k, 0, 6 * k), GOLD, sw=1.4, name="Knop"),
-        shape(bowl, GOLD, sw=1.6, name="Bowl"),
-        shape(rect(32 * k, 5 * k, 0, -20 * k, 2 * k), DKGOLD, sw=1.4, name="Rim"),
-        shape([rect(1.2 * k, 9 * k, x_ * k, -11 * k) for x_ in (-7, -3, 1, 5)], "66000000", stroke=None, name="Hatch"),
+        shape([ell(9 * k, 16 * k, -15 * k, -10 * k), ell(9 * k, 16 * k, 15 * k, -10 * k)], None, stroke=INK,
+              sw=4 * k, name="HandlesInk"),
+        shape([ell(9 * k, 16 * k, -15 * k, -10 * k), ell(9 * k, 16 * k, 15 * k, -10 * k)], None, stroke=WHITE,
+              sw=2 * k, name="Handles"),
+        shape(poly([(-11 * k, 21 * k), (11 * k, 21 * k), (8 * k, 15 * k), (-8 * k, 15 * k)], 2 * k), RED, sw=1.2,
+              name="Foot"),
+        shape(rect(5 * k, 8 * k, 0, 12 * k), GOLD, sw=1.1, name="Stem"),
+        shape(poly([(-14 * k, -4 * k), (14 * k, -4 * k), (10 * k, 6 * k), (4 * k, 10 * k), (-4 * k, 10 * k),
+                    (-10 * k, 6 * k)], 3 * k), DKGREEN, sw=1.3, name="Bowl"),
+        shape(rect(26 * k, 11 * k, 0, -9 * k, 3 * k), GOLD, sw=1.3, name="Shoulder"),
+        shape(rect(22 * k, 6 * k, 0, -17 * k, 2 * k), RED, sw=1.3, name="Rim"),
     ], name=name, id=id, x=x, y=y, rot=rot)
 
 
-def sword(h=110, name="Sword", id=None, x=0, y=0, rot=0):
-    """Spada (Neapolitan: short and straight): a pale blade, gold guard and pommel, red grip. Hilt at 0,0."""
+def blade(length, w=7, color=BLUE):
+    """A straight blue sword blade from 0,0 to 0,length with a point."""
+    return shape(poly([(-w / 2, 0), (w / 2, 0), (w / 2, length - w), (0, length), (-w / 2, length - w)], 1), color,
+                 sw=1.2, name="Blade")
+
+
+def hilt():
+    """The ornate gold cross-hilt of the Neapolitan swords: knobbed quillons, a round pommel."""
     return node([
-        shape(poly([(-2.5, 6), (2.5, 6), (2, h - 8), (0, h), (-2, h - 8)]), "FFE6ECF2", sw=1.4, name="Blade"),
-        shape(rect(24, 5, 0, 4, 2), GOLD, sw=1.4, name="Guard"),
-        shape(rect(5, 14, 0, -6, 2), RED, sw=1.2, name="Grip"),
-        shape(ell(8, 8, 0, -15), GOLD, sw=1.2, name="Pommel"),
-    ], name=name, id=id, x=x, y=y, rot=rot)
+        shape(rect(30, 6, 0, 0, 3), GOLD, sw=1.2, name="Quillons"),
+        shape([ell(8, 8, -16, 0), ell(8, 8, 16, 0), ell(8, 8, 0, 9), ell(9, 9, 0, -12)], GOLD, sw=1.1, name="Knobs"),
+        shape(rect(5, 10, 0, -6, 2), DKGOLD, sw=1, name="Grip"),
+    ], name="Hilt")
 
 
-def platform(w, color, y, h=12, boxes=False):
+def platform(w, color, y, h=12, boxes=False, x=0):
     """The coloured ground each figure stands on, shaded with fine hatching."""
-    hatch = [rect(1.2, h - 3, round(-w / 2 + 6 + i * 6, 1), y) for i in range(int((w - 10) / 6))]
-    parts = [shape(rect(w, h, 0, y), color, sw=1.6, name="Ground"),
+    hatch = [rect(1.2, h - 3, round(x - w / 2 + 6 + i * 6, 1), y) for i in range(int((w - 10) / 6))]
+    parts = [shape(rect(w, h, x, y), color, sw=1.6, name="Ground"),
              shape(hatch, "55000000", stroke=None, name="Hatch")]
-    if boxes:
-        parts.append(shape([rect(w / 4 - 8, h - 5, -w / 2 + (i + 0.5) * w / 4, y, 1) for i in range(4)], None,
-                           sw=1.2, name="Boxes"))
     return node(parts, name="Platform")
 
 
-def face(eyes_id, beard=None, hair=None, hair_len=0, w=24, h=30, look=0):
-    """A head about 0,0: hair behind, face, eyes (own node for blinking), nose, mouth, optional beard."""
+def face(eyes_id, hair=None, w=22, h=28, look=0, moustache=False):
+    """A head about 0,0: hair behind, face, eyes (own node for blinking), nose, mouth or moustache."""
     parts = []
     if hair:
-        parts.append(shape(rect(w + 10, h * 0.6 + hair_len, 0, -h * 0.12 + hair_len / 2, 10), hair, sw=1.6, name="Hair"))
-    parts += [shape(ell(w, h), SKIN, sw=1.6, name="Face")]
-    if beard:
-        parts.append(shape(poly([(-w / 2 + 1, 0), (w / 2 - 1, 0), (w / 3, h * 0.42), (0, h * 0.62), (-w / 3, h * 0.42)], 4),
-                           beard, sw=1.4, name="Beard"))
-        parts.append(shape(rect(w * 0.5, 3.5, 0, h * 0.12, 1.5), beard, sw=1, name="Moustache"))
-    parts += [node([shape([ell(3.2, 4.2, -w * 0.2 + look, -h * 0.06), ell(3.2, 4.2, w * 0.2 + look, -h * 0.06)], INK,
+        parts.append(shape(rect(w + 8, h * 0.75, 0, -h * 0.05, 9), hair, sw=1.4, name="Hair"))
+    parts += [shape(ell(w, h), SKIN, sw=1.5, name="Face"),
+              node([shape([ell(3, 4, -w * 0.2 + look, -h * 0.06), ell(3, 4, w * 0.2 + look, -h * 0.06)], INK,
                           stroke=None, name="Pupils")], name="Eyes", id=eyes_id),
               shape(rect(1.6, 6, look * 0.6, h * 0.08), "88B07A5A", stroke=None, name="Nose")]
-    if not beard:
+    if moustache:
+        parts.append(shape(poly([(-8, h * 0.2), (0, h * 0.16), (8, h * 0.2), (5, h * 0.25), (0, h * 0.21),
+                                 (-5, h * 0.25)], 1), HAIRBRN, sw=0.8, name="Moustache"))
+    else:
         parts.append(shape(rect(6, 1.8, look * 0.5, h * 0.27, 0.9), "FFB04A44", stroke=None, name="Mouth"))
     return parts
 
 
 def leg(x, top, length, hose, shoe=WHITE, w=11, name="Leg", id=None, rot=0):
-    """A hose-clad leg hanging from its hip at (x, top), with a shoe at the foot."""
     return node([
-        shape(rect(w, length, 0, length / 2, 4), hose, sw=1.6, name="Hose"),
-        shape(ell(w + 9, 8, 3, length + 1), shoe, sw=1.4, name="Shoe"),
+        shape(rect(w, length, 0, length / 2, 4), hose, sw=1.5, name="Hose"),
+        shape(ell(w + 8, 7, 3, length + 1), shoe, sw=1.3, name="Shoe"),
     ], name=name, x=x, y=top, rot=rot, id=id)
 
 
+def club(length=120, name="Club", id=None, x=0, y=0, rot=0, handle=RED):
+    """A Neapolitan baton: a long green paddle with a gold wheat-ear down its middle, on a
+    short handle. Grip at 0,0; the paddle runs up (negative y)."""
+    L = length
+    ears = [poly([(0, -L * t), (5, -L * t - 8), (0, -L * t - 4), (-5, -L * t - 8)]) for t in (0.4, 0.5, 0.6, 0.7, 0.8)]
+    return node([
+        shape(rect(7, 30, 0, 6, 3), handle, sw=1.2, name="Handle"),
+        shape(poly([(-5, -8), (5, -8), (13, -L * 0.6), (12, -L + 8), (0, -L), (-12, -L + 8), (-13, -L * 0.6)], 10),
+              GREEN, sw=1.5, name="Paddle"),
+        shape(rect(2, L * 0.5, 0, -L * 0.6), GOLD, stroke=None, name="Stalk"),
+        shape(ears, GOLD, sw=0.7, name="Ears"),
+    ], name=name, id=id, x=x, y=y, rot=rot)
+
+
 # ================================================================================
-# court cards, in card space: 200 x 300 centred on 0,0, y down; ground at y≈122
+# court cards, in card space: 200 x 300 centred on 0,0, y down; ground at y≈126.
+# Everything stays inside about ±88 x ±140 so nothing pokes past the card edge.
 # ================================================================================
 def fante_di_coppe():
-    """A young page: green beret with a red feather, grey-blue bobbed hair, green and
-    blue doublet, red sleeves, gold puffed breeches with red garter bows, green hose.
-    His right arm holds the cup up; a gold sword-stick hangs from his other hand."""
+    """A young page, three-quarter left: green beret with a red feather, brown bob, gold
+    ruff, green doublet trimmed gold, red sleeves, gold puffed breeches, green hose with red
+    tops, white shoes; his right hand holds the cup up at the shoulder; a dagger at his hip."""
     ids("FanteHead", "FanteEyes", "Feather", "CupArm", "FanteCup")
-    head = node(face(ID["FanteEyes"], hair=HAIRGREY, hair_len=8, look=-1.5) + [
-        shape(ell(38, 12, 2, -17), GREEN, sw=1.6, name="Brim"),
-        shape(ell(26, 14, 0, -22), GREEN, sw=1.6, name="Crown"),
-        node([shape(poly([(0, 0), (8, -10), (16, -30), (10, -32), (2, -14)], 4), RED, sw=1.4, name="Plume")],
-             name="Feather", x=10, y=-24, id=ID["Feather"]),
-    ], name="Head", x=0, y=-74, id=ID["FanteHead"])
+    head = node(face(ID["FanteEyes"], hair=HAIRBRN, look=-2) + [
+        shape(ell(36, 11, 4, -13, -0.12), GREEN, sw=1.5, name="Beret"),
+        shape(ell(22, 10, 2, -17), GREEN, sw=1.4, name="Crown"),
+        node([shape(poly([(0, 0), (10, -6), (24, -6), (18, 2), (6, 4)], 4), RED, sw=1.2, name="Plume")],
+             name="Feather", x=14, y=-16, id=ID["Feather"]),
+    ], name="Head", x=-2, y=-94, id=ID["FanteHead"])
     cup_arm = node([
-        shape(rect(13, 46, 0, -21, 5), RED, sw=1.6, name="Sleeve"),
-        shape(rect(15, 5, 0, -44, 2), GOLD, sw=1.2, name="Cuff"),
-        shape(ell(11, 10, 0, -50), SKIN, sw=1.4, name="Hand"),
-        cup(30, name="Cup", id=ID["FanteCup"], x=0, y=-68),
-    ], name="CupArm", x=-24, y=-44, rot=-0.42, id=ID["CupArm"])
+        shape(poly([(-6, -4), (6, 2), (-8, 30), (-20, 24)], 5), RED, sw=1.5, name="Upper"),
+        shape(poly([(-20, 24), (-8, 30), (-14, 4), (-24, 0)], 5), RED, sw=1.5, name="Fore"),
+        shape(rect(13, 5, -19, 1, 2), GOLD, sw=1, name="Cuff"),
+        shape(ell(10, 9, -19, -4), SKIN, sw=1.2, name="Hand"),
+        cup(30, name="Cup", id=ID["FanteCup"], x=-19, y=-24),
+    ], name="CupArm", x=-20, y=-66, id=ID["CupArm"])
     return node([
-        platform(150, RED, 124),
-        leg(-12, 50, 64, GREEN, name="LegR"),
-        leg(12, 50, 64, GREEN, name="LegL"),
-        shape([ell(16, 8, -12, 84), ell(16, 8, 12, 84)], RED, sw=1.2, name="Garters"),
-        shape(poly([(-27, 8), (27, 8), (30, 46), (16, 62), (0, 54), (-16, 62), (-30, 46)], 8), GOLD, sw=1.6, name="Breeches"),
-        shape([rect(1.2, 30, x_, 36) for x_ in (-20, -12, -4, 4, 12, 20)], "55000000", stroke=None, name="Pleats"),
-        shape(rect(44, 58, 0, -20, 7), GREEN, sw=1.6, name="Doublet"),
-        shape(rect(9, 58, 0, -20), BLUE, sw=1.2, name="Placket"),
-        shape([ell(3, 3, 0, y_) for y_ in (-36, -26, -16, -6)], GOLD, sw=0.8, name="Buttons"),
-        shape(rect(48, 6, 0, 8, 2), GOLD, sw=1.4, name="Belt"),
-        node([shape(rect(12, 44, 0, 20, 5), RED, sw=1.6, name="Sleeve"),
-              shape(ell(10, 10, 1, 45), SKIN, sw=1.4, name="Hand"),
-              node([shape(rect(4, 56, 0, 26, 2), GOLD, sw=1.2, name="Stick")], name="Stick", x=2, y=44, rot=-0.55)],
-             name="Arm", x=26, y=-42, rot=-0.12),
-        shape(poly([(-20, -50), (20, -50), (14, -42), (-14, -42)], 3), GOLD, sw=1.4, name="Ruff"),
+        platform(120, RED, 126, x=4),
+        leg(-12, 36, 80, GREEN, name="LegR"),
+        leg(12, 36, 80, GREEN, name="LegL"),
+        shape([rect(14, 14, -12, 58, 3), rect(14, 14, 12, 58, 3)], RED, sw=1.2, name="BootTops"),
+        shape(poly([(-26, -14), (26, -14), (30, 24), (16, 46), (0, 38), (-16, 46), (-30, 24)], 9), GOLD, sw=1.5,
+              name="Breeches"),
+        shape([rect(1.2, 30, x_, 16) for x_ in (-18, -9, 0, 9, 18)], "4D7A5A00", stroke=None, name="Pleats"),
+        shape(rect(46, 56, 0, -40, 6), GREEN, sw=1.5, name="Doublet"),
+        shape(rect(5, 54, 0, -40), GOLD, sw=0.8, name="Trim"),
+        shape(rect(48, 7, 0, -12, 2), RED, sw=1.2, name="Belt"),
+        node([shape(rect(4, 34, 0, 16, 1), "FFD5DCE6", sw=1, name="Dagger"),
+              shape(rect(14, 4, 0, 0, 2), GOLD, sw=0.8, name="Guard")], name="Dagger", x=22, y=-6, rot=-0.6),
+        node([shape(rect(12, 42, 0, 19, 5), RED, sw=1.5, name="Sleeve"),
+              shape(ell(10, 9, 1, 42), SKIN, sw=1.2, name="Hand")],
+             name="Arm", x=26, y=-62, rot=-0.18),
+        shape(ell(38, 12, 0, -68), GOLD, sw=1.3, name="Ruff"),
         head,
         cup_arm,
     ], name="Fante")
 
 
-def cavallo_di_denari():
-    """A grey horse walking to the left on a gold ground; the rider in a gold turban,
-    red sleeves and a green jerkin holds a coin high."""
+def cavallo_di_spade():
+    """A Moor in a blue turban on a brown horse prancing to the right (near foreleg raised);
+    red sleeves, green jerkin, gold skirt, red hose; his raised hand swings a blue scimitar."""
     ids("HorseHead", "HorseEye", "Tail", "LegF1", "LegF2", "LegB1", "LegB2", "Horse", "Rider",
-        "RiderEyes", "RiderArm", "RiderCoin")
-    hoof = lambda: shape(rect(10, 7, 0, 46, 2), "FF4A443C", sw=1.2, name="Hoof")
-    def hleg(name, x, y, color):
-        return node([shape(rect(10, 46, 0, 22, 4), color, sw=1.4, name="Shank"), hoof()],
-                    name=name, x=x, y=y, id=ID[name])
-    body = poly([(-44, -12), (-20, -22), (30, -22), (52, -12), (56, 6), (46, 18), (-30, 20), (-46, 8)], 10)
+        "RiderEyes", "SwordArm", "Prance")
+    hoof = lambda: shape(rect(9, 6, 0, 60, 2), "FF4A3A30", sw=1.1, name="Hoof")
+
+    def hleg(name, x, y, color, rot=0):
+        return node([shape(rect(9, 60, 0, 29, 4), color, sw=1.3, name="Shank"), hoof()],
+                    name=name, x=x, y=y, rot=rot, id=ID[name])
+    raised = node([shape(rect(9, 32, 0, 15, 4), HORSEBRN, sw=1.3, name="Forearm"),
+                   node([shape(rect(9, 28, 0, 13, 4), HORSEBRN, sw=1.3, name="Cannon"),
+                         shape(rect(9, 6, 0, 28, 2), "FF4A3A30", sw=1.1, name="Hoof")],
+                        name="Knee", y=30, rot=-1.3, id=ID["LegF1"])],
+                  name="Raised", x=44, y=8, rot=-0.5, id=ID["Prance"])
+    body = poly([(-50, -12), (-30, -22), (28, -24), (50, -14), (54, 4), (44, 16), (-34, 18), (-52, 6)], 10)
     horse = node([
-        node([shape(poly([(0, 0), (10, 8), (14, 40), (8, 50), (2, 30), (-4, 6)], 4), MANE, sw=1.4, name="Hair")],
-             name="Tail", x=52, y=-8, id=ID["Tail"]),
-        hleg("LegB2", 38, 8, HORSEDK), hleg("LegF2", -30, 8, HORSEDK),
-        shape(body, HORSE, sw=1.8, name="Body"),
-        hleg("LegB1", 30, 10, HORSE), hleg("LegF1", -38, 10, HORSE),
+        node([shape(poly([(0, 0), (-8, 8), (-12, 40), (-6, 48), (-2, 28), (4, 6)], 4), "FF6A4A34", sw=1.3,
+                    name="Hair")], name="Tail", x=-50, y=-8, id=ID["Tail"]),
+        hleg("LegB2", -36, 10, HORSEBR2, 0.1), hleg("LegF2", 30, 10, HORSEBR2, -0.05),
+        shape(body, HORSEBRN, sw=1.7, name="Body"),
+        hleg("LegB1", -26, 10, HORSEBRN, 0.15),
+        raised,
         node([
-            shape(poly([(0, 0), (-14, -34), (-22, -44), (-40, -30), (-46, -18), (-40, -12), (-24, -18), (-10, 10)], 6),
-                  HORSE, sw=1.8, name="NeckHead"),
-            shape(poly([(-2, -4), (-14, -32), (-20, -40), (-12, -40), (4, -12)], 3), MANE, sw=1.2, name="Mane"),
-            shape(poly([(-22, -42), (-20, -54), (-15, -42)], 1), HORSE, sw=1.2, name="Ear"),
-            node([shape(ell(4, 4, -30, -32), INK, stroke=None, name="Pupil")], name="Eye", id=ID["HorseEye"]),
-            shape(ell(4, 3, -43, -18), "88000000", stroke=None, name="Nostril"),
-            shape([rect(26, 2.5, -30, -22, 1, 0.5)], RED, sw=0.8, name="Bridle"),
-        ], name="Head", x=-34, y=-6, id=ID["HorseHead"]),
-        shape(poly([(-8, -24), (24, -24), (28, -12), (-12, -12)], 5), GOLD, sw=1.4, name="Saddle"),
-        shape(rect(30, 6, 8, -12, 2), RED, sw=1, name="Girth"),
-    ], name="Horse", x=0, y=52, id=ID["Horse"])
+            shape(poly([(0, 0), (12, -34), (22, -46), (40, -36), (48, -20), (42, -12), (26, -18), (14, 10)], 6),
+                  HORSEBRN, sw=1.7, name="NeckHead"),
+            shape(poly([(2, -6), (12, -32), (18, -40), (8, -38), (-4, -10)], 3), "FF6A4A34", sw=1.1, name="Mane"),
+            shape(poly([(20, -44), (20, -56), (26, -46)], 1), HORSEBRN, sw=1.1, name="Ear"),
+            node([shape(ell(4, 4, 30, -34), INK, stroke=None, name="Pupil")], name="Eye", id=ID["HorseEye"]),
+            shape(ell(4, 3, 44, -18), "88000000", stroke=None, name="Nostril"),
+            shape(rect(22, 2.2, 32, -26, 1, -0.5), GOLD, sw=0.6, name="Bridle"),
+        ], name="Head", x=36, y=-10, id=ID["HorseHead"]),
+        shape(rect(44, 36, -6, -8, 4), GREEN, stroke=GOLD, sw=2.5, name="Cloth"),
+        shape(rect(10, 30, 16, 4, 3), GOLD, sw=1, name="Girth"),
+    ], name="Horse", x=-10, y=35, sx=1.22, sy=1.22, id=ID["Horse"])
+    scimitar = node([
+        shape(poly([(-3, 0), (3, 0), (8, -30), (6, -58), (-2, -74), (-1, -52), (-2, -28)], 3), BLUE, sw=1.3,
+              name="Blade"),
+        shape(rect(18, 4, 0, 1, 2), GOLD, sw=0.9, name="Guard"),
+        shape(rect(4, 9, 0, 7, 1.5), RED, sw=0.8, name="Grip"),
+    ], name="Scimitar", y=-8, rot=-0.35)
     rider = node([
-        shape(rect(14, 30, 6, 4, 5), RED, sw=1.6, name="Thigh"),
-        shape(poly([(0, 16), (12, 16), (14, 40), (2, 42)], 3), GOLD, sw=1.4, name="Boot"),
-        shape(rect(30, 40, 0, -24, 7), GREEN, sw=1.6, name="Jerkin"),
-        shape(rect(30, 5, 0, -6, 2), GOLD, sw=1.2, name="Belt"),
-        node([shape(rect(11, 34, 0, 15, 4), RED, sw=1.4, name="Sleeve"),
-              shape(ell(9, 9, -2, 34), SKIN, sw=1.2, name="Hand"),
-              shape(rect(1.6, 30, -10, 46, 0, 1.1), DKRED, stroke=None, name="Rein")],
-             name="ReinArm", x=10, y=-38, rot=0.5),
-        shape(poly([(-16, -46), (16, -46), (10, -40), (-10, -40)], 2), GOLD, sw=1.2, name="Collar"),
-        node(face(ID["RiderEyes"], beard="FFDCD6CC", look=-2, w=20, h=24) + [
-            shape(ell(28, 14, 0, -12), GOLD, sw=1.4, name="Turban"),
-            shape(ell(20, 12, 0, -18), GOLD, sw=1.4, name="TurbanTop"),
-            shape([rect(22, 1.5, 0, -13, 0, 0.15), rect(16, 1.5, 0, -18, 0, -0.15)], DKGOLD, stroke=None, name="Wraps"),
+        shape(poly([(-4, 2), (8, 2), (10, 34), (2, 38)], 3), RED, sw=1.4, name="Leg"),
+        shape(ell(14, 7, 6, 38), WHITE, sw=1.1, name="Shoe"),
+        shape(poly([(-18, -10), (18, -10), (22, 12), (-20, 12)], 5), GOLD, sw=1.4, name="Skirt"),
+        shape(rect(30, 34, 0, -26, 6), GREEN, sw=1.5, name="Jerkin"),
+        node([shape(rect(11, 30, 0, 13, 4), RED, sw=1.3, name="Sleeve"),
+              shape(ell(9, 9, 0, 30), SKIN, sw=1.1, name="Hand")],
+             name="ReinArm", x=12, y=-38, rot=-0.7),
+        shape(ell(26, 8, 0, -42), GOLD, sw=1.1, name="Collar"),
+        node(face(ID["RiderEyes"], look=1.5, w=20, h=24, moustache=True) + [
+            shape(ell(34, 24, 0, -13), BLUE, sw=1.4, name="Turban"),
+            shape([rect(26, 1.6, 0, -10, 0, 0.18), rect(22, 1.6, 0, -16, 0, -0.15)], DKBLUE, stroke=None, name="Wraps"),
         ], name="Head", x=0, y=-58),
         node([
-            shape(rect(11, 38, 0, -17, 4), RED, sw=1.4, name="Sleeve"),
-            shape(ell(10, 10, 0, -38), SKIN, sw=1.2, name="Hand"),
-            coin(30, name="Coin", id=ID["RiderCoin"], y=-56),
-        ], name="CoinArm", x=-12, y=-40, rot=-0.35, id=ID["RiderArm"]),
-    ], name="Rider", x=8, y=24, id=ID["Rider"])
-    return node([platform(170, GOLD, 124, 14, boxes=True), node([horse, rider], name="Mount", y=4)], name="Cavallo")
+            shape(rect(11, 30, 0, -12, 4), RED, sw=1.3, name="Sleeve"),
+            shape(ell(9, 9, 0, -28), SKIN, sw=1.1, name="Hand"),
+            node([scimitar], name="InHand", y=-28),
+        ], name="SwordArm", x=-14, y=-36, rot=-0.55, id=ID["SwordArm"]),
+    ], name="Rider", x=-12, y=-12, id=ID["Rider"])
+    return node([platform(160, BLUE, 128), node([horse, rider], name="Mount", sx=0.92, sy=0.92)], name="Cavallo")
 
 
-def re_di_denari():
-    """The king: gold crown, white hair and beard, blue doublet with gold sleeves, green
-    breeches, gold hose; a blue cape lined red falls behind; sword in his left hand;
-    his coin floats at the top right."""
-    ids("KingHead", "KingEyes", "KingCrown", "KingSword", "Cape", "KingCoin")
-    crown = poly([(-14, 0), (-15, -16), (-9, -8), (-4, -20), (0, -10), (4, -20), (9, -8), (15, -16), (14, 0)], 1.5)
-    head = node(face(ID["KingEyes"], beard="FFE7E2D8", hair="FFE7E2D8", hair_len=4, look=-1) + [
-        node([shape(crown, GOLD, sw=1.4, name="Crown"),
-              shape([ell(4, 4, -9, -4), ell(4, 4, 0, -4), ell(4, 4, 9, -4)], RED, sw=0.8, name="Jewels")],
-             name="Crown", y=-14, id=ID["KingCrown"]),
-    ], name="Head", x=-2, y=-80, id=ID["KingHead"])
+def re_di_bastoni():
+    """The king: dark crown, brown hair and moustache, white ruff, blue mantle over a dark
+    green tunic, gold sleeves, gold hose, red cape; his left hand holds a great green club."""
+    ids("KingHead", "KingEyes", "KingCrown", "ClubArm", "Cape")
+    crown = poly([(-13, 0), (-15, -16), (-8, -8), (-4, -18), (0, -9), (4, -18), (8, -8), (15, -16), (13, 0)], 1.2)
+    head = node(face(ID["KingEyes"], hair=HAIRBRN, look=1, moustache=True) + [
+        node([shape(crown, CROWNDK, stroke=INK, sw=1.2, name="Crown"),
+              shape([ell(3.5, 3.5, -8, -4), ell(3.5, 3.5, 0, -4), ell(3.5, 3.5, 8, -4)], GOLD, stroke=None,
+                    name="Studs")],
+             name="Crown", y=-13, id=ID["KingCrown"]),
+    ], name="Head", x=0, y=-98, id=ID["KingHead"])
     cape = node([
-        shape(poly([(-28, 0), (26, 0), (64, 150), (40, 162), (-32, 150)], 8), BLUE, sw=1.8, name="Outer"),
-        shape(poly([(20, 8), (44, 120), (56, 148), (40, 156), (24, 120), (10, 40)], 6), RED, sw=1.4, name="Lining"),
-    ], name="Cape", y=-56, id=ID["Cape"])
+        shape(poly([(-28, 0), (28, 0), (50, 172), (34, 180), (-40, 176)], 8), RED, stroke=DKRED, sw=1.6, name="Outer"),
+        shape(poly([(-28, 4), (-40, 172), (-30, 176), (-20, 30)], 4), GREEN, sw=1.2, name="Edge"),
+    ], name="Cape", y=-70, id=ID["Cape"])
+    club_arm = node([
+        shape(poly([(-6, -4), (6, 4), (14, 34), (2, 38)], 5), GOLD, sw=1.5, name="Upper"),
+        shape(poly([(2, 38), (14, 34), (30, 44), (24, 54)], 5), GOLD, sw=1.5, name="Fore"),
+        club(108, name="Club", x=30, y=48, rot=0.05),
+        shape(ell(10, 10, 30, 48), SKIN, sw=1.2, name="Hand"),
+    ], name="ClubArm", x=22, y=-74, id=ID["ClubArm"])
     return node([
-        platform(150, GOLD, 124),
+        platform(118, DKGREEN, 128),
         cape,
-        leg(-12, 52, 62, GOLD, name="LegR"),
-        leg(12, 52, 62, GOLD, name="LegL"),
-        shape(poly([(-26, 14), (26, 14), (28, 50), (12, 62), (0, 56), (-12, 62), (-28, 50)], 8), GREEN, sw=1.6, name="Breeches"),
-        shape(rect(46, 70, 0, -16, 7), BLUE, sw=1.6, name="Doublet"),
-        shape([rect(1.2, 64, x_, -16) for x_ in (-12, -6, 6, 12)], "44FFFFFF", stroke=None, name="Stripes"),
-        shape(rect(48, 6, 0, 14, 2), WHITE, sw=1.2, name="Belt"),
-        shape(poly([(0, 10), (5, 15), (0, 20), (-5, 15)]), RED, sw=1, name="Jewel"),
-        node([shape(rect(12, 46, 0, 21, 5), GOLD, sw=1.6, name="Sleeve"),
-              shape(rect(14, 5, 0, 44, 2), WHITE, sw=1, name="Cuff"),
-              shape(ell(10, 10, 0, 50), SKIN, sw=1.2, name="Hand")],
-             name="ArmR", x=-26, y=-46, rot=0.1),
-        node([shape(rect(12, 46, 0, 21, 5), GOLD, sw=1.6, name="Sleeve"),
-              shape(rect(14, 5, 0, 44, 2), WHITE, sw=1, name="Cuff"),
-              shape(ell(10, 10, 0, 50), SKIN, sw=1.2, name="Hand"),
-              sword(96, id=ID["KingSword"], x=0, y=50, rot=-0.93)],
-             name="ArmL", x=26, y=-46, rot=-0.18),
-        shape(poly([(-22, -52), (22, -52), (16, -44), (-16, -44)], 3), WHITE, sw=1.4, name="Collar"),
+        leg(-10, 30, 88, GOLD, name="LegR"),
+        leg(12, 30, 88, GOLD, name="LegL"),
+        shape(poly([(-22, -70), (22, -70), (26, 14), (-26, 14)], 6), DKGREEN, sw=1.5, name="Tunic"),
+        shape(rect(46, 5, 0, -18, 2), DKGREEN, stroke=INK, sw=1, name="Belt"),
+        shape(poly([(-27, -76), (27, -76), (31, -56), (-31, -56)], 6), BLUE, sw=1.4, name="Mantle"),
+        node([shape(rect(12, 46, 0, 21, 5), GOLD, sw=1.5, name="Sleeve"),
+              shape(ell(10, 10, 0, 47), SKIN, sw=1.2, name="Hand")],
+             name="ArmR", x=-28, y=-70, rot=0.12),
+        shape(ell(34, 10, 0, -78), WHITE, sw=1.2, name="Ruff"),
         head,
-        coin(34, name="Coin", id=ID["KingCoin"], x=62, y=-114),
+        club_arm,
     ], name="Re")
 
 
@@ -381,63 +416,85 @@ SETTE = [(-46, -100), (46, -100), (0, -42), (-46, 16), (46, 16), (-46, 96), (46,
 
 
 def settebello():
-    """The 7 of Coins, laid 2-1-2-2 as in the pattern; each coin has a glint that can flash."""
+    """The 7 of Coins, laid 2-1-2-2; each coin has a glint that can flash."""
     for i in range(7):
         ID[f"Glint{i}"] = nid()
     parts = []
     for i, (x, y) in enumerate(SETTE):
-        parts.append(coin(46, name=f"Coin{i}", x=x, y=y))
-        parts.append(shape(star(4, 30, 0.18), WHITE, stroke=None, name=f"Glint{i}", x=x + 9, y=y - 9,
+        parts.append(coin(54, name=f"Coin{i}", x=x, y=y))
+        parts.append(shape(star(4, 30, 0.18), WHITE, stroke=None, name=f"Glint{i}", x=x + 12, y=y - 12,
                            id=ID[f"Glint{i}"], opacity=0))
     return node(parts, name="Sette")
 
 
-PIPS = {1: [(0, 0)], 2: [(0, -80), (0, 80)], 3: [(0, -90), (0, 0), (0, 90)],
-        4: [(-44, -80), (44, -80), (-44, 80), (44, 80)], 5: [(-44, -90), (44, -90), (0, 0), (-44, 90), (44, 90)],
-        6: [(-44, -90), (44, -90), (-44, 0), (44, 0), (-44, 90), (44, 90)]}
+def sei_di_coppe():
+    """The 6 of Cups: two columns of three urns."""
+    return node([cup(58, name=f"Cup{i}", x=x, y=y) for i, (x, y) in
+                 enumerate([(-44, -92), (44, -92), (-44, 0), (44, 0), (-44, 92), (44, 92)])], name="SeiCoppe")
 
 
-def numeral(n, suit):
-    draw = (lambda x, y, i: coin(48, name=f"Pip{i}", x=x, y=y)) if suit == "denari" else \
-           (lambda x, y, i: cup(58, name=f"Pip{i}", x=x, y=y))
-    return node([draw(x, y, i) for i, (x, y) in enumerate(PIPS[n])], name=f"{n} {suit}")
+def quattro_di_spade():
+    """The 4 of Swords: a long blue sword down each side, hilts meeting in the middle, and a
+    crossing one between."""
+    parts = []
+    for x in (-50, 50):
+        parts += [node([blade(110)], name="Up", x=x, y=-12, rot=math.pi), node([hilt()], name="HiltUp", x=x, y=-14),
+                  node([blade(110)], name="Down", x=x, y=26), node([hilt()], name="HiltDown", x=x, y=24, rot=math.pi)]
+    parts += [node([blade(84, 6)], name="Cross", x=-38, y=6, rot=-math.pi / 2),
+              node([hilt()], name="HiltX", x=-40, y=6, rot=math.pi / 2)]
+    return node(parts, name="QuattroSpade")
 
 
-def asso_di_coppe():
-    """The ace of cups: the great urn: lidded, red shoulder, blue gadroons, gold belly, green foot."""
-    return node([
-        shape(poly([(-30, 92), (30, 92), (22, 76), (-22, 76)], 4), RED, sw=1.6, name="Foot"),
-        shape(rect(14, 30, 0, 62), GOLD, sw=1.4, name="Stem"),
-        shape(poly([(-46, 0), (46, 0), (40, 34), (16, 52), (-16, 52), (-40, 34)], 14), GREEN, sw=1.6, name="Base"),
-        shape(rect(92, 34, 0, -8, 10), GOLD, sw=1.6, name="Belly"),
-        shape(ell(18, 20, 0, -8), SKIN, sw=1.2, name="Mask"),
-        shape([ell(12, 18, x_, -38) for x_ in (-34, -20, -6, 8, 22, 36)], BLUE, sw=1.2, name="Gadroons"),
-        shape(rect(96, 26, 0, -38, 10), BLUE, sw=1.6, name="Band"),
-        shape(rect(84, 26, 0, -62, 8), RED, sw=1.6, name="Shoulder"),
-        shape(rect(72, 10, 0, -78, 4), GOLD, sw=1.4, name="Lip"),
-        shape(ell(20, 24, 0, -96), RED, sw=1.4, name="Finial"),
-        shape([ell(30, 46, -58, -44), ell(30, 46, 58, -44)], None, stroke=INK, sw=6, name="HandlesInk"),
-        shape([ell(30, 46, -58, -44), ell(30, 46, 58, -44)], None, stroke=WHITE, sw=3, name="Handles"),
-    ], name="AssoCoppe")
+def asso_di_bastoni():
+    """The ace of clubs: three great green batons fanned behind a gold grotesque mask, their
+    red-and-gold shafts crossing below and ending in green tips."""
+    batons = []
+    for r in (-0.36, 0.36, 0):
+        batons.append(node([
+            shape(poly([(-5, 0), (5, 0), (6, 110), (0, 118), (-6, 110)], 3), RED if r else GOLD, sw=1.3, name="Shaft"),
+            shape(poly([(-7, 100), (7, 100), (10, 128), (0, 136), (-10, 128)], 4), GREEN, sw=1.3, name="Tip"),
+            node([club(118, handle=GOLD)], name="Top", y=-6),
+        ], name="Baton", y=-6, rot=r))
+    mask = node([
+        shape(poly([(-30, -24), (30, -24), (34, 4), (22, 30), (0, 38), (-22, 30), (-34, 4)], 10), GOLD, sw=1.6,
+              name="Mask"),
+        shape([poly([(-24, -10), (-6, -14), (-8, -6), (-22, -4)]), poly([(24, -10), (6, -14), (8, -6), (22, -4)])],
+              DKGREEN, sw=0.8, name="Brows"),
+        shape([ell(6, 5, -14, -2), ell(6, 5, 14, -2)], INK, stroke=None, name="Eyes"),
+        shape(poly([(-3, -4), (3, -4), (6, 10), (-6, 10)], 2), "FFE0B020", sw=1, name="Nose"),
+        shape(poly([(-22, 18), (-6, 12), (0, 15), (6, 12), (22, 18), (8, 20), (0, 18), (-8, 20)], 2), DKGREEN, sw=0.8,
+              name="Moustache"),
+        shape(rect(10, 3, 0, 24, 1.5), RED, stroke=None, name="Mouth"),
+        shape([poly([(-34, -20), (-46, -30), (-38, -8)]), poly([(34, -20), (46, -30), (38, -8)])], GOLD, sw=1.2,
+              name="Leaves"),
+    ], name="MaskGroup", y=-4)
+    return node(batons + [mask], name="AssoBastoni", sx=0.95, sy=0.95)
 
 
 def asso_di_denari():
-    """The ace of coins: an uncrowned double-headed eagle holding the great ring, a gold
-    horseshoe ring below (the tax-stamp circle)."""
-    wing = lambda sx: poly([(0, 0), (sx * 40, -30), (sx * 64, -10), (sx * 60, 40), (sx * 40, 70), (sx * 14, 50)], 8)
-    head = lambda sx: [shape(poly([(sx * 8, 0), (sx * 22, -26), (sx * 40, -34), (sx * 52, -28), (sx * 38, -20),
-                                   (sx * 26, -6), (sx * 18, 12)], 5), GOLD, sw=1.6, name="Neck"),
-                       shape(ell(4, 4, sx * 38, -28), INK, stroke=None, name="Eye")]
+    """The ace of coins as on the reference: two gold eagle heads facing apart at the top, red
+    wings banded green wrapping a great white ring, red legs with gold tassels down the sides,
+    and the gold ring that closes the bottom of the '8'."""
+    head = lambda s: [
+        shape(poly([(s * 4, 0), (s * 14, -24), (s * 30, -32), (s * 46, -30), (s * 36, -22), (s * 24, -18), (s * 16, 4)],
+                   5), GOLD, sw=1.5, name="Neck"),
+        shape(poly([(s * 46, -30), (s * 54, -26), (s * 44, -22)], 1), "FFE09A10", sw=1, name="Beak"),
+        shape(ell(4, 4, s * 32, -27), INK, stroke=None, name="Eye")]
+    wing = lambda s: poly([(s * 10, -6), (s * 44, -2), (s * 58, 26), (s * 54, 70), (s * 36, 92), (s * 30, 64),
+                           (s * 40, 30)], 8)
+    band = lambda s: poly([(s * 46, 30), (s * 58, 34), (s * 56, 50), (s * 42, 46)], 3)
+    legs = lambda s: poly([(s * 30, 80), (s * 44, 86), (s * 40, 120), (s * 50, 160), (s * 40, 162), (s * 28, 122)], 4)
+    tassel = lambda s: poly([(s * 44, 150), (s * 52, 150), (s * 58, 186), (s * 40, 186)], 2)
     return node([
-        shape(ell(108, 92, 0, 66), None, stroke=INK, sw=16, name="RingInk"),
-        shape(ell(108, 92, 0, 66), None, stroke=GOLD, sw=12, name="Ring"),
-        node([shape(wing(-1), RED, sw=1.6, name="WingL"), shape(wing(1), RED, sw=1.6, name="WingR"),
-              shape([rect(8, 34, -50, 30, 3, 0.5), rect(8, 34, 50, 30, 3, -0.5)], GREEN, sw=1.2, name="Feathers"),
-              *head(-1), *head(1),
-              shape([poly([(-36, 50), (-30, 66), (-22, 58)]), poly([(36, 50), (30, 66), (22, 58)])], GOLD, sw=1.2,
-                    name="Talons")], name="Eagle", y=-60),
-        shape(ell(80, 80, 0, -40), WHITE, sw=2.2, name="Disc"),
-    ], name="AssoDenari")
+        shape(ell(124, 108, 0, 64), None, stroke=INK, sw=15, name="RingInk"),
+        shape(ell(124, 108, 0, 64), None, stroke=GOLD, sw=11, name="Ring"),
+        shape([legs(-1), legs(1)], RED, sw=1.4, name="Legs"),
+        shape([tassel(-1), tassel(1)], GOLD, sw=1.2, name="Tassels"),
+        shape([wing(-1), wing(1)], RED, sw=1.6, name="Wings"),
+        shape([band(-1), band(1)], DKGREEN, sw=1, name="Bands"),
+        *head(-1), *head(1),
+        shape(ell(98, 98, 0, -36), WHITE, sw=2, name="Disc"),
+    ], name="AssoDenari", y=-20, sx=0.9, sy=0.9)
 
 
 # ---- the back: Modiano-style "3D" checks (tumbling blocks) in blues -------------------
@@ -504,15 +561,19 @@ TABLE_Y = 966
 PLAYED_X = 1086
 
 
+def tre_di_denari():
+    return node([coin(54, name=f"Coin{i}", y=y) for i, y in enumerate((-92, 0, 92))], name="TreDenari")
+
+
 def table_hand():
     ids("Broom", *[f"T{i}" for i in range(4)], "Played")
     hand = [
         card("Sette", settebello(), TABLE_X[0], TABLE_Y, -0.04, id=ID["T0"], s=0.5),
-        card("AssoCoppe", node([asso_di_coppe()], sx=0.95, sy=0.95), TABLE_X[1], TABLE_Y, 0.03, id=ID["T1"], s=0.5),
-        card("TreCoppe", numeral(3, "coppe"), TABLE_X[2], TABLE_Y, -0.02, id=ID["T2"], s=0.5),
-        card("QuattroDenari", numeral(4, "denari"), TABLE_X[3], TABLE_Y, 0.05, id=ID["T3"], s=0.5),
+        card("AssoBastoni", asso_di_bastoni(), TABLE_X[1], TABLE_Y, 0.03, id=ID["T1"], s=0.5),
+        card("QuattroSpade", quattro_di_spade(), TABLE_X[2], TABLE_Y, -0.02, id=ID["T2"], s=0.5),
+        card("SeiCoppe", sei_di_coppe(), TABLE_X[3], TABLE_Y, 0.05, id=ID["T3"], s=0.5),
     ]
-    played = card("Played", numeral(6, "coppe"), PLAYED_X, 1260, 0.06, id=ID["Played"], s=0.5)
+    played = card("Played", tre_di_denari(), PLAYED_X, 1260, 0.06, id=ID["Played"], s=0.5)
     broom = node([
         shape(rect(10, 120, 0, -70, 4), WOOD, sw=1.6, name="Handle"),
         shape([rect(1.4, 110, x_, -70) for x_ in (-2, 2)], WOODDK, stroke=None, name="Grain"),
@@ -589,8 +650,8 @@ TABLE = node([
     deck(),
     table_hand(),
     card("FanteCard", fante_di_coppe(), 1336, 902, -0.07),
-    card("CavalloCard", cavallo_di_denari(), 1556, 896, 0.02),
-    card("ReCard", re_di_denari(), 1776, 904, 0.07),
+    card("CavalloCard", cavallo_di_spade(), 1556, 896, 0.02),
+    card("ReCard", re_di_bastoni(), 1776, 904, 0.07),
 ], name="Table")
 
 I = ID
@@ -598,7 +659,7 @@ I = ID
 
 def anims():
     a = []
-    # idle: blinks, nods, sways, the king's coin turning slowly
+    # idle: blinks, nods, sways
     D = 480
     a.append(anim("Court Idle", "8:900", D, {
         I["KingEyes"]: {"scaleY": blink(D, 140)},
@@ -606,52 +667,55 @@ def anims():
         I["RiderEyes"]: {"scaleY": blink(D, 220)},
         I["HorseEye"]: {"scaleY": blink(D, 410)},
         I["KingHead"]: {"rotation": swing(D, -0.03, 0.03)},
-        I["KingCrown"]: {"y": swing(D // 2, -14, -16, D)},
-        I["Cape"]: {"rotation": swing(D // 2, 0, 0.025, D)},
-        I["Feather"]: {"rotation": swing(D // 3, 0.05, -0.18, D)},
+        I["KingCrown"]: {"y": swing(D // 2, -13, -15, D)},
+        I["Cape"]: {"rotation": swing(D // 2, 0, 0.02, D)},
+        I["Feather"]: {"rotation": swing(D // 3, 0.05, -0.2, D)},
         I["FanteHead"]: {"rotation": swing(D, 0.03, -0.04)},
-        I["Tail"]: {"rotation": swing(D // 4, -0.05, 0.2, D)},
-        I["KingCoin"]: {"scaleX": [(0, 1, "hold"), (300, 1, "ease"), (330, -1, "ease"), (360, 1, "hold"), (D, 1, "hold")]},
+        I["Tail"]: {"rotation": swing(D // 4, -0.05, 0.18, D)},
     }))
     # the page raises his cup in a toast every 9 s
     D = 540
     t = 360
     a.append(anim("Fante Toast", "8:901", D, {
-        I["CupArm"]: {"rotation": [(0, -0.42, "hold"), (t, -0.42, "ease"), (t + 30, -0.05, "ease"),
-                                   (t + 70, -0.05, "ease"), (t + 100, -0.42, "hold"), (D, -0.42, "hold")]},
-        I["FanteCup"]: {"rotation": [(0, 0, "hold"), (t + 30, 0, "ease"), (t + 45, -0.35, "ease"),
+        I["CupArm"]: {"rotation": [(0, 0, "hold"), (t, 0, "ease"), (t + 30, 0.28, "ease"),
+                                   (t + 70, 0.28, "ease"), (t + 100, 0, "hold"), (D, 0, "hold")]},
+        I["FanteCup"]: {"rotation": [(0, 0, "hold"), (t + 30, 0, "ease"), (t + 45, -0.4, "ease"),
                                      (t + 62, 0, "ease"), (t + 70, 0, "hold"), (D, 0, "hold")]},
     }))
-    # the horse walks in place: a slow four-beat walk; trots (faster) while music plays
-    def gait(P, amp, bob):
-        trk = {}
-        for k, ph in (("LegF1", 0), ("LegB2", 0.25), ("LegF2", 0.5), ("LegB1", 0.75)):
-            o = int(P * ph)
-            pts = [(0, 0, "ease")]
-            for f, v in ((o, -amp), ((o + P // 2) % P, amp)):
-                pts.append((f, v, "ease"))
-            pts = sorted({f: (f, v, h) for f, v, h in pts}.values())
-            pts.append((P, pts[0][1] if pts[0][0] == 0 else 0, "hold"))
-            trk[I[k]] = {"rotation": pts}
-        trk[I["HorseHead"]] = {"rotation": [(0, 0, "ease"), (P // 4, 0.07, "ease"), (P // 2, 0, "ease"),
-                                            (3 * P // 4, 0.07, "ease"), (P, 0, "hold")]}
-        trk[I["Horse"]] = {"y": [(0, 52, "ease"), (P // 4, 52 - bob, "ease"), (P // 2, 52, "ease"),
-                                 (3 * P // 4, 52 - bob, "ease"), (P, 52, "hold")]}
-        trk[I["Rider"]] = {"y": [(0, 24, "ease"), (P // 4, 24 - bob * 1.4, "ease"), (P // 2, 24, "ease"),
-                                 (3 * P // 4, 24 - bob * 1.4, "ease"), (P, 24, "hold")]}
-        return trk
-    walk = gait(120, 0.16, 1.5)
-    walk[I["KingSword"]] = {"rotation": [(0, -0.93, "hold"), (120, -0.93, "hold")]}
-    walk[I["RiderArm"]] = {"rotation": [(0, -0.35, "hold"), (120, -0.35, "hold")]}
-    a.append(anim("Horse Walk", "8:904", 120, walk))
-    play = gait(32, 0.34, 4)  # ~112 bpm
-    play[I["KingSword"]] = {"rotation": [(0, -0.93, "ease"), (8, -0.74, "ease"), (16, -0.93, "hold"), (32, -0.93, "hold")]}
-    play[I["RiderArm"]] = {"rotation": [(0, -0.35, "ease"), (16, -0.2, "ease"), (32, -0.35, "hold")]}
-    a.append(anim("Music Play", "8:905", 32, play))
-    # the rider's coin turns over now and then
-    D = 300
-    a.append(anim("Coin Turn", "8:902", D, {
-        I["RiderCoin"]: {"scaleX": [(0, 1, "hold"), (200, 1, "ease"), (225, -1, "ease"), (250, 1, "hold"), (D, 1, "hold")]},
+    # the Moor flourishes his scimitar now and then
+    D = 480
+    f = 330
+    a.append(anim("Scimitar", "8:902", D, {
+        I["SwordArm"]: {"rotation": [(0, -0.55, "hold"), (f, -0.55, "ease"), (f + 18, -1.15, "ease"),
+                                     (f + 40, 0.2, "ease"), (f + 60, -0.85, "ease"), (f + 84, -0.55, "hold"),
+                                     (D, -0.55, "hold")]},
+    }))
+    # the horse: an easy prance at rest, a trot while music plays (~112 bpm)
+    def gait(P, amp, bob, lift):
+        b = 35
+        return {
+            I["Prance"]: {"rotation": [(0, -0.5, "ease"), (P // 2, -0.5 + lift, "ease"), (P, -0.5, "hold")]},
+            I["LegF1"]: {"rotation": [(0, -1.3, "ease"), (P // 2, -1.3 + lift * 1.6, "ease"), (P, -1.3, "hold")]},
+            I["LegF2"]: {"rotation": [(0, -0.05 - amp, "ease"), (P // 2, -0.05 + amp, "ease"), (P, -0.05 - amp, "hold")]},
+            I["LegB1"]: {"rotation": [(0, 0.15 + amp, "ease"), (P // 2, 0.15 - amp, "ease"), (P, 0.15 + amp, "hold")]},
+            I["LegB2"]: {"rotation": [(0, 0.1 - amp, "ease"), (P // 2, 0.1 + amp, "ease"), (P, 0.1 - amp, "hold")]},
+            I["HorseHead"]: {"rotation": [(0, 0, "ease"), (P // 2, 0.08, "ease"), (P, 0, "hold")]},
+            I["Horse"]: {"y": [(0, b, "ease"), (P // 4, b - bob, "ease"), (P // 2, b, "ease"),
+                               (3 * P // 4, b - bob, "ease"), (P, b, "hold")]},
+            I["Rider"]: {"y": [(0, -12, "ease"), (P // 4, -12 - bob * 1.3, "ease"), (P // 2, -12, "ease"),
+                               (3 * P // 4, -12 - bob * 1.3, "ease"), (P, -12, "hold")]},
+        }
+    a.append(anim("Horse Prance", "8:904", 150, gait(150, 0.04, 1, 0.25)))
+    a.append(anim("Horse Trot", "8:905", 32, gait(32, 0.22, 4, 0.45)))
+    # the king lifts his club every 10 s; with music he beats time with it
+    D = 600
+    u = 420
+    a.append(anim("King Lift", "8:906", D, {
+        I["ClubArm"]: {"rotation": [(0, 0, "hold"), (u, 0, "ease"), (u + 30, -0.3, "ease"), (u + 80, -0.3, "ease"),
+                                    (u + 110, 0, "hold"), (D, 0, "hold")]},
+    }))
+    a.append(anim("King Beat", "8:909", 32, {
+        I["ClubArm"]: {"rotation": [(0, 0, "ease"), (8, -0.16, "ease"), (16, 0.02, "ease"), (32, 0, "hold")]},
     }))
     # the deck's top card flips to the Asso di Denari and back
     D = 840
@@ -760,9 +824,10 @@ def layers():
     return "\n".join([
         simple("Court Idle", "8:910", "8:911", "8:900"),
         simple("Fante Toast", "8:912", "8:913", "8:901"),
-        simple("Coin Turn", "8:914", "8:915", "8:902"),
+        simple("Scimitar", "8:914", "8:915", "8:902"),
         simple("Deck Flip", "8:916", "8:917", "8:903"),
         music("Horse Gait", "8:920", "8:904", "8:905"),
+        music("King Club", "8:930", "8:906", "8:909"),
         simple("Settebello", "8:940", "8:941", "8:907"),
         simple("Scopa Sweep", "8:942", "8:943", "8:908"),
     ])
