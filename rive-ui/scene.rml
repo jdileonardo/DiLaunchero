@@ -10,9 +10,9 @@
 
         <Fill name="Background">
             <LinearGradient startX="0" startY="0" endX="1920" endY="1080" name="BG">
-                <GradientStop colorValue="FF0A0F1C" position="0"/>
-                <GradientStop colorValue="FF121A2C" position="0.55"/>
-                <GradientStop colorValue="FF0B101D" position="1"/>
+                <GradientStop colorValue="FFF6E9CC" position="0"/>
+                <GradientStop colorValue="FFF3E2BF" position="0.55"/>
+                <GradientStop colorValue="FFEEDAB3" position="1"/>
             </LinearGradient>
         </Fill>
 
@@ -36,8 +36,8 @@
                     <Text name="Time" id="1:24">
                         <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
                         <TextStylePaint fontSize="68" fontAssetId="6:1" letterSpacing="-1" name="Time Style" id="1:25">
-                            <Fill name="F"><SolidColor colorValue="FFF4F6FB" name="C"/></Fill>
-                            <TextStyleAxis tag="2003265652" axisValue="300" name="Weight"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                            <TextStyleAxis tag="2003265652" axisValue="600" name="Weight"/>
                         </TextStylePaint>
                         <TextValueRun styleId="1:25" text="11:11 PM" name="Run">
                             <DataBindContext sourcePathIds="4:1-4:2" propertyKey="268"/>
@@ -46,12 +46,77 @@
                     <Text name="Date" id="1:26">
                         <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
                         <TextStylePaint fontSize="22" fontAssetId="6:1" name="Date Style" id="1:27">
-                            <Fill name="F"><SolidColor colorValue="FF8E99AD" name="C"/></Fill>
+                            <Fill name="F"><SolidColor colorValue="FF9A5B3A" name="C"/></Fill>
                         </TextStylePaint>
                         <TextValueRun styleId="1:27" text="Tuesday, November 17" name="Run">
                             <DataBindContext sourcePathIds="4:1-4:3" propertyKey="268"/>
                         </TextValueRun>
                     </Text>
+                </LayoutComponent>
+
+                <!-- mascot: a little TV. Blinks on a loop; bobs while something plays -->
+                <LayoutComponent width="124" height="112" clip="false" styleId="1:201" name="Mascot" id="1:200">
+                    <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                          marginLeft="18" name="Mascot Style" id="1:201"/>
+                    <Node x="62" y="100" name="Bob" id="1:202">
+                        <Node x="-6" y="-55" name="Eyes" id="1:203">
+                            <Shape name="Pupils">
+                                <Ellipse x="-11" width="7" height="11" name="L"/>
+                                <Ellipse x="11" width="7" height="11" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                            </Shape>
+                        </Node>
+                        <Shape x="-6" y="-42" name="Mouth">
+                            <Rectangle width="10" height="5" cornerRadiusTL="2.5" name="P"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                        </Shape>
+                        <Shape x="-6" y="-42" name="Cheeks">
+                            <Ellipse x="-19" width="9" height="5" name="L"/>
+                            <Ellipse x="19" width="9" height="5" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FFF08A6C" name="C"/></Fill>
+                        </Shape>
+                        <Shape x="-6" y="-50" name="Screen">
+                            <Rectangle width="62" height="48" cornerRadiusTL="12" name="P"/>
+                            <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C"/></Fill>
+                            <Stroke thickness="3.5" name="S"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke>
+                        </Shape>
+                        <Shape x="34" y="-50" name="Knobs">
+                            <Ellipse y="-11" width="9" height="9" name="A"/>
+                            <Ellipse y="8" width="9" height="9" name="B"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2B134" name="C"/></Fill>
+                            <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke>
+                        </Shape>
+                        <Node x="0" y="-85" name="Antenna" id="1:204">
+                            <Shape name="Tips">
+                                <Ellipse x="-14" y="-20" width="9" height="9" name="L"/>
+                                <Ellipse x="14" y="-20" width="9" height="9" name="R"/>
+                                <Fill name="F"><SolidColor colorValue="FF2A9D8F" name="C"/></Fill>
+                                <Stroke thickness="2.5" name="S"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke>
+                            </Shape>
+                            <Shape x="-9" y="-10" rotation="-0.45" name="AL">
+                                <Rectangle width="3.5" height="22" name="P"/>
+                                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                            </Shape>
+                            <Shape x="9" y="-10" rotation="0.45" name="AR">
+                                <Rectangle width="3.5" height="22" name="P"/>
+                                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                            </Shape>
+                        </Node>
+                        <Shape x="0" y="-50" name="Body">
+                            <Rectangle width="92" height="70" cornerRadiusTL="18" name="P"/>
+                            <Fill name="F"><SolidColor colorValue="FFE4572E" name="C"/></Fill>
+                            <Stroke thickness="4" name="S"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke>
+                        </Shape>
+                        <Shape x="0" y="-4" name="Legs">
+                            <Rectangle x="-16" width="8" height="14" cornerRadiusTL="3" name="L"/>
+                            <Rectangle x="16" width="8" height="14" cornerRadiusTL="3" name="R"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                        </Shape>
+                        <Shape x="6" y="-44" name="BodyShadow">
+                            <Rectangle width="92" height="70" cornerRadiusTL="18" name="P"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                        </Shape>
+                    </Node>
                 </LayoutComponent>
 
                 <!-- takes the slack, pushing the rest right -->
@@ -66,8 +131,6 @@
                                           flexDirectionValue="row" layoutAlignmentType="centerLeft"
                                           paddingLeft="10" paddingRight="14" gapHorizontal="18"
                                           cornerRadiusTL="28" name="NowPlaying Style" id="1:31"/>
-                    <Fill name="F"><SolidColor colorValue="CC1A2336" name="C"/></Fill>
-                    <Stroke thickness="1" name="Edge"><SolidColor colorValue="22FFFFFF" name="C"/></Stroke>
 
                     <LayoutComponent width="76" height="76" clip="true" styleId="1:33" name="ArtFrame" id="1:32">
                         <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
@@ -85,7 +148,7 @@
                         <Text name="Title" id="1:37">
                             <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
                             <TextStylePaint fontSize="24" fontAssetId="6:1" name="Title Style" id="1:38">
-                                <Fill name="F"><SolidColor colorValue="FFF4F6FB" name="C"/></Fill>
+                                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
                                 <TextStyleAxis tag="2003265652" axisValue="600" name="Weight"/>
                             </TextStylePaint>
                             <TextValueRun styleId="1:38" text="Slide" name="Run">
@@ -95,7 +158,7 @@
                         <Text name="Subtitle" id="1:39">
                             <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
                             <TextStylePaint fontSize="17" fontAssetId="6:1" name="Subtitle Style" id="1:40">
-                                <Fill name="F"><SolidColor colorValue="FF8E99AD" name="C"/></Fill>
+                                <Fill name="F"><SolidColor colorValue="FF9A5B3A" name="C"/></Fill>
                             </TextStylePaint>
                             <TextValueRun styleId="1:40" text="The Meadow Band · Spotify" name="Run">
                                 <DataBindContext sourcePathIds="4:1-4:5" propertyKey="268"/>
@@ -118,7 +181,7 @@
                                 <Shape x="28" y="28" name="Glyph">
                                     <Rectangle x="-9" y="0" width="3.5" height="18" name="Bar"/>
                                     <Triangle x="2" y="0" rotation="-1.5707964" width="18" height="16" name="Tri"/>
-                                    <Fill name="F"><SolidColor colorValue="FFDCE3F0" name="C"/></Fill>
+                                    <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
                                 </Shape>
                             </Node>
                         </LayoutComponent>
@@ -126,20 +189,38 @@
                             <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                                   cornerRadiusTL="28" name="PlayPause Style" id="1:46"/>
                             <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
-                            <Fill name="F"><SolidColor colorValue="FFF4F6FB" name="C"/></Fill>
-                            <Stroke thickness="4" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:246"/></Stroke>
                             <Node name="Icon">
                                 <!-- pause bars; the play triangle swaps in when npPlaying is false -->
                                 <Shape x="28" y="28" name="Pause" id="1:47">
                                     <Rectangle x="-5" y="0" width="5" height="18" cornerRadiusTL="1.5" name="L"/>
                                     <Rectangle x="5" y="0" width="5" height="18" cornerRadiusTL="1.5" name="R"/>
-                                    <Fill name="F"><SolidColor colorValue="FF101626" name="C"/></Fill>
+                                    <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C"/></Fill>
                                 </Shape>
                                 <Shape x="30" y="28" opacity="0" name="Play" id="1:48">
                                     <Triangle rotation="1.5707964" width="20" height="18" name="Tri"/>
-                                    <Fill name="F"><SolidColor colorValue="FF101626" name="C"/></Fill>
+                                    <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C"/></Fill>
                                 </Shape>
                             </Node>
+                            <LayoutComponent clip="false" styleId="1:451" name="Face">
+                                <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                                      positionTypeValue="absolute"
+                                                      positionLeft="0" positionLeftUnitsValue="points"
+                                                      positionTop="0" positionTopUnitsValue="points"
+                                                      positionRight="0" positionRightUnitsValue="points"
+                                                      positionBottom="0" positionBottomUnitsValue="points"
+                                                      cornerRadiusTL="28" name="Face Style" id="1:451"/>
+                                <Fill name="F"><SolidColor colorValue="FFE4572E" name="C" id="1:445"/></Fill><Stroke thickness="3" name="Edge"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke><Stroke thickness="6" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:246"/></Stroke>
+                            </LayoutComponent>
+                            <LayoutComponent clip="false" styleId="1:453" name="Shadow">
+                                <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                                      positionTypeValue="absolute"
+                                                      positionLeft="4" positionLeftUnitsValue="points"
+                                                      positionTop="4" positionTopUnitsValue="points"
+                                                      positionRight="-4" positionRightUnitsValue="points"
+                                                      positionBottom="-4" positionBottomUnitsValue="points"
+                                                      cornerRadiusTL="28" name="Shadow Style" id="1:453"/>
+                                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                            </LayoutComponent>
                         </LayoutComponent>
                         <LayoutComponent width="56" height="56" styleId="1:50" name="Next" id="1:49">
                             <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
@@ -151,10 +232,32 @@
                                 <Shape x="28" y="28" name="Glyph">
                                     <Rectangle x="9" y="0" width="3.5" height="18" name="Bar"/>
                                     <Triangle x="-2" y="0" rotation="1.5707964" width="18" height="16" name="Tri"/>
-                                    <Fill name="F"><SolidColor colorValue="FFDCE3F0" name="C"/></Fill>
+                                    <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
                                 </Shape>
                             </Node>
                         </LayoutComponent>
+                    </LayoutComponent>
+
+                    <!-- the card itself and its hard shadow, declared last so they draw beneath -->
+                    <LayoutComponent clip="false" styleId="1:131" name="Face">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="0" positionLeftUnitsValue="points"
+                                              positionTop="0" positionTopUnitsValue="points"
+                                              positionRight="0" positionRightUnitsValue="points"
+                                              positionBottom="0" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="28" name="Face Style" id="1:131"/>
+                        <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C"/></Fill><Stroke thickness="4" name="Edge"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke>
+                    </LayoutComponent>
+                    <LayoutComponent clip="false" styleId="1:133" name="Shadow">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="7" positionLeftUnitsValue="points"
+                                              positionTop="7" positionTopUnitsValue="points"
+                                              positionRight="-7" positionRightUnitsValue="points"
+                                              positionBottom="-7" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="28" name="Shadow Style" id="1:133"/>
+                        <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
                     </LayoutComponent>
                 </LayoutComponent>
 
@@ -163,23 +266,41 @@
                     <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                           cornerRadiusTL="42" name="Screensaver Style" id="1:61"/>
                     <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
-                    <Fill name="F"><SolidColor colorValue="FF1A2336" name="C" id="1:62"/></Fill>
-                    <Stroke thickness="3" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:63"/></Stroke>
                     <Node name="Icon">
                         <Shape x="42" y="40" name="Monitor">
                             <Rectangle width="40" height="27" cornerRadiusTL="5" name="Screen"/>
-                            <Stroke thickness="3" name="S"><SolidColor colorValue="FFDCE3F0" name="C"/></Stroke>
+                            <Stroke thickness="3" name="S"><SolidColor colorValue="FF2B1E16" name="C"/></Stroke>
                         </Shape>
                         <Shape x="42" y="60" name="Stand">
                             <Rectangle width="18" height="3" cornerRadiusTL="1.5" name="Base"/>
                             <Rectangle y="-4" width="3" height="6" name="Neck"/>
-                            <Fill name="F"><SolidColor colorValue="FFDCE3F0" name="C"/></Fill>
+                            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
                         </Shape>
                         <Shape x="50" y="35" name="Sun">
                             <Ellipse width="9" height="9" name="P"/>
-                            <Fill name="F"><SolidColor colorValue="FFFFD66B" name="C"/></Fill>
+                            <Fill name="F"><SolidColor colorValue="FFE4572E" name="C"/></Fill>
                         </Shape>
                     </Node>
+                    <LayoutComponent clip="false" styleId="1:65" name="Face">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="0" positionLeftUnitsValue="points"
+                                              positionTop="0" positionTopUnitsValue="points"
+                                              positionRight="0" positionRightUnitsValue="points"
+                                              positionBottom="0" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="42" name="Face Style" id="1:65"/>
+                        <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C" id="1:62"/></Fill><Stroke thickness="4" name="Ring"><SolidColor colorValue="FF2B1E16" name="C" id="1:63"/></Stroke>
+                    </LayoutComponent>
+                    <LayoutComponent clip="false" styleId="1:67" name="Shadow">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="5" positionLeftUnitsValue="points"
+                                              positionTop="5" positionTopUnitsValue="points"
+                                              positionRight="-5" positionRightUnitsValue="points"
+                                              positionBottom="-5" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="42" name="Shadow Style" id="1:67"/>
+                        <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                    </LayoutComponent>
                 </LayoutComponent>
 
                 <!-- settings button -->
@@ -187,18 +308,36 @@
                     <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                           cornerRadiusTL="42" name="Settings Style" id="1:71"/>
                     <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
-                    <Fill name="F"><SolidColor colorValue="FF1A2336" name="C" id="1:72"/></Fill>
-                    <Stroke thickness="3" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:73"/></Stroke>
                     <Node name="Icon">
                         <Shape x="42" y="42" name="Hub">
                             <Ellipse width="11" height="11" name="P"/>
-                            <Fill name="F"><SolidColor colorValue="FF1A2336" name="C"/></Fill>
+                            <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C"/></Fill>
                         </Shape>
                         <Shape x="42" y="42" name="Gear">
                             <Star points="8" width="40" height="40" innerRadius="0.72" cornerRadius="2" name="Teeth"/>
-                            <Fill name="F"><SolidColor colorValue="FFDCE3F0" name="C"/></Fill>
+                            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
                         </Shape>
                     </Node>
+                    <LayoutComponent clip="false" styleId="1:75" name="Face">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="0" positionLeftUnitsValue="points"
+                                              positionTop="0" positionTopUnitsValue="points"
+                                              positionRight="0" positionRightUnitsValue="points"
+                                              positionBottom="0" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="42" name="Face Style" id="1:75"/>
+                        <Fill name="F"><SolidColor colorValue="FFFFF8EA" name="C" id="1:72"/></Fill><Stroke thickness="4" name="Ring"><SolidColor colorValue="FF2B1E16" name="C" id="1:73"/></Stroke>
+                    </LayoutComponent>
+                    <LayoutComponent clip="false" styleId="1:77" name="Shadow">
+                        <LayoutComponentStyle widthUnitsValue="auto" heightUnitsValue="auto"
+                                              positionTypeValue="absolute"
+                                              positionLeft="5" positionLeftUnitsValue="points"
+                                              positionTop="5" positionTopUnitsValue="points"
+                                              positionRight="-5" positionRightUnitsValue="points"
+                                              positionBottom="-5" positionBottomUnitsValue="points"
+                                              cornerRadiusTL="42" name="Shadow Style" id="1:77"/>
+                        <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                    </LayoutComponent>
                 </LayoutComponent>
             </LayoutComponent>
 
@@ -218,9 +357,9 @@
                                       marginTop="4" marginBottom="8" name="Divider Style" id="1:86"/>
                 <Fill name="F">
                     <LinearGradient startX="0" startY="0" endX="1776" endY="0" name="G">
-                        <GradientStop colorValue="00334566" position="0"/>
-                        <GradientStop colorValue="FF334566" position="0.5"/>
-                        <GradientStop colorValue="00334566" position="1"/>
+                        <GradientStop colorValue="002B1E16" position="0"/>
+                        <GradientStop colorValue="662B1E16" position="0.5"/>
+                        <GradientStop colorValue="002B1E16" position="1"/>
                     </LinearGradient>
                 </Fill>
             </LayoutComponent>
@@ -242,8 +381,8 @@
                                           name="MoreFade Style" id="1:123"/>
                     <Fill name="F">
                         <LinearGradient startX="0" startY="0" endX="0" endY="90" name="G">
-                            <GradientStop colorValue="000C111E" position="0"/>
-                            <GradientStop colorValue="F00C111E" position="1"/>
+                            <GradientStop colorValue="00EEDAB3" position="0"/>
+                            <GradientStop colorValue="F5EEDAB3" position="1"/>
                         </LinearGradient>
                     </Fill>
                 </LayoutComponent>
@@ -269,16 +408,14 @@
             </LayoutComponent>
         </LayoutComponent>
 
-        <!-- soft light behind the top-right corner; declared last so it draws underneath -->
-        <Shape x="1500" y="40" name="Glow">
-            <Ellipse width="2000" height="2000" name="P"/>
-            <Fill name="F">
-                <RadialGradient startX="0" startY="0" endX="1000" endY="0" name="G">
-                    <GradientStop colorValue="2E4A6CFF" position="0"/>
-                    <GradientStop colorValue="124A6CFF" position="0.5"/>
-                    <GradientStop colorValue="004A6CFF" position="1"/>
-                </RadialGradient>
-            </Fill>
+        <!-- sunburst from the top-right; declared last so it draws underneath. Idle turns it. -->
+        <Shape x="1720" y="-40" name="Sunburst" id="1:3">
+            <Star points="22" width="4400" height="4400" innerRadius="0.04" name="Rays"/>
+            <Fill name="F"><SolidColor colorValue="55FFFBF0" name="C"/></Fill>
+        </Shape>
+        <Shape x="1720" y="-40" name="Sun">
+            <Ellipse width="300" height="300" name="P"/>
+            <Fill name="F"><SolidColor colorValue="40F2B134" name="C"/></Fill>
         </Shape>
 
         <StateMachine name="Home Machine" id="1:900">
@@ -287,6 +424,43 @@
                 <ExitState x="400" y="-120"/>
                 <EntryState><StateTransition stateToId="1:910"/></EntryState>
                 <AnimationState x="200" animationId="1:920" id="1:910"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Mascot Blink" id="1:1100">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1101"/></EntryState>
+                <AnimationState x="200" animationId="1:1600" id="1:1101"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Mascot Bob" id="1:1110">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1111"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1610" stateName="Rest" id="1:1111">
+                    <StateTransition stateToId="1:1112" duration="200" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:7" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1611" stateName="Dance" id="1:1112">
+                    <StateTransition stateToId="1:1111" duration="300" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:7" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
             </StateMachineLayer>
             <StateMachineLayer name="Screensaver Focus" id="1:1010">
                 <AnyState x="200" y="-120"/>
@@ -535,7 +709,60 @@
                 </AnimationState>
             </StateMachineLayer>
         </StateMachine>
-        <LinearAnimation duration="1" name="Idle" id="1:920"/>
+        <LinearAnimation duration="1800" loopValue="loop" name="Idle" id="1:920">
+            <KeyedObject objectId="1:3">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="linear"/>
+                    <KeyFrameDouble frame="1800" value="0.28559933" interpolationType="linear"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="240" loopValue="loop" name="Blink" id="1:1600">
+            <KeyedObject objectId="1:203">
+                <KeyedProperty property="scaleY">
+                    <KeyFrameDouble frame="0" value="1" interpolationType="hold"/>
+                    <KeyFrameDouble frame="214" value="1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="220" value="0.1" interpolationType="linear"/>
+                    <KeyFrameDouble frame="226" value="1" interpolationType="hold"/>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Bob Rest" id="1:1610">
+            <KeyedObject objectId="1:202">
+                <KeyedProperty property="y"><KeyFrameDouble value="100" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="rotation"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:204">
+                <KeyedProperty property="rotation"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="64" loopValue="loop" name="Bob Dance" id="1:1611">
+            <KeyedObject objectId="1:202">
+                <KeyedProperty property="y">
+                    <KeyFrameDouble frame="0" value="100" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="92" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="100" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="48" value="92" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="64" value="100" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                </KeyedProperty>
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="-0.06" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="48" value="0.06" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="64" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                </KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:204">
+                <KeyedProperty property="rotation">
+                    <KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="16" value="0.12" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="32" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="48" value="-0.12" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                    <KeyFrameDouble frame="64" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1"/></KeyFrameDouble>
+                </KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
         <LinearAnimation duration="1" name="More Below Off" id="1:1580">
             <KeyedObject objectId="1:122">
                 <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
@@ -552,10 +779,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:63">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:62">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF1A2336" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF8EA" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Screensaver Focus On" id="1:1511">
@@ -564,10 +791,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:63">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE8EEFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:62">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2C3B5C" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Settings Focus Off" id="1:1520">
@@ -576,10 +803,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:73">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:72">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF1A2336" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF8EA" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Settings Focus On" id="1:1521">
@@ -588,10 +815,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:73">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE8EEFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:72">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2C3B5C" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Prev Focus Off" id="1:1530">
@@ -612,10 +839,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:244">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE8EEFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:344">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="33FFFFFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Play Focus Off" id="1:1540">
@@ -626,6 +853,9 @@
             <KeyedObject objectId="1:246">
                 <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
+            <KeyedObject objectId="1:445">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE4572E" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Play Focus On" id="1:1541">
             <KeyedObject objectId="1:45">
@@ -633,7 +863,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:246">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF6F9BFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:445">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF0694A" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Next Focus Off" id="1:1550">
@@ -654,10 +887,10 @@
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:250">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE8EEFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="1:350">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="33FFFFFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Play State Off" id="1:1560">
@@ -701,8 +934,8 @@
             <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                   layoutAlignmentType="center" cornerRadiusTL="32" name="Card Style" id="3:11"/>
             <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
-            <Fill name="Bg"><SolidColor colorValue="FF182033" name="C" id="3:12"/></Fill>
-            <Stroke thickness="3" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="3:14"/></Stroke>
+            <Fill name="Bg"><SolidColor colorValue="FFFFF8EA" name="C" id="3:12"/></Fill>
+            <Stroke thickness="4" name="Ring"><SolidColor colorValue="FF2B1E16" name="C" id="3:14"/></Stroke>
             <Image assetId="6:20" fit="contain" name="Icon" id="3:15">
                 <LayoutParticipant layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                    width="112" height="112" name="L"/>
@@ -713,21 +946,19 @@
         <Text opacity="0" name="Label" id="3:20">
             <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
             <TextStylePaint fontSize="22" fontAssetId="6:1" name="Label Style" id="3:21">
-                <Fill name="F"><SolidColor colorValue="FFF4F6FB" name="C"/></Fill>
-                <TextStyleAxis tag="2003265652" axisValue="500" name="Weight"/>
+                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                <TextStyleAxis tag="2003265652" axisValue="600" name="Weight"/>
             </TextStylePaint>
             <TextValueRun styleId="3:21" text="App" name="Run">
                 <DataBindContext sourcePathIds="4:20-4:21" propertyKey="268"/>
             </TextValueRun>
         </Text>
 
-        <!-- focus glow: a soft accent shadow under the card. Declared after the
-             card so it draws beneath it; a direct artboard child keeps its size. -->
-        <Shape x="150" y="102" scaleX="1.1" scaleY="1.1" name="Glow" id="3:16">
-            <Rectangle width="270" height="182" cornerRadiusTL="39" name="P"/>
-            <Stroke thickness="7" name="S">
-                <SolidColor colorValue="005B8CFF" name="C" id="3:13"/>
-            </Stroke>
+        <!-- hard ink shadow under the card. Declared after the card so it draws
+             beneath it; on focus it drops further out as the card grows. -->
+        <Shape x="156" y="108" name="Shadow" id="3:16">
+            <Rectangle width="256" height="168" cornerRadiusTL="32" name="P"/>
+            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C" id="3:13"/></Fill>
         </Shape>
 
 
@@ -766,36 +997,48 @@
         </StateMachine>
 
         <LinearAnimation duration="1" name="Rest" id="3:920">
+            <KeyedObject objectId="3:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="156" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="108" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
             <KeyedObject objectId="3:10">
                 <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:12">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF182033" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF8EA" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:13">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="005B8CFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:14">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:20">
                 <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Focused" id="3:921">
+            <KeyedObject objectId="3:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="162" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="115" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
             <KeyedObject objectId="3:10">
                 <KeyedProperty property="scaleX"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:12">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF25314C" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:13">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="666F9BFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:14">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE8EEFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="3:20">
                 <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
@@ -822,8 +1065,8 @@
             <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                   layoutAlignmentType="center" cornerRadiusTL="24" name="Card Style" id="2:11"/>
             <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
-            <Fill name="Bg"><SolidColor colorValue="FF161D2E" name="C" id="2:12"/></Fill>
-            <Stroke thickness="3" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="2:14"/></Stroke>
+            <Fill name="Bg"><SolidColor colorValue="FFFFF8EA" name="C" id="2:12"/></Fill>
+            <Stroke thickness="4" name="Ring"><SolidColor colorValue="FF2B1E16" name="C" id="2:14"/></Stroke>
             <Image assetId="6:20" fit="contain" name="Icon" id="2:15">
                 <LayoutParticipant layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
                                    width="76" height="76" name="L"/>
@@ -834,21 +1077,19 @@
         <Text opacity="0" name="Label" id="2:20">
             <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
             <TextStylePaint fontSize="18" fontAssetId="6:1" name="Label Style" id="2:21">
-                <Fill name="F"><SolidColor colorValue="FFF4F6FB" name="C"/></Fill>
-                <TextStyleAxis tag="2003265652" axisValue="500" name="Weight"/>
+                <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C"/></Fill>
+                <TextStyleAxis tag="2003265652" axisValue="600" name="Weight"/>
             </TextStylePaint>
             <TextValueRun styleId="2:21" text="App" name="Run">
                 <DataBindContext sourcePathIds="4:10-4:11" propertyKey="268"/>
             </TextValueRun>
         </Text>
 
-        <!-- focus glow: a soft accent shadow under the card. Declared after the
-             card so it draws beneath it; a direct artboard child keeps its size. -->
-        <Shape x="111" y="72" scaleX="1.12" scaleY="1.12" name="Glow" id="2:16">
-            <Rectangle width="186" height="130" cornerRadiusTL="31" name="P"/>
-            <Stroke thickness="7" name="S">
-                <SolidColor colorValue="005B8CFF" name="C" id="2:13"/>
-            </Stroke>
+        <!-- hard ink shadow under the card. Declared after the card so it draws
+             beneath it; on focus it drops further out as the card grows. -->
+        <Shape x="117" y="78" name="Shadow" id="2:16">
+            <Rectangle width="172" height="116" cornerRadiusTL="24" name="P"/>
+            <Fill name="F"><SolidColor colorValue="FF2B1E16" name="C" id="2:13"/></Fill>
         </Shape>
 
 
@@ -887,36 +1128,48 @@
         </StateMachine>
 
         <LinearAnimation duration="1" name="Rest" id="2:920">
+            <KeyedObject objectId="2:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="117" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="78" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
             <KeyedObject objectId="2:10">
                 <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:12">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF161D2E" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF8EA" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:13">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="005B8CFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:14">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:20">
                 <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
         </LinearAnimation>
         <LinearAnimation duration="1" name="Focused" id="2:921">
+            <KeyedObject objectId="2:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="123" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="85" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
             <KeyedObject objectId="2:10">
                 <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
                 <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:12">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FF25314C" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2B134" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:13">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="666F9BFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:14">
-                <KeyedProperty property="colorValue"><KeyFrameColor value="FFE8EEFF" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF2B1E16" interpolationType="hold"/></KeyedProperty>
             </KeyedObject>
             <KeyedObject objectId="2:20">
                 <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
