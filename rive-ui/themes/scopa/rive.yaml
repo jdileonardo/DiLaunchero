@@ -1,4 +1,4 @@
-name: rive-ui
+name: scopa
 main: Home
 logs:
   file: build/rive.log

@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -23,6 +24,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import app.rive.Fit
 import app.rive.ImageAsset
@@ -54,12 +56,20 @@ private const val APP_COLUMNS = 8
 /** Grid rows that fit in the apps window below the favourites, and their height in artboard points. */
 private const val APP_ROWS_VISIBLE = 3
 private const val APP_ROW_HEIGHT = 182f
-private val BACKGROUND = Color(0xFF0A0F1C)
+
+/** The Rive designs the home screen can wear; each is a theme folder in rive-ui/themes/. */
+internal enum class LauncherTheme(val label: String, val raw: Int, val background: Color) {
+  RETRO("Retro", R.raw.home_retro, Color(0xFFF3E2BF)),
+  SCOPA("Scopa", R.raw.home_scopa, Color(0xFF0C3A20)),
+  VANILLA("Vanilla", R.raw.home_vanilla, Color(0xFF0A0F1C)),
+}
 
 private enum class TopItem(val prop: String) {
   PREV("prevFocused"), PLAY("playFocused"), NEXT("nextFocused"),
   SCREENSAVER("screensaverFocused"), SETTINGS("settingsFocused"),
 }
+
+private enum class SettingsMenu { NONE, MAIN, LAUNCHER, THEME }
 
 private sealed interface Focus {
   data class Top(val item: TopItem) : Focus
@@ -74,11 +84,27 @@ private class Tile(val vmi: ViewModelInstance, val icon: ImageAsset?) {
 
 @Composable
 internal fun MainActivity.RiveLauncherScreen() {
+  val prefs = remember { getSharedPreferences("launcher", android.content.Context.MODE_PRIVATE) }
+  var theme by remember {
+    mutableStateOf(LauncherTheme.entries.firstOrNull { it.name == prefs.getString("theme", null) } ?: LauncherTheme.RETRO)
+  }
+  // a new theme is a new file and view model, so start the screen afresh
+  key(theme) {
+    RiveHome(theme) { picked ->
+      prefs.edit().putString("theme", picked.name).apply()
+      theme = picked
+    }
+  }
+}
+
+/** One theme's home screen. Settings opens a menu: Android settings, or launcher settings (theme). */
+@Composable
+private fun MainActivity.RiveHome(theme: LauncherTheme, onPickTheme: (LauncherTheme) -> Unit) {
   val worker = rememberRiveWorker()
-  val fileResult = rememberRiveFile(RiveFileSource.RawRes.from(R.raw.home), worker)
+  val fileResult = rememberRiveFile(RiveFileSource.RawRes.from(theme.raw), worker)
   val file = (fileResult as? RiveResult.Success)?.value
   if (file == null) {
-    Box(Modifier.fillMaxSize().background(BACKGROUND))
+    Box(Modifier.fillMaxSize().background(theme.background))
     return
   }
 
@@ -112,6 +138,7 @@ internal fun MainActivity.RiveLauncherScreen() {
 
   var focus by remember { mutableStateOf<Focus?>(null) }
   var menuApp by remember { mutableStateOf<AppEntry?>(null) }
+  var settingsMenu by remember { mutableStateOf(SettingsMenu.NONE) }
   var movingPkg by remember { mutableStateOf<String?>(null) }
   var orderBeforeMove by remember { mutableStateOf<List<String>>(emptyList()) }
 
@@ -249,8 +276,8 @@ internal fun MainActivity.RiveLauncherScreen() {
           }
           playing = np.copy(playing = !np.playing)
         }
-        TopItem.SCREENSAVER -> launch(Intent("com.google.android.tv.settings.ambient").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-        TopItem.SETTINGS -> launch(Intent(Settings.ACTION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        TopItem.SCREENSAVER -> startScreensaver()
+        TopItem.SETTINGS -> settingsMenu = SettingsMenu.MAIN
       }
       else -> focusedApp()?.let { launch(it.intent) }
     }
@@ -325,14 +352,14 @@ internal fun MainActivity.RiveLauncherScreen() {
   }
 
   val keyFocus = remember { FocusRequester() }
-  LaunchedEffect(menuApp, home) { if (menuApp == null) runCatching { keyFocus.requestFocus() } }
+  LaunchedEffect(menuApp, settingsMenu, home) { if (menuApp == null && settingsMenu == SettingsMenu.NONE) runCatching { keyFocus.requestFocus() } }
   var okDown by remember { mutableStateOf(false) }
   var longPressed by remember { mutableStateOf(false) }
 
   BackHandler(enabled = true) { if (movingPkg != null) finishMove(false) }
 
   Box(
-    Modifier.fillMaxSize().background(BACKGROUND)
+    Modifier.fillMaxSize().background(theme.background)
       .focusRequester(keyFocus)
       .focusable()
       .onPreviewKeyEvent { event ->
@@ -374,9 +401,40 @@ internal fun MainActivity.RiveLauncherScreen() {
         modifier = Modifier.fillMaxSize(),
         viewModelInstance = h,
         fit = Fit.Contain(),
-        backgroundColor = 0xFF0A0F1C.toInt(),
+        backgroundColor = theme.background.toArgb(),
       )
     }
+  }
+
+  when (settingsMenu) {
+    SettingsMenu.NONE -> {}
+    SettingsMenu.MAIN -> OptionsMenu(
+      title = "Settings",
+      options = listOf(
+        "Android settings" to {
+          settingsMenu = SettingsMenu.NONE
+          launch(Intent(Settings.ACTION_SETTINGS).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        },
+        "Screensaver settings" to {
+          settingsMenu = SettingsMenu.NONE
+          launch(Intent("com.google.android.tv.settings.ambient").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        },
+        "Launcher settings" to { settingsMenu = SettingsMenu.LAUNCHER },
+      ),
+      onDismiss = { settingsMenu = SettingsMenu.NONE },
+    )
+    SettingsMenu.LAUNCHER -> OptionsMenu(
+      title = "Launcher settings",
+      options = listOf("Theme: ${theme.label}" to { settingsMenu = SettingsMenu.THEME }),
+      onDismiss = { settingsMenu = SettingsMenu.NONE },
+    )
+    SettingsMenu.THEME -> OptionsMenu(
+      title = "Theme",
+      options = LauncherTheme.entries.map { t ->
+        (if (t == theme) "${t.label}  ✓" else t.label) to { settingsMenu = SettingsMenu.NONE; if (t != theme) onPickTheme(t) }
+      },
+      onDismiss = { settingsMenu = SettingsMenu.LAUNCHER },
+    )
   }
 
   menuApp?.let { app ->

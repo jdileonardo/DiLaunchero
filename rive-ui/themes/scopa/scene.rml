@@ -1,0 +1,1039 @@
+<Rive version="1" kind="fragment">
+    <!-- ================================================================
+         Home: the launcher screen, 1920x1080. Bound to the Home view model
+         (data.rml); the Android host writes the clock, now playing and the
+         two app lists, and sets `focused` on whichever tile has focus.
+         ================================================================ -->
+    <Artboard defaultStateMachineId="1:900" viewModelId="4:1" viewModelInstanceId="5:1"
+              width="1920" height="1080" styleId="1:2" name="Home" id="1:1">
+        <LayoutComponentStyle name="Home Style" id="1:2"/>
+
+        <Fill name="Background">
+            <LinearGradient startX="0" startY="0" endX="1920" endY="1080" name="BG">
+                <GradientStop colorValue="FF0C3A20" position="0"/>
+                <GradientStop colorValue="FF104A2B" position="0.5"/>
+                <GradientStop colorValue="FF0C3A20" position="1"/>
+            </LinearGradient>
+        </Fill>
+
+        <LayoutComponent width="1920" height="1080" clip="false" styleId="1:11" name="Root" id="1:10">
+            <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fill"
+                                  flexDirectionValue="column"
+                                  paddingLeft="72" paddingRight="72" paddingTop="48" paddingBottom="32"
+                                  gapVertical="20"
+                                  name="Root Style" id="1:11"/>
+
+            <!-- ---------- top bar: clock · now playing · buttons ---------- -->
+            <LayoutComponent height="112" styleId="1:21" name="TopBar" id="1:20">
+                <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fixed"
+                                      flexDirectionValue="row" layoutAlignmentType="centerLeft"
+                                      gapHorizontal="20" name="TopBar Style" id="1:21"/>
+
+                <LayoutComponent styleId="1:23" name="Clock" id="1:22">
+                    <LayoutComponentStyle layoutWidthScaleType="hug" layoutHeightScaleType="hug"
+                                          flexDirectionValue="column" gapVertical="2"
+                                          name="Clock Style" id="1:23"/>
+                    <Text name="Time" id="1:24">
+                        <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
+                        <TextStylePaint fontSize="68" fontAssetId="6:1" letterSpacing="-1" name="Time Style" id="1:25">
+                            <Fill name="F"><SolidColor colorValue="FFF7EFD9" name="C"/></Fill>
+                            <TextStyleAxis tag="2003265652" axisValue="600" name="Weight"/>
+                        </TextStylePaint>
+                        <TextValueRun styleId="1:25" text="11:11 PM" name="Run">
+                            <DataBindContext sourcePathIds="4:1-4:2" propertyKey="268"/>
+                        </TextValueRun>
+                    </Text>
+                    <Text name="Date" id="1:26">
+                        <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
+                        <TextStylePaint fontSize="22" fontAssetId="6:1" name="Date Style" id="1:27">
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                        </TextStylePaint>
+                        <TextValueRun styleId="1:27" text="Tuesday, November 17" name="Run">
+                            <DataBindContext sourcePathIds="4:1-4:3" propertyKey="268"/>
+                        </TextValueRun>
+                    </Text>
+                </LayoutComponent>
+
+                <!-- takes the slack, pushing the rest right -->
+                <LayoutComponent height="10" styleId="1:29" name="Spacer" id="1:28">
+                    <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fixed"
+                                          name="Spacer Style" id="1:29"/>
+                </LayoutComponent>
+
+                <!-- now playing card -->
+                <LayoutComponent height="96" clip="false" styleId="1:31" name="NowPlaying" id="1:30">
+                    <LayoutComponentStyle layoutWidthScaleType="hug" layoutHeightScaleType="fixed"
+                                          flexDirectionValue="row" layoutAlignmentType="centerLeft"
+                                          paddingLeft="10" paddingRight="14" gapHorizontal="18"
+                                          cornerRadiusTL="18" name="NowPlaying Style" id="1:31"/>
+
+                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                    <Stroke thickness="3" name="Edge"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+                    <LayoutComponent width="76" height="76" clip="true" styleId="1:33" name="ArtFrame" id="1:32">
+                        <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                              cornerRadiusTL="8" name="ArtFrame Style" id="1:33"/>
+                        <Image assetId="6:2" fit="cover" name="Art" id="1:34">
+                            <LayoutParticipant layoutWidthScaleType="fill" layoutHeightScaleType="fill" name="L"/>
+                            <DataBindContext sourcePathIds="4:1-4:6" propertyKey="206"/>
+                        </Image>
+                    </LayoutComponent>
+
+                    <LayoutComponent styleId="1:36" name="Meta" id="1:35">
+                        <LayoutComponentStyle layoutWidthScaleType="hug" layoutHeightScaleType="hug"
+                                              flexDirectionValue="column" gapVertical="4"
+                                              name="Meta Style" id="1:36"/>
+                        <Text name="Title" id="1:37">
+                            <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
+                            <TextStylePaint fontSize="24" fontAssetId="6:1" name="Title Style" id="1:38">
+                                <Fill name="F"><SolidColor colorValue="FF1C1A17" name="C"/></Fill>
+                                <TextStyleAxis tag="2003265652" axisValue="700" name="Weight"/>
+                            </TextStylePaint>
+                            <TextValueRun styleId="1:38" text="Slide" name="Run">
+                                <DataBindContext sourcePathIds="4:1-4:4" propertyKey="268"/>
+                            </TextValueRun>
+                        </Text>
+                        <Text name="Subtitle" id="1:39">
+                            <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
+                            <TextStylePaint fontSize="17" fontAssetId="6:1" name="Subtitle Style" id="1:40">
+                                <Fill name="F"><SolidColor colorValue="FF8A5A3C" name="C"/></Fill>
+                            </TextStylePaint>
+                            <TextValueRun styleId="1:40" text="The Meadow Band · Spotify" name="Run">
+                                <DataBindContext sourcePathIds="4:1-4:5" propertyKey="268"/>
+                            </TextValueRun>
+                        </Text>
+                    </LayoutComponent>
+
+                    <!-- transport: prev · play/pause · next -->
+                    <LayoutComponent styleId="1:42" name="Transport" id="1:41">
+                        <LayoutComponentStyle layoutWidthScaleType="hug" layoutHeightScaleType="hug"
+                                              flexDirectionValue="row" layoutAlignmentType="centerLeft"
+                                              gapHorizontal="6" name="Transport Style" id="1:42"/>
+                        <LayoutComponent width="56" height="56" styleId="1:44" name="Prev" id="1:43">
+                            <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                                  cornerRadiusTL="28" name="Prev Style" id="1:44"/>
+                            <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+                            <Stroke thickness="3" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:244"/></Stroke>
+                            <Fill name="F"><SolidColor colorValue="00FFFFFF" name="C" id="1:344"/></Fill>
+                            <Node name="Icon">
+                                <Shape x="28" y="28" name="Glyph">
+                                    <Rectangle x="-9" y="0" width="3.5" height="18" name="Bar"/>
+                                    <Triangle x="2" y="0" rotation="-1.5707964" width="18" height="16" name="Tri"/>
+                                    <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                                </Shape>
+                            </Node>
+                        </LayoutComponent>
+                        <LayoutComponent width="56" height="56" styleId="1:46" name="PlayPause" id="1:45">
+                            <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                                  cornerRadiusTL="28" name="PlayPause Style" id="1:46"/>
+                            <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+                            <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                            <Stroke thickness="4" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:246"/></Stroke>
+                            <Node name="Icon">
+                                <!-- pause bars; the play triangle swaps in when npPlaying is false -->
+                                <Shape x="28" y="28" name="Pause" id="1:47">
+                                    <Rectangle x="-5" y="0" width="5" height="18" cornerRadiusTL="1.5" name="L"/>
+                                    <Rectangle x="5" y="0" width="5" height="18" cornerRadiusTL="1.5" name="R"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF7EFD9" name="C"/></Fill>
+                                </Shape>
+                                <Shape x="30" y="28" opacity="0" name="Play" id="1:48">
+                                    <Triangle rotation="1.5707964" width="20" height="18" name="Tri"/>
+                                    <Fill name="F"><SolidColor colorValue="FFF7EFD9" name="C"/></Fill>
+                                </Shape>
+                            </Node>
+                        </LayoutComponent>
+                        <LayoutComponent width="56" height="56" styleId="1:50" name="Next" id="1:49">
+                            <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                                  cornerRadiusTL="28" name="Next Style" id="1:50"/>
+                            <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+                            <Stroke thickness="3" name="Ring"><SolidColor colorValue="00FFFFFF" name="C" id="1:250"/></Stroke>
+                            <Fill name="F"><SolidColor colorValue="00FFFFFF" name="C" id="1:350"/></Fill>
+                            <Node name="Icon">
+                                <Shape x="28" y="28" name="Glyph">
+                                    <Rectangle x="9" y="0" width="3.5" height="18" name="Bar"/>
+                                    <Triangle x="-2" y="0" rotation="1.5707964" width="18" height="16" name="Tri"/>
+                                    <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                                </Shape>
+                            </Node>
+                        </LayoutComponent>
+                    </LayoutComponent>
+                </LayoutComponent>
+
+                <!-- screensaver button -->
+                <LayoutComponent width="84" height="84" clip="false" styleId="1:61" name="Screensaver" id="1:60">
+                    <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                          cornerRadiusTL="42" name="Screensaver Style" id="1:61"/>
+                    <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C" id="1:62"/></Fill>
+                    <Stroke thickness="3" name="Ring"><SolidColor colorValue="FF1C1A17" name="C" id="1:63"/></Stroke>
+                    <Node name="Icon">
+                        <Shape x="42" y="40" name="Monitor">
+                            <Rectangle width="40" height="27" cornerRadiusTL="5" name="Screen"/>
+                            <Stroke thickness="3" name="S"><SolidColor colorValue="FF2B3A8C" name="C"/></Stroke>
+                        </Shape>
+                        <Shape x="42" y="60" name="Stand">
+                            <Rectangle width="18" height="3" cornerRadiusTL="1.5" name="Base"/>
+                            <Rectangle y="-4" width="3" height="6" name="Neck"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                        </Shape>
+                        <Shape x="50" y="35" name="Sun">
+                            <Ellipse width="9" height="9" name="P"/>
+                            <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                        </Shape>
+                    </Node>
+                </LayoutComponent>
+
+                <!-- settings button -->
+                <LayoutComponent width="84" height="84" clip="false" styleId="1:71" name="Settings" id="1:70">
+                    <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                          cornerRadiusTL="42" name="Settings Style" id="1:71"/>
+                    <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+                    <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C" id="1:72"/></Fill>
+                    <Stroke thickness="3" name="Ring"><SolidColor colorValue="FF1C1A17" name="C" id="1:73"/></Stroke>
+                    <Node name="Icon">
+                        <Shape x="42" y="42" name="Hub">
+                            <Ellipse width="11" height="11" name="P"/>
+                            <Fill name="F"><SolidColor colorValue="FFFDFBF4" name="C"/></Fill>
+                        </Shape>
+                        <Shape x="42" y="42" name="Gear">
+                            <Star points="8" width="40" height="40" innerRadius="0.72" cornerRadius="2" name="Teeth"/>
+                            <Fill name="F"><SolidColor colorValue="FF2B3A8C" name="C"/></Fill>
+                        </Shape>
+                    </Node>
+                </LayoutComponent>
+            </LayoutComponent>
+
+            <!-- ---------- favourites ---------- -->
+            <LayoutComponent styleId="1:81" name="Favourites" id="1:80">
+                <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="hug"
+                                      flexDirectionValue="row" layoutAlignmentType="topCenter"
+                                      paddingTop="18" gapHorizontal="8" name="Favourites Style" id="1:81"/>
+                <ArtboardComponentList name="FavList" id="1:82">
+                    <DataBindContext sourcePathIds="4:1-4:8" propertyKey="800"/>
+                </ArtboardComponentList>
+            </LayoutComponent>
+
+            <!-- ---------- divider ---------- -->
+            <LayoutComponent height="2" styleId="1:86" name="Divider" id="1:85">
+                <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fixed"
+                                      marginTop="4" marginBottom="8" name="Divider Style" id="1:86"/>
+                <Fill name="F">
+                    <LinearGradient startX="0" startY="0" endX="1776" endY="0" name="G">
+                        <GradientStop colorValue="00F2C318" position="0"/>
+                        <GradientStop colorValue="AAF2C318" position="0.5"/>
+                        <GradientStop colorValue="00F2C318" position="1"/>
+                    </LinearGradient>
+                </Fill>
+            </LayoutComponent>
+
+            <!-- ---------- all apps: a clipped window over an 8-column grid ----------
+                 The host scrolls by setting appsScroll (points, <= 0); the bind eases
+                 the grid's y to it. Rows are 182pt (the AppTile artboard height). -->
+            <LayoutComponent clip="true" styleId="1:121" name="AppsViewport" id="1:120">
+                <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fill"
+                                      flexDirectionValue="column" name="AppsViewport Style" id="1:121"/>
+
+                <!-- fade at the bottom edge while more rows sit below; declared first so it draws on top -->
+                <LayoutComponent height="90" opacity="0" styleId="1:123" name="MoreFade" id="1:122">
+                    <LayoutComponentStyle layoutWidthScaleType="fill" layoutHeightScaleType="fixed"
+                                          positionTypeValue="absolute"
+                                          positionLeft="0" positionLeftUnitsValue="points"
+                                          positionRight="0" positionRightUnitsValue="points"
+                                          positionBottom="0" positionBottomUnitsValue="points"
+                                          name="MoreFade Style" id="1:123"/>
+                    <Fill name="F">
+                        <LinearGradient startX="0" startY="0" endX="0" endY="90" name="G">
+                            <GradientStop colorValue="000C3A20" position="0"/>
+                            <GradientStop colorValue="F00C3A20" position="1"/>
+                        </LinearGradient>
+                    </Fill>
+                </LayoutComponent>
+
+            <LayoutComponent styleId="1:91" name="Apps" id="1:90">
+                <LayoutComponentStyle layoutTypeValue="grid"
+                                      layoutWidthScaleType="fill" layoutHeightScaleType="hug"
+                                      name="Apps Style" id="1:91"/>
+                <DataBindContext sourcePathIds="4:1-4:38" propertyKey="14" converterId="7:1"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C1"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C2"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C3"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C4"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C5"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C6"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C7"/>
+                <GridTrack collection="template-columns" trackType="fr" trackValue="1" name="C8"/>
+                <GridTrack collection="auto-rows" trackType="auto" name="Rows"/>
+                <ArtboardComponentList name="AppList" id="1:92">
+                    <DataBindContext sourcePathIds="4:1-4:9" propertyKey="800"/>
+                </ArtboardComponentList>
+            </LayoutComponent>
+            </LayoutComponent>
+        </LayoutComponent>
+
+        <!-- lamp light over the table: a wide oval pool; declared last so it draws underneath -->
+        <Shape x="960" y="560" scaleY="0.62" name="Lamp">
+            <Ellipse width="2600" height="2600" name="P"/>
+            <Fill name="F">
+                <RadialGradient startX="0" startY="0" endX="1300" endY="0" name="G">
+                    <GradientStop colorValue="AA1E7347" position="0"/>
+                    <GradientStop colorValue="551A6A40" position="0.5"/>
+                    <GradientStop colorValue="001A6A40" position="1"/>
+                </RadialGradient>
+            </Fill>
+        </Shape>
+
+        <StateMachine name="Home Machine" id="1:900">
+            <StateMachineLayer name="Idle" id="1:901">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:910"/></EntryState>
+                <AnimationState x="200" animationId="1:920" id="1:910"/>
+            </StateMachineLayer>
+            <StateMachineLayer name="Screensaver Focus" id="1:1010">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1011"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1510" stateName="Off" id="1:1011">
+                    <StateTransition stateToId="1:1012" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:30" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1511" stateName="On" id="1:1012">
+                    <StateTransition stateToId="1:1011" duration="140" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:30" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="Settings Focus" id="1:1020">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1021"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1520" stateName="Off" id="1:1021">
+                    <StateTransition stateToId="1:1022" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:31" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1521" stateName="On" id="1:1022">
+                    <StateTransition stateToId="1:1021" duration="140" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:31" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="Prev Focus" id="1:1030">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1031"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1530" stateName="Off" id="1:1031">
+                    <StateTransition stateToId="1:1032" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:34" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1531" stateName="On" id="1:1032">
+                    <StateTransition stateToId="1:1031" duration="140" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:34" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="Play Focus" id="1:1040">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1041"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1540" stateName="Off" id="1:1041">
+                    <StateTransition stateToId="1:1042" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:35" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1541" stateName="On" id="1:1042">
+                    <StateTransition stateToId="1:1041" duration="140" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:35" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="Next Focus" id="1:1050">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1051"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1550" stateName="Off" id="1:1051">
+                    <StateTransition stateToId="1:1052" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:36" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1551" stateName="On" id="1:1052">
+                    <StateTransition stateToId="1:1051" duration="140" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:36" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="Play State" id="1:1060">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1061"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1560" stateName="Off" id="1:1061">
+                    <StateTransition stateToId="1:1062" duration="120" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:7" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1561" stateName="On" id="1:1062">
+                    <StateTransition stateToId="1:1061" duration="120" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:7" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="Now Playing Visible" id="1:1070">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1071"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1570" stateName="Off" id="1:1071">
+                    <StateTransition stateToId="1:1072" duration="250" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:37" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1571" stateName="On" id="1:1072">
+                    <StateTransition stateToId="1:1071" duration="250" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:37" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+            <StateMachineLayer name="More Below" id="1:1080">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="1:1081"/></EntryState>
+                <AnimationState x="100" y="100" animationId="1:1580" stateName="Off" id="1:1081">
+                    <StateTransition stateToId="1:1082" duration="200">
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:39" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="1:1581" stateName="On" id="1:1082">
+                    <StateTransition stateToId="1:1081" duration="200">
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:1-4:39" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+        </StateMachine>
+        <LinearAnimation duration="1" name="Idle" id="1:920"/>
+        <LinearAnimation duration="1" name="More Below Off" id="1:1580">
+            <KeyedObject objectId="1:122">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="More Below On" id="1:1581">
+            <KeyedObject objectId="1:122">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Screensaver Focus Off" id="1:1510">
+            <KeyedObject objectId="1:60">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:63">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF1C1A17" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:62">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFDFBF4" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Screensaver Focus On" id="1:1511">
+            <KeyedObject objectId="1:60">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:63">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:62">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Settings Focus Off" id="1:1520">
+            <KeyedObject objectId="1:70">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:73">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FF1C1A17" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:72">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFDFBF4" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Settings Focus On" id="1:1521">
+            <KeyedObject objectId="1:70">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:73">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:72">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Prev Focus Off" id="1:1530">
+            <KeyedObject objectId="1:43">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:244">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:344">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Prev Focus On" id="1:1531">
+            <KeyedObject objectId="1:43">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:244">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:344">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="55F2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Play Focus Off" id="1:1540">
+            <KeyedObject objectId="1:45">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:246">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Play Focus On" id="1:1541">
+            <KeyedObject objectId="1:45">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:246">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Next Focus Off" id="1:1550">
+            <KeyedObject objectId="1:49">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:250">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:350">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00FFFFFF" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Next Focus On" id="1:1551">
+            <KeyedObject objectId="1:49">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:250">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:350">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="55F2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Play State Off" id="1:1560">
+            <KeyedObject objectId="1:47">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:48">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Play State On" id="1:1561">
+            <KeyedObject objectId="1:47">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="1:48">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Now Playing Visible Off" id="1:1570">
+            <KeyedObject objectId="1:30">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Now Playing Visible On" id="1:1571">
+            <KeyedObject objectId="1:30">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+    </Artboard>
+
+    <!-- ================================================================
+         FavTile: one favourite. Big card, label fades in on focus.
+         ================================================================ -->
+    <Artboard isComponent="true" defaultStateMachineId="3:900" viewModelId="4:20" viewModelInstanceId="5:200"
+              x="2100" width="300" height="250" styleId="3:2" name="FavTile" id="3:1">
+        <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                              flexDirectionValue="column" layoutAlignmentType="topCenter"
+                              paddingTop="18" gapVertical="20" name="FavTile Style" id="3:2"/>
+
+        <LayoutComponent width="256" height="168" clip="false" styleId="3:11" name="Card" id="3:10">
+            <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                  layoutAlignmentType="center" cornerRadiusTL="18" name="Card Style" id="3:11"/>
+            <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+            <Fill name="Bg"><SolidColor colorValue="FFFDFBF4" name="C" id="3:12"/></Fill>
+            <Stroke thickness="5" name="Ring"><SolidColor colorValue="00F2C318" name="C" id="3:14"/></Stroke>
+            <Image assetId="6:20" fit="contain" name="Icon" id="3:15">
+                <LayoutParticipant layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                   width="112" height="112" name="L"/>
+                <DataBindContext sourcePathIds="4:20-4:22" propertyKey="206"/>
+            </Image>
+            <Node x="128.0" y="84.0" name="Frame">
+            <Shape name="Outer">
+                <Rectangle width="238" height="150" cornerRadiusTL="13.5" name="Outer"/>
+                <Stroke thickness="2" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+            </Shape>
+            <Shape name="InnerLine">
+                <Rectangle width="230" height="142" cornerRadiusTL="10.5" name="Inner"/>
+                <Stroke thickness="1" name="S"><SolidColor colorValue="88D92A2F" name="C"/></Stroke>
+            </Shape>
+            </Node>
+            <Node x="30" y="30" rotation="0" name="Pip">
+                <Shape name="Core">
+                    <Ellipse width="5.7" height="5.7" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                </Shape>
+                <Shape name="Sun">
+                    <Star points="8" width="14.5" height="14.5" innerRadius="0.55" name="Rays"/>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Coin">
+                    <Ellipse width="22" height="22" name="Rim"/>
+                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                    <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+            </Node>
+            <Node x="226" y="138" rotation="3.1415927" name="Pip">
+                <Shape name="Core">
+                    <Ellipse width="5.7" height="5.7" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                </Shape>
+                <Shape name="Sun">
+                    <Star points="8" width="14.5" height="14.5" innerRadius="0.55" name="Rays"/>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+                <Shape name="Coin">
+                    <Ellipse width="22" height="22" name="Rim"/>
+                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                    <Stroke thickness="1.6" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+            </Node>
+        </LayoutComponent>
+
+        <Text opacity="0" name="Label" id="3:20">
+            <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
+            <TextStylePaint fontSize="22" fontAssetId="6:1" name="Label Style" id="3:21">
+                <Fill name="F"><SolidColor colorValue="FFF7EFD9" name="C"/></Fill>
+                <TextStyleAxis tag="2003265652" axisValue="700" name="Weight"/>
+            </TextStylePaint>
+            <TextValueRun styleId="3:21" text="App" name="Run">
+                <DataBindContext sourcePathIds="4:20-4:21" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+
+        <!-- hard drop shadow under the card, as if lying on the felt; declared after
+             the card so it draws beneath it. On focus the card lifts: the shadow drops further. -->
+        <Shape x="154" y="107" name="Shadow" id="3:16">
+            <Rectangle width="256" height="168" cornerRadiusTL="18" name="P"/>
+            <Fill name="F"><SolidColor colorValue="66000000" name="C" id="3:13"/></Fill>
+        </Shape>
+
+
+        <StateMachine name="Tile Machine" id="3:900">
+            <StateMachineLayer name="Focus" id="3:901">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="3:910"/></EntryState>
+                <AnimationState x="100" y="100" animationId="3:920" stateName="Rest" id="3:910">
+                    <StateTransition stateToId="3:911" duration="200" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:20-4:23" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="3:921" stateName="Focused" id="3:911">
+                    <StateTransition stateToId="3:910" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:20-4:23" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+        </StateMachine>
+
+        <LinearAnimation duration="1" name="Rest" id="3:920">
+            <KeyedObject objectId="3:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="154" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="107" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:10">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:12">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFDFBF4" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:13">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="66000000" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:14">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00F2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:20">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Focused" id="3:921">
+            <KeyedObject objectId="3:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="162" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="118" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:10">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:12">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF6DC" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:13">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="88000000" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:14">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="3:20">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+    </Artboard>
+    <ComponentAsset artboardId="3:1" name="FavTile"/>
+
+    <!-- eases appsScroll so the grid glides between rows -->
+    <DataConverterInterpolator interpolationType="cubic" duration="0.28" name="Scroll Ease" id="7:1">
+        <CubicEaseInterpolator x1="0.25" y1="0.9" x2="0.3" y2="1"/>
+    </DataConverterInterpolator>
+
+    <!-- ================================================================
+         AppTile: one app in the grid. Same behaviour, smaller.
+         ================================================================ -->
+    <Artboard isComponent="true" defaultStateMachineId="2:900" viewModelId="4:10" viewModelInstanceId="5:10"
+              x="2500" width="222" height="182" styleId="2:2" name="AppTile" id="2:1">
+        <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                              flexDirectionValue="column" layoutAlignmentType="topCenter"
+                              paddingTop="14" gapVertical="16" name="AppTile Style" id="2:2"/>
+
+        <LayoutComponent width="172" height="116" clip="false" styleId="2:11" name="Card" id="2:10">
+            <LayoutComponentStyle layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                  layoutAlignmentType="center" cornerRadiusTL="14" name="Card Style" id="2:11"/>
+            <ComponentOrigin originX="0.5" originY="0.5" name="Origin"/>
+            <Fill name="Bg"><SolidColor colorValue="FFFDFBF4" name="C" id="2:12"/></Fill>
+            <Stroke thickness="5" name="Ring"><SolidColor colorValue="00F2C318" name="C" id="2:14"/></Stroke>
+            <Image assetId="6:20" fit="contain" name="Icon" id="2:15">
+                <LayoutParticipant layoutWidthScaleType="fixed" layoutHeightScaleType="fixed"
+                                   width="76" height="76" name="L"/>
+                <DataBindContext sourcePathIds="4:10-4:12" propertyKey="206"/>
+            </Image>
+            <Node x="86.0" y="58.0" name="Frame">
+            <Shape name="Outer">
+                <Rectangle width="154" height="98" cornerRadiusTL="9.5" name="Outer"/>
+                <Stroke thickness="2" name="S"><SolidColor colorValue="FFD92A2F" name="C"/></Stroke>
+            </Shape>
+            <Shape name="InnerLine">
+                <Rectangle width="146" height="90" cornerRadiusTL="6.5" name="Inner"/>
+                <Stroke thickness="1" name="S"><SolidColor colorValue="88D92A2F" name="C"/></Stroke>
+            </Shape>
+            </Node>
+            <Node x="24" y="25" rotation="0" scaleX="0.95" scaleY="0.95" name="Pip">
+                <Shape y="-7.5" name="Rim">
+                    <Rectangle width="18" height="3.5" cornerRadiusTL="1.5" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+                <Shape y="-2" name="Bowl">
+                    <Rectangle width="16" height="11" linkCornerRadius="false" cornerRadiusTL="2" cornerRadiusTR="2" cornerRadiusBL="7" cornerRadiusBR="7" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+                <Shape y="4.5" name="Stem">
+                    <Rectangle width="4" height="7" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FF1F4A2A" name="C"/></Fill>
+                </Shape>
+                <Shape y="9" name="Foot">
+                    <Rectangle width="12" height="3.5" cornerRadiusTL="1.5" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+            </Node>
+            <Node x="148" y="91" rotation="3.1415927" scaleX="0.95" scaleY="0.95" name="Pip">
+                <Shape y="-7.5" name="Rim">
+                    <Rectangle width="18" height="3.5" cornerRadiusTL="1.5" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+                <Shape y="-2" name="Bowl">
+                    <Rectangle width="16" height="11" linkCornerRadius="false" cornerRadiusTL="2" cornerRadiusTR="2" cornerRadiusBL="7" cornerRadiusBR="7" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFF2C318" name="C"/></Fill>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+                <Shape y="4.5" name="Stem">
+                    <Rectangle width="4" height="7" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FF1F4A2A" name="C"/></Fill>
+                </Shape>
+                <Shape y="9" name="Foot">
+                    <Rectangle width="12" height="3.5" cornerRadiusTL="1.5" name="P"/>
+                    <Fill name="F"><SolidColor colorValue="FFD92A2F" name="C"/></Fill>
+                    <Stroke thickness="1.2" name="S"><SolidColor colorValue="FF1C1A17" name="C"/></Stroke>
+                </Shape>
+            </Node>
+        </LayoutComponent>
+
+        <Text opacity="0" name="Label" id="2:20">
+            <LayoutParticipant layoutWidthScaleType="hug" layoutHeightScaleType="hug" name="L"/>
+            <TextStylePaint fontSize="18" fontAssetId="6:1" name="Label Style" id="2:21">
+                <Fill name="F"><SolidColor colorValue="FFF7EFD9" name="C"/></Fill>
+                <TextStyleAxis tag="2003265652" axisValue="700" name="Weight"/>
+            </TextStylePaint>
+            <TextValueRun styleId="2:21" text="App" name="Run">
+                <DataBindContext sourcePathIds="4:10-4:11" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+
+        <!-- hard drop shadow under the card, as if lying on the felt; declared after
+             the card so it draws beneath it. On focus the card lifts: the shadow drops further. -->
+        <Shape x="115" y="77" name="Shadow" id="2:16">
+            <Rectangle width="172" height="116" cornerRadiusTL="14" name="P"/>
+            <Fill name="F"><SolidColor colorValue="66000000" name="C" id="2:13"/></Fill>
+        </Shape>
+
+
+        <StateMachine name="Tile Machine" id="2:900">
+            <StateMachineLayer name="Focus" id="2:901">
+                <AnyState x="200" y="-120"/>
+                <ExitState x="400" y="-120"/>
+                <EntryState><StateTransition stateToId="2:910"/></EntryState>
+                <AnimationState x="100" y="100" animationId="2:920" stateName="Rest" id="2:910">
+                    <StateTransition stateToId="2:911" duration="200" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.2" y1="0.9" x2="0.3" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:10-4:13" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="true"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+                <AnimationState x="300" y="100" animationId="2:921" stateName="Focused" id="2:911">
+                    <StateTransition stateToId="2:910" duration="160" interpolationType="cubic">
+                        <CubicEaseInterpolator x1="0.4" y1="0" x2="0.2" y2="1"/>
+                        <TransitionViewModelCondition opValue="equal">
+                            <TransitionPropertyViewModelComparator>
+                                <BindablePropertyBoolean>
+                                    <DataBindContext sourcePathIds="4:10-4:13" propertyKey="634"/>
+                                </BindablePropertyBoolean>
+                            </TransitionPropertyViewModelComparator>
+                            <TransitionValueBooleanComparator value="false"/>
+                        </TransitionViewModelCondition>
+                    </StateTransition>
+                </AnimationState>
+            </StateMachineLayer>
+        </StateMachine>
+
+        <LinearAnimation duration="1" name="Rest" id="2:920">
+            <KeyedObject objectId="2:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="115" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="77" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:10">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:12">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFDFBF4" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:13">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="66000000" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:14">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="00F2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:20">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="0" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+        <LinearAnimation duration="1" name="Focused" id="2:921">
+            <KeyedObject objectId="2:16">
+                <KeyedProperty property="x"><KeyFrameDouble value="123" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="y"><KeyFrameDouble value="88" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:10">
+                <KeyedProperty property="scaleX"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+                <KeyedProperty property="scaleY"><KeyFrameDouble value="1.12" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:12">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFFFF6DC" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:13">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="88000000" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:14">
+                <KeyedProperty property="colorValue"><KeyFrameColor value="FFF2C318" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+            <KeyedObject objectId="2:20">
+                <KeyedProperty property="opacity"><KeyFrameDouble value="1" interpolationType="hold"/></KeyedProperty>
+            </KeyedObject>
+        </LinearAnimation>
+    </Artboard>
+    <ComponentAsset artboardId="2:1" name="AppTile"/>
+</Rive>

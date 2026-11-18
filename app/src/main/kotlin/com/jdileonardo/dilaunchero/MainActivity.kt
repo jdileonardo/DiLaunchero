@@ -98,6 +98,14 @@ class MainActivity : ComponentActivity() {
 
   internal fun launch(i: Intent) { runCatching { startActivity(i) } }
 
+  /** Starts the screensaver now (TV Settings' "start screensaver" action), else opens the Ambient page. */
+  internal fun startScreensaver() {
+    val now = Intent("com.google.android.pano.action.SLEEP").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    runCatching { startActivity(now) }.onFailure {
+      launch(Intent("com.google.android.tv.settings.ambient").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+    }
+  }
+
   internal fun icon(pkg: String): ImageBitmap = icons.getOrPut(pkg) {
     packageManager.getApplicationIcon(pkg).toBitmap(160, 160).asImageBitmap()
   }
@@ -230,7 +238,7 @@ class MainActivity : ComponentActivity() {
             )
             Spacer(Modifier.width(24.dp))
           }
-          Focusable(shape = RoundedCornerShape(28.dp), onClick = { launch(Intent("com.google.android.tv.settings.ambient").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }, onFocused = { focusedPkg.value = null }) {
+          Focusable(shape = RoundedCornerShape(28.dp), onClick = { startScreensaver() }, onFocused = { focusedPkg.value = null }) {
             ScreenSaverIcon(Modifier.size(40.dp))
           }
           Spacer(Modifier.width(12.dp))
@@ -334,10 +342,23 @@ class MainActivity : ComponentActivity() {
     onMove: () -> Unit,
     onToggleFavorite: () -> Unit,
     onAppInfo: () -> Unit,
-  ) {
+  ) = OptionsMenu(
+    title = app.label,
+    options = listOf(
+      "Open" to onOpen,
+      (if (isFavorite) "Remove from favorites" else "Add to favorites") to onToggleFavorite,
+      "Move" to onMove,
+      "App info" to onAppInfo,
+    ),
+    onDismiss = onDismiss,
+  )
+
+  /** A dialog of choices, opened by a long OK press; the first option takes focus. */
+  @Composable
+  internal fun OptionsMenu(title: String, options: List<Pair<String, () -> Unit>>, onDismiss: () -> Unit) {
     val firstOption = remember { FocusRequester() }
     // The long press can keep sending OK repeats after the dialog appears.
-    var waitingForRelease by remember(app.pkg) { mutableStateOf(true) }
+    var waitingForRelease by remember(title) { mutableStateOf(true) }
     Dialog(onDismissRequest = onDismiss) {
       Column(
         Modifier.width(360.dp)
@@ -363,25 +384,16 @@ class MainActivity : ComponentActivity() {
           .background(Color(0xFF1B2638))
           .padding(24.dp),
       ) {
-        Text(app.label, color = Color.White, fontSize = 24.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
-        Spacer(Modifier.height(16.dp))
-        Focusable(Modifier.fillMaxWidth().focusRequester(firstOption), RoundedCornerShape(12.dp), onOpen) {
-          Text("Open", color = Color.White, fontSize = 18.sp)
-        }
-        Spacer(Modifier.height(8.dp))
-        Focusable(Modifier.fillMaxWidth(), RoundedCornerShape(12.dp), onToggleFavorite) {
-          Text(if (isFavorite) "Remove from favorites" else "Add to favorites", color = Color.White, fontSize = 18.sp)
-        }
-        Spacer(Modifier.height(8.dp))
-        Focusable(Modifier.fillMaxWidth(), RoundedCornerShape(12.dp), onMove) {
-          Text("Move", color = Color.White, fontSize = 18.sp)
-        }
-        Spacer(Modifier.height(8.dp))
-        Focusable(Modifier.fillMaxWidth(), RoundedCornerShape(12.dp), onAppInfo) {
-          Text("App info", color = Color.White, fontSize = 18.sp)
+        Text(title, color = Color.White, fontSize = 24.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+        options.forEachIndexed { i, (label, action) ->
+          Spacer(Modifier.height(if (i == 0) 16.dp else 8.dp))
+          val m = if (i == 0) Modifier.fillMaxWidth().focusRequester(firstOption) else Modifier.fillMaxWidth()
+          Focusable(m, RoundedCornerShape(12.dp), action) {
+            Text(label, color = Color.White, fontSize = 18.sp)
+          }
         }
       }
-      LaunchedEffect(app.pkg) { firstOption.requestFocus() }
+      LaunchedEffect(title) { firstOption.requestFocus() }
     }
   }
 
