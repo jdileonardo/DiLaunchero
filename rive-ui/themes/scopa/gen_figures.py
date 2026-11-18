@@ -534,7 +534,7 @@ def deck():
              name="FaceSide", id=ID["TopFace"], opacity=0),
         node([card_back()], name="BackSide", id=ID["TopBack"]),
     ], name="TopCard", id=ID["TopCard"])
-    return node(under + [top], name="Deck", x=390, y=962, rot=0.1, sx=0.88, sy=0.88)
+    return node(under + [top], name="Deck", x=190, y=962, rot=0.1, sx=0.88, sy=0.88)
 
 
 def case():
@@ -552,15 +552,16 @@ def case():
         coin(44, name="Medallion", y=32),
         shape([star(4, 12, 0.3, x_, y_) for x_, y_ in ((-52, -28), (52, -28), (-52, 92), (52, 92))], GOLD,
               stroke=None, name="Corners"),
-    ], name="Case", x=170, y=956, rot=-0.08, sx=0.9, sy=0.9)
+    ], name="Case", x=CASE_X, y=CASE_Y, rot=-0.06, sx=CASE_S, sy=CASE_S)
 
 
 # ---- the table hand and the sweep ----------------------------------------------------
-COURT_X, COURT_Y, COURT_S = [612, 752, 892], 104, 0.55
+COURT_X, COURT_Y, COURT_S = [570, 710, 850], 104, 0.55
+CASE_X, CASE_Y, CASE_S = 1004, 102, 0.58
 TABLE_S = 0.62
-TABLE_X = [650, 830, 1010, 1190]
+TABLE_X = [480, 720, 960, 1200]
 TABLE_Y = 960
-PLAYED_X = 1380
+PLAYED_X = 1440
 
 
 def tre_di_denari():
@@ -745,7 +746,7 @@ def anims():
     # a card is played, the broom sweeps the table (scopa!), the cards are dealt again; 25 s
     D = 1500
     play_at, sweep0, sweep1, deal = 840, 930, 1020, 1200
-    bx0, bx1 = 500, 1560
+    bx0, bx1 = 320, 1640
     tr = {}
     for i, x in enumerate(TABLE_X + [PLAYED_X]):
         key = I[f"T{i}"] if i < 4 else I["Played"]
